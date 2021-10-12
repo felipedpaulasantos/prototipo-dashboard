@@ -1,0 +1,117 @@
+<h1 class="titulo">
+  Botões
+</h1>
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+      Visão Geral
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+      Exemplos
+    </a>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+    <div class="row no-gutters">
+      <section #scrollElement class="col-12 col-xl-9 pr-2 mb-5">
+        <app-documentacao-template id="painelBotoes" 
+        [showCodeButton]="false"
+        [cardTitle]="'Padrão'" 
+        [codeViewId]="'viewBotoes'"
+        [htmlTabId]="'htmlCodeBotoes'" 
+        [htmlCode]="htmlCodeBotoes">
+          <div class="descricao">
+            Seguir o padrão do Bootstrap com as classes temáticas definidas no menu <a class="text-destaque" routerLink="/cores">Cores</a>.<br>
+            Todas as variantes (outline, block, lg, sm) estão disponíveis.
+          </div>
+      
+          <div class="conteudo">
+            <button class="btn btn-main">Principal</button>&nbsp;
+            <button class="btn btn-accent">Destaque</button>&nbsp;
+            <button class="btn btn-cancel">Cancel</button>&nbsp;
+            <button class="btn btn-outline-aux">Auxiliar</button>&nbsp;
+            <button class="btn btn-danger btn-sm">Perigo</button>&nbsp;
+            <button class="btn btn-success btn-lg">Sucesso</button>&nbsp;
+            <button class="btn btn-warning">Alerta</button>&nbsp;
+            <button class="btn btn-info">Informativo</button>&nbsp;
+            <button class="btn btn-link">Link</button>
+            
+            <pre class="mt-3"><code [highlight]="botoesIntroducao" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+        
+        <br>
+    
+        <app-documentacao-template id="painelBotoesTamanho" 
+        [showCodeButton]="false"
+        [cardTitle]="'Ícones'" 
+        [codeViewId]="'viewBotoesTamanho'"
+        [htmlTabId]="'htmlCodeBotoesTamanho'" 
+        [htmlCode]="htmlCodeBotoesTamanho">
+          <div class="descricao">
+            Utilizar ícones ao lado esquerdo do texto, conforme segue:<br>
+            <b>- Botões pequenos:</b> ícones comuns (classe "fa/fas/far") com espaçamento à direita padrão de 0.5rem (classe "mr-2").<br>
+            <strong>- Botões de tamanho normal:</strong> ícones comuns (classe "fa/fas/far") com espaçamento à direita padrão de 0.5rem (classe "mr-2").<br>
+            <b>- Botões grandes:</b> ícones grandes (classe "fa/fas/far" acompanhada da "fa-lg") com espaçamento à direita padrão de 1rem (classe "mr-3").<br>
+          </div>
+      
+          <div class="conteudo">
+            <button class="btn btn-accent btn-sm">
+              <i class="fa fa-plus mr-2"></i>Incluir
+            </button> &nbsp;
+            <button class="btn btn-outline-accent">
+              <i class="fa fa-edit mr-2"></i>Editar
+            </button> &nbsp;
+            <button class="btn btn-main btn-lg">
+              <i class="fa fa-lg fa-save mr-3"></i>Salvar
+            </button>
+
+            <pre class="mt-3"><code [highlight]="botoesIcones" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+      </section>
+    
+      <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+        <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+     </nav>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="exemplos" role="tabpanel">
+
+    <app-documentacao-template
+    [showCodeButton]="false"
+    [cardTitle]="'Temáticos'"
+    [codeViewId]="'viewBotoesTodosTematicos'"
+    [htmlTabId]="'htmlCodeTodosTematicos'"
+    [htmlCode]="htmlCodeTodosTematicos"
+    [tsTabId]="'tsCodeTodosTematicos'"
+    [tsCode]="tsCodeTodosTematicos">
+
+      <div class="conteudo">
+        <div class="table-responsive">
+          <table class="table table-caixa table-borderless">
+            <tbody>
+              <ng-container *ngFor="let tema of temas; let i = index">
+                <tr>
+                  <td><button class="btn btn-{{tema?.name}}">Padrão</button></td>
+                  <td><button class="btn btn-{{tema?.name}} btn-sm">Pequeno</button></td>
+                  <td><button class="btn btn-{{tema?.name}} btn-lg">Grande</button></td>
+                  <td><button class="btn btn-outline-{{tema?.name}}">Outline</button></td>
+                  <td><button class="btn btn-{{tema?.name}}" disabled>Desabilitado</button></td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </app-documentacao-template>
+  </div>  <!-- Tab -->
+</div>  <!-- Tab Content -->

@@ -1,0 +1,416 @@
+<h1 class="titulo mb-0">
+	DataTable
+</h1>
+
+<div class="my-4">
+	<h5>
+		<p>O componente <span class="citation-highlight">cx-datatable</span> em conjunto com a diretiva <span
+			class="citation-highlight">datatable</span>
+		adiciona funcionalidades especiais a tabelas comuns como filtro, ordenação, paginação, exportação
+		em .xls e impressão.</p>
+		
+		<p>O componente implementa a biblioteca <a class="text-destaque" target="_blank"
+				href="https://www.npmjs.com/package/angular-datatables">
+				Angular + Datatables</a>.
+		</p>
+	</h5>
+
+	<div class="alert alert-outline-warning">
+		Este componente <b>não</b> funciona nas seguintes situações:
+		<ul class="lista-alert">
+			<li>
+				<a href="https://datatables.net/forums/discussion/30847/cannot-use-colspan-in-tbody" target="_blank">
+					Tabela com 'colspan' no 'tbody'
+				</a>. A biblioteca DataTables exige que todas as linhas do 'tbody' tenham a mesma quantidade de colunas.<br>
+				OBS: É possível contornar essa limitação acrescentando os 'td's faltantes com 'display: none', mas os efeitos são imprevisíveis.
+				
+			</li>
+			<li>Tabela dentro de outra tabela</li>
+		</ul>
+	</div>
+
+	<h6 class="font-fam-bold">HTML:</h6>
+	<pre><code [highlight]="examples.codeDescricao"></code></pre> 
+</div>
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+			Visão Geral
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link text-uppercase" data-toggle="tab" href="#api" role="tab">
+			API
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab" (click)="consultarDados()">
+			Exemplos
+		</a>
+	</li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+	<div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+		<div class="row no-gutters">
+
+			<section #scrollElement class="col-12 col-xl-9 pr-2">
+				<app-documentacao-template id="painelDatatable"
+				[cardTitle]="'Configuração'" 
+				[codeViewId]="'codePainelDatatable'"
+				[htmlTabId]="'htmlCodeDatatable'" 
+				[htmlCode]="examples.htmlCodeDatatable"
+				[tsTabId]="'tsCodeDatatable'"
+				[tsCode]="examples.tsCodeDatatable">
+					<div class="descricao">
+						<p>O atributo <span class="citation-highlight">settings</span> recebe um objeto do tipo <span class="citation-highlight">DataTableSettings</span>
+							com a configuração desejada da tabela, informando quais elementos serão exibidos.</p>
+
+						<p>A classe <span class="citation-highlight">DataTableConfig</span> possui configurações pré-definidas mas pode-se utilizar
+							o método <span class="citation-highlight">getDataTableSettings( )</span> para definir configurações customizadas.</p>
+
+						<p>Os elementos configuráveis são: Botões, Filtro geral, Quantidade de linhas por página, Informativo e Paginação.</p>
+
+						<p>Caso o atributo não seja informado é aplicada a configuração padrão, <span class="citation-highlight">DataTableConfig.DEFAULT_SETTINGS</span>.</p>
+
+						<button class="btn btn-accent" data-toggle="collapse" (click)="consultarDados()" href="#conteudoPainelDatatable">Exibir tabela</button>
+					</div>
+
+					<div class="conteudo collapse" id="conteudoPainelDatatable">
+						<cx-datatable [settings]="settingsCompleta" [trigger]="dtTrigger">
+							<table datatable class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Prato</th>
+										<th>Ingrediente</th>
+										<th>Medida</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let row of rows">
+										<td>{{ row.dish }}</td>
+										<td>{{ row.ingredient }}</td>
+										<td>{{ row.measurement }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</cx-datatable>
+					</div>
+				</app-documentacao-template>
+
+				<br>
+
+				<app-documentacao-template id="painelDatatableFiltros"
+				[cardTitle]="'Filtros por coluna'" 
+				[codeViewId]="'codePainelFiltros'"
+				[htmlTabId]="'htmlCodeDatatableFilter'" 
+				[htmlCode]="examples.htmlCodeDatatableFilter"
+				[tsTabId]="'tsCodeDatatableFilter'"
+				[tsCode]="examples.tsCodeDatatableFilter">
+					<div class="descricao">
+						<p>Filtros individuais por coluna podem ser acrescentados com os atributos 
+							<span class="citation-highlight">columnFilterType: DataTableColumnFilterType</span> ("input" ou "select") e 
+							<span class="citation-highlight">columnFilterPosition: DataTableColumnFilterPosition</span> ("top" ou "bottom").
+						</p>
+
+						<p>
+							Neste caso abaixo, todas as colunas terão um campo de filtro do tipo select na parte de baixo da tabela:							
+						</p>
+						<pre><code [highlight]="codeDataFilterAllColumns"></code></pre>
+
+						<p>
+							Caso os filtros precisem ser informados coluna a coluna, deve-se atribuir apenas o <span class="citation-highlight">columnFilterPosition</span>,
+							e depois, em cada <span class="citation-highlight">th</span> do header, informar o tipo do filtro desta forma:
+						</p>
+						<pre><code [highlight]="codeDataFilterInput"></code></pre> 
+						ou
+						<pre class="my-2"><code [highlight]="codeDataFilterSelect"></code></pre>
+
+						<button class="btn btn-accent" data-toggle="collapse" (click)="consultarDados()" href="#conteudoPainelFiltro">Exibir tabela</button>
+					</div>
+
+					<div id="conteudoPainelFiltro" class="conteudo collapse">
+						<cx-datatable [settings]="settingsCustom" [trigger]="dtTrigger" columnFilterPosition="top">
+							<table datatable class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th data-filter="input">Prato</th>
+										<th>Ingrediente</th>
+										<th data-filter="select">Medida</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let row of rows.slice(0, 10)">
+										<td>{{ row.dish }}</td>
+										<td>{{ row.ingredient }}</td>
+										<td>{{ row.measurement }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</cx-datatable>
+					</div>
+				</app-documentacao-template>
+
+				<br>
+
+				<app-documentacao-template id="painelDatatableReinicializacao"
+				[cardTitle]="'Reinicialização'" 
+				[codeViewId]="'codePainelReload'"
+				[showCodeButton]="false">
+					<div class="descricao">
+						<p>Na grande maioria dos casos os dados das tabelas são carregados de fontes assíncronas, como uma consulta a um serviço.
+							Assim, quando os dados da tabela forem atualizados, há duas maneiras de reinicializar a DataTable.</p>
+
+						<p>Uma delas é a forma exibida nos exemplos anteriores. O componente 
+							<span class="citation-highlight">cx-datatable</span> recebe no atributo <span class="citation-highlight">trigger</span>
+							um <span class="citation-highlight">Subject</span>. Quando for necessário atualizar a tabela, basta chamar 
+							<span class="citation-highlight">subject.next( )</span>.</p>
+
+						<p>A alternativa é acessar o componente diretamente. Coloca-se uma template string no componente
+							<span class="citation-highlight">cx-datatable</span>, e então o seleciona utilizando o recurso <span class="citation-highlight">@ViewChild</span>.
+							Para atualizar a tabela, chama-se o método <span class="citation-highlight">datatable.reloadTable( )</span>.
+						</p>
+
+						<p>OBS: O atributo "static: true" na configuração do @ViewChild é necessário quando há a possibilidade da tabela ser retirada do DOM, estando
+							dentro de um ngIf, por exemplo.
+						</p>
+
+						<h6 class="font-fam-bold">HTML:</h6>
+						<pre><code [highlight]="codeHtmlTemplateString"></code></pre> 
+
+						<h6 class="font-fam-bold">TS:</h6>
+						<pre><code [highlight]="examples.codeTsTemplateString"></code></pre> 
+					</div>
+
+					<div id="conteudoPainelReload" class="conteudo collapse">
+					</div>
+				</app-documentacao-template>
+			</section>
+
+			<nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+				<app-code-fixed-nav [items]="navItems" [currentSection]="currentSection">
+				</app-code-fixed-nav>
+			</nav>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="api" role="tabpanel">
+		<div class="card">
+			<div class="card-body">
+				<app-documentacao-api-table
+					[props]="propsApi"
+				></app-documentacao-api-table>
+
+				<br>
+
+				<app-documentacao-api-table
+					titulo="DataTableConfig"
+					descricao="Classe de configurações pré-definidas e métodos auxiliares"
+					[props]="propsConfig"
+				></app-documentacao-api-table>
+
+				<br>
+
+				<app-documentacao-api-table
+					titulo="DataTableConfigOptions"
+					descricao="Parâmetros para o método DataTableConfig.getDataTableSettings( )"
+					[props]="propsConfigOptions"
+				></app-documentacao-api-table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="exemplos" role="tabpanel">
+		<div id="cardFiltros" class="card mb-4">
+			<div class="card-body">
+				<form [formGroup]="formDTConfig">
+					<h5 class="subtitulo mb-4">Opções</h5>
+					<div class="row align-items-center mb-3">
+						<div class="col-2">
+							<div class="custom-control custom-checkbox">
+								<input [checked]="settings.configOptions.showButtons" formControlName="showButtons" type="checkbox" (change)="getTableConfig()"
+									class="custom-control-input" id="checkBotoes">
+								<label class="custom-control-label" for="checkBotoes">
+									Botões
+								</label>
+							</div>
+						</div>
+	
+						<div class="col-2">
+							<div class="custom-control custom-checkbox">
+								<input [checked]="settings.configOptions.showFilter" formControlName="showFilter" type="checkbox" (change)="getTableConfig()"
+									class="custom-control-input" id="checkFiltro">
+								<label class="custom-control-label" for="checkFiltro">
+									Filtro Geral
+								</label>
+							</div>
+						</div>
+	
+						<div class="col-2">
+							<div class="custom-control custom-checkbox">
+								<input [checked]="settings.configOptions.showPagination" formControlName="showPagination" type="checkbox" (change)="getTableConfig()"
+									class="custom-control-input" id="checkPaging">
+								<label class="custom-control-label" for="checkPaging">
+									Paginação
+								</label>
+							</div>
+						</div>
+	
+						<div class="col-2">
+							<div class="custom-control custom-checkbox">
+								<input [checked]="settings.configOptions.showInfo" formControlName="showInfo" type="checkbox" (change)="getTableConfig()"
+									class="custom-control-input" id="checkInfo">
+								<label class="custom-control-label" for="checkInfo">
+									Informativo
+								</label>
+							</div>
+						</div>
+	
+						<div class="col-2">
+							<div class="custom-control custom-checkbox">
+								<input [checked]="settings.configOptions.showLength" formControlName="showLength" type="checkbox" (change)="getTableConfig()"
+									class="custom-control-input" id="checkLength">
+								<label class="custom-control-label" for="checkLength">
+									Linhas por página
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+	
+						<div class="col-3 my-3">
+							<label>Filtro por coluna</label>
+							<ng-select formControlName="columnFilterType" (ngModelChange)="updateConfigOption('columnFilterType', $event)">
+								<ng-option>Nenhum</ng-option>
+								<ng-option value="input" selected>Campo simples</ng-option>
+								<ng-option value="select">Campo select</ng-option>
+							</ng-select>
+<!-- 							<select [value]="settings['columnFilterType']" (change)="updateConfigOption('columnFilterType', $event.target.value)" class="form-control">
+								<option value="">Nenhum</option>
+								<option value="input" selected>Campo simples</option>
+								<option value="select">Campo select</option>
+							</select> -->
+						</div>
+	
+						<div class="col-3 my-3">
+							<label>Posição do filtro</label>
+							<ng-select formControlName="columnFilterPosition" (ngModelChange)="setFilterPosition($event)">
+								<ng-option value="top" selected>Topo</ng-option>
+								<ng-option value="bottom">Rodapé</ng-option>
+							</ng-select>
+<!-- 							<select [value]="settings['columnFilterPosition']" (change)="setFilterPosition($event.target.value)" class="form-control">
+								<option value="top" selected>Topo</option>
+								<option value="bottom">Rodapé</option>
+							</select> -->
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3 my-3">
+							<button class="btn btn-accent" (click)="updateSettings(settingsPadrao)">
+								<i class="fa fa-cog mr-2"></i>
+								Configuração Padrão
+							</button>
+						</div>
+	
+						<div class="col-3 my-3">
+							<button class="btn btn-accent" (click)="updateSettings(settingsComTodosBotoes)">
+								<i class="fa fa-cog mr-2"></i>
+								Configuração Completa
+							</button>
+						</div>
+	
+						<div class="col-3 my-3">
+							<button class="btn btn-accent" (click)="updateSettings(settingsSimples)">
+								<i class="fa fa-cog mr-2"></i>
+								Configuração Simples
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3 my-3">
+							<button class="btn btn-accent" (click)="fetchData()">
+								<i class="fa fa-sync mr-2"></i>
+								Buscar novos dados
+							</button>
+						</div>
+	
+						<div class="col-3 my-3">
+							<button class="btn btn-accent" (click)="showTable = !showTable">
+								<i class="fa fa-eye mr-2"></i>
+								Exibir / Ocultar
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<hr class="my-5">
+
+		<cx-card id="cardTabelaSandbox" class="my-3" *ngIf="showTable">
+			<div class="card-header">
+				<h5 class="subtitulo">Tabela</h5>
+			</div>
+			<div class="card-body">
+				<cx-datatable [settings]="settings" [trigger]="dtTrigger" #tabela>
+				  <table datatable class="table table-striped table-hover">
+					  <thead>
+						  <tr>
+							  <th>ID</th>
+							  <th>Prato</th>
+							  <th>Ingrediente</th>
+							  <th>Medida</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+						  <tr *ngFor="let row of rows">
+							  <td>{{ row.id }}</td>
+							  <td>{{ row.dish }}</td>
+							  <td>{{ row.ingredient }}</td>
+							  <td>{{ row.measurement }}</td>
+						  </tr>
+					  </tbody>
+				  </table>
+			  </cx-datatable>
+			</div>
+		</cx-card>
+
+		<cx-card id="cardTabelaSandboxChildRows" class="card my-3" *ngIf="showTable">
+			<div class="card-header">
+				<h5 class="subtitulo">Linhas afilhadas (em desenvolvimento)</h5>
+			</div>
+			<div class="card-body">
+				<cx-datatable [settings]="settings" [trigger]="dtTrigger" #tabelaChildRows>
+				  <table datatable class="table table-striped">
+					  <thead>
+						  <tr>
+							  <th></th> <!-- ícone -->
+							  <th>ID</th>
+							  <th>Prato</th>
+							  <th>Ingrediente</th>
+							  <th>Medida</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+						  <tr *ngFor="let row of rows"
+						  [attr.data-content]="childRowContent"
+						  [attr.data-child-name]="row.id" 
+						  [attr.data-child-value]="row.dish">
+							  <td class="table-expand-button">
+								  <i class="fa fa-plus"></i>
+								</td>
+							  <td>{{ row.id }}</td>
+							  <td>{{ row.dish }}</td>
+							  <td>{{ row.ingredient }}</td>
+							  <td>{{ row.measurement }}</td>
+						  </tr>
+					  </tbody>
+				  </table>
+			  </cx-datatable>
+			</div>
+		</cx-card>
+	</div>
+</div>

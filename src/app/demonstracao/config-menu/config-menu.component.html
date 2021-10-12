@@ -1,0 +1,173 @@
+<h1 class="titulo">
+    Configuração do Menu
+</h1>
+
+
+<ul class="tab-caixa nav nav-pills" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#tab-menu" role="tab" aria-controls="profile"
+            aria-selected="true">
+            Menu
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-submenu" role="tab" aria-controls="activate"
+            aria-selected="false">
+            Submenu
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-subcategoria" role="tab" aria-controls="activate"
+            aria-selected="false">
+            Sub-Categoria
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-funcionalidade" role="tab" aria-controls="activate"
+            aria-selected="false">
+            Funcionalidade
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content pt-3">
+    <div class="tab-pane show active fade" id="tab-menu" role="tabpanel" aria-labelledby="menu-tab">
+        <div class="table-responsive">
+            <table id="menuTable" datatable [dtOptions]="config" class="table table-caixa">
+                <thead>
+                    <tr>
+                        <th>Nome do Menu</th>
+                        <th>Habilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let menu of menus; let i = index">
+                        <td>{{ menu.name | uppercase }}</td>
+                        <td>
+                            <div class="custom-control custom-switch">
+                                <input (change)="menu.enabled = !menu.enabled; updateMenu(menus)" type="checkbox"
+                                    class="custom-control-input" id="switchMenuNacional{{i}}" [checked]="menu.enabled">
+                                <label class="custom-control-label font-fam-normal" for="switchMenuNacional{{i}}">
+                                    {{ menu.enabled ? "Habilitado" : "Desabilitado" }}
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-submenu" role="tabpanel" aria-labelledby="submenu-tab">
+        <div id="submenuTable" class="table-responsive">
+            <table datatable [dtOptions]="config" class="table table-caixa">
+                <thead>
+                    <tr>
+                        <th>Nome do Menu</th>
+                        <th>Nome do Submenu</th>
+                        <th>Habilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let menu of menus; let i1 = index">
+                        <tr *ngFor="let submenu of menu.submenu; let i2 = index">
+                            <td>{{ menu.name | uppercase }}</td>
+                            <td>{{ submenu.name | uppercase }}</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input (change)="submenu.enabled = !submenu.enabled; updateMenu(menus)"
+                                        type="checkbox" class="custom-control-input"
+                                        id="switchSubmenuNacional{{i1}}_{{i2}}" [checked]="submenu.enabled">
+                                    <label class="custom-control-label font-fam-normal"
+                                        for="switchSubmenuNacional{{i1}}_{{i2}}">
+                                        {{ submenu.enabled ? "Habilitado" : "Desabilitado" }}
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-subcategoria" role="tabpanel" aria-labelledby="subcategoria-tab">
+        <div id="submenuTable" class="table-responsive">
+            <table datatable [dtOptions]="config" class="table table-caixa">
+                <thead>
+                    <tr>
+                        <th>Nome do Menu</th>
+                        <th>Nome do Submenu</th>
+                        <th>Nome da Sub-Categoria</th>
+                        <th>Habilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let menu of menus; let i1 = index">
+                        <ng-container *ngFor="let submenu of menu.submenu; let i2 = index">
+                            <tr *ngFor="let categoria of submenu.submenu; let i3 = index">
+                                <td>{{ menu.name | uppercase }}</td>
+                                <td>{{ submenu.name | uppercase }}</td>
+                                <td>{{ categoria.name | uppercase }}</td>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input (change)="categoria.enabled = !categoria.enabled; updateMenu(menus)"
+                                            type="checkbox" class="custom-control-input"
+                                            id="switchSubmenuNacional{{i1}}_{{i2}}_{{i3}}"
+                                            [checked]="categoria.enabled">
+                                        <label class="custom-control-label font-fam-normal"
+                                            for="switchSubmenuNacional{{i1}}_{{i2}}_{{i3}}">
+                                            {{ categoria.enabled ? "Habilitado" : "Desabilitado" }}
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-funcionalidade" role="tabpanel" aria-labelledby="funcionalidade-tab">
+        <div id="submenuTable" class="table-responsive">
+            <table datatable [dtOptions]="config" class="table table-caixa">
+                <thead>
+                    <tr>
+                        <th>Nome do Menu</th>
+                        <th>Nome do Submenu</th>
+                        <th>Nome da Sub-Categoria</th>
+                        <th>Nome da Funcionalidade</th>
+                        <th>Habilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let menu of menus; let i1 = index">
+                        <ng-container *ngFor="let submenu of menu.submenu; let i2 = index">
+                            <ng-container *ngFor="let categoria of submenu.submenu; let i3 = index">
+                                <tr *ngFor="let funcionalidade of categoria.submenu; let i4 = index">
+                                    <td>{{ menu.name | uppercase }}</td>
+                                    <td>{{ submenu.name | uppercase }}</td>
+                                    <td>{{ categoria.name | uppercase }}</td>
+                                    <td>{{ funcionalidade.name | uppercase }}</td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input (change)="categoria.enabled = !categoria.enabled; updateMenu(menus)"
+                                                type="checkbox" class="custom-control-input"
+                                                id="switchSubmenuNacional{{i1}}_{{i2}}_{{i3}}_{{i4}}"
+                                                [checked]="categoria.enabled">
+                                            <label class="custom-control-label font-fam-normal"
+                                                for="switchSubmenuNacional{{i1}}_{{i2}}_{{i3}}_{{i4}}">
+                                                {{ funcionalidade.enabled ? "Habilitado" : "Desabilitado" }}
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

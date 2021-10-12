@@ -1,0 +1,93 @@
+/* BUTTON CONTROL WRAPPER */
+.button-control-wrapper {
+   display: inline-block;
+/*    min-width: 100px; */
+   padding: 0.6rem 1rem;
+   background-color: var(--cxAux);
+   color: var(--cxBase);
+   border-style: solid;
+   border-width: 1px;
+   border-radius: var(--cxBorderRadius);
+   border-color: var(--cxAux);
+   box-sizing: content-box;
+   vertical-align: middle;
+}
+.button-control-wrapper.checked {
+   border-color: var(--cxAccent);
+   background-color: var(--cxAccent);
+ }
+.button-control-wrapper:hover {
+   cursor: pointer;
+}
+
+/* FLEX WRAPPER */
+.button-control-wrapper > .flex-wrapper {
+   display: flex;
+
+}
+
+/* CHECK BOX WRAPPER */
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper {
+   position: relative;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   width: 2rem;
+}
+
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper {
+   position: relative;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   width: 2rem;
+}
+
+
+/* CHECKMARK */
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper > .checkmark {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   height: 16px;
+   width: 16px;
+   background-color: var(--cxBase);
+   border: 1px solid var(--cxCancel);
+}
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper > .checkmark.radio {
+   border-radius: var(--cxBorderRadiusRound);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+/* CHECKMARK AFTER */
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper > .checkmark:after {
+   position: absolute;
+   content: "";
+   opacity: 0;
+   transition: opacity 0.2s;
+}
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper > .checkmark.checkbox:after {
+   width: 5px;
+   height: 10px;
+   border-style: solid;
+   border-color: var(--cxContrast);
+   border-width: 0 2px 2px 0;
+   -webkit-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   transform: rotate(45deg);
+}
+.button-control-wrapper > .flex-wrapper > .checkbox-wrapper > .checkmark.radio:after {
+   width: 8px;
+   height: 8px;
+   border-style: solid;
+   border-width: 4px;
+   border-color: var(--cxContrast);
+   border-radius: var(--cxBorderRadiusRound);
+   background-color: var(--cxContrast);
+}
+.button-control-wrapper.checked > .flex-wrapper > .checkbox-wrapper > .checkmark:after {
+   opacity: 1;
+}

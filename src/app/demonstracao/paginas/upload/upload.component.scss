@@ -1,0 +1,37 @@
+.card-upload {
+	display: flex;
+	height: 400px;
+	width: 500px;
+	margin: auto;
+	transition: border 0.2s, opacity 0.3s;
+	border: 2px transparent;
+}
+
+.drag-hover {
+	opacity: 0.4;
+	border: 2px lightgray dashed;
+}
+
+.img-previa {
+	display: flex;
+	margin: auto;
+	border: 1px lightgray solid;
+	height: 100%;
+	max-height: 300px;
+	width: 100%;
+	max-width: 350px;
+	border-radius: var(--cxBorderRadius);	
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	&:hover {
+		filter: brightness(70%);
+		-webkit-filter: brightness(70%);
+	}
+}
+
+tfoot {
+	display: table-header-group;
+}

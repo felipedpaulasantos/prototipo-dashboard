@@ -1,0 +1,32 @@
+<div #prototipadorGrid id="prototipadorGrid" [ngClass]="{'card-grid-no-border': !showBorder}">
+   <ng-container *ngFor="let item of items; let i = index">
+      <cx-card #cardItem (close)="destroy(i)" [draggable]="true" [expandable]="false"
+         class="d-inline-block w-auto border-0 shadow-none">
+         <div #cardBody class="card-body card-grid" mwlResizable [enableGhostResize]="true"
+            [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+            (resizeEnd)="onResizeEnd($event, cardBody)" [innerHTML]="item.html">
+         </div>
+      </cx-card>
+   </ng-container>
+</div>
+
+<div class="mt-5">
+   <button class="btn btn-accent" (click)="addInput()">
+      Adicionar input
+   </button>
+
+   <button class="btn btn-accent" (click)="addCampoTexto()">
+      Adicionar campo de texto
+   </button>
+
+   <button class="btn btn-accent" (click)="addCardButton()">
+      Adicionar card button
+   </button>
+
+   <button class="btn btn-accent ml-2" (click)="showBorder = !showBorder">
+      <span *ngIf="showBorder">Ocultar linhas</span>
+      <span *ngIf="!showBorder">Exibir linhas</span>
+   </button>
+</div>
+
+<app-menu-elementos></app-menu-elementos>

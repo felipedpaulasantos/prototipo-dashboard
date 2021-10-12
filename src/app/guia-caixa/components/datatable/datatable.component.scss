@@ -1,0 +1,89 @@
+.dataTables_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-x: auto;
+  .table.dataTable {
+    width: 100% !important;
+  }
+}
+
+.dataTables_length {
+  display: flex;
+  margin-bottom: 1rem;
+  width: 30%;
+  margin-left: auto;
+  label {
+    width: 100%;
+    color: var(--cxContrast);
+    text-align: right;
+  }
+  select {
+    width: 10rem !important;
+    display: inline-block !important;
+  }
+}
+
+.dataTables_filter {
+  display: block;
+  margin-bottom: 1rem;
+  width: 30rem;
+  label {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    color: var(--cxContrast);
+    input {
+      font-family: var(--cxFontFamilyNormal);
+    }
+  }
+}
+
+.dataTables_info {
+  display: inline-block;
+}
+
+.dataTables_paginate {
+  text-align: right;
+  margin-left: auto;
+}
+
+.dt-buttons {
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  .dt-button {
+    margin-left: 0.5rem;
+  }
+}
+
+.dt-button-collection {
+  position: absolute;
+  z-index: 999;
+  border: solid 1px var(--cxCancel);
+  background-color: var(--cxBase);
+  box-shadow: var(--cxShadow);
+  width: auto;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+}
+
+.dataTables_empty {
+  text-align: center;
+}
+
+.table.dataTable {
+  thead th {
+    border-top: none;
+    border-bottom: solid 1px var(--cxContrast) !important;
+  }
+  tfoot td {
+    padding-left: 0;
+  }
+}
+
+td.table-expand-button {
+  cursor: pointer;
+  color: var(--cxAccent);
+}

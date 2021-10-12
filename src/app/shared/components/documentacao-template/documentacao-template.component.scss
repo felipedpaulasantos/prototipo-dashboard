@@ -1,0 +1,6 @@
+.descricao-wrapper:not(:empty) {
+	margin-bottom: 1rem;
+}
+.descricao-wrapper:empty {
+	display: none;
+}

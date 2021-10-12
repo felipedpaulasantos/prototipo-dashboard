@@ -1,0 +1,466 @@
+<div class="mb-5">
+   <h4 class="subtitulo">Extrato estático descendente</h4>
+   <cx-extrato>
+      <table cxTabelaExtrato class="table">
+         <thead>
+            <tr>
+               <th>Valor</th>
+               <th data-agrupador="true">Data</th>
+               <th>Tipo</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td [ngClass]="{'text-success': true}">2000.00</td>
+               <td data-agrupador="true">2021-09-17</td>
+               <td>Pagamento</td>
+            </tr>
+            <tr>
+               <td [ngClass]="{'text-danger': false}">3000.00</td>
+               <td data-agrupador="true">2021-09-17</td>
+               <td>Pagamento</td>
+            </tr>
+            <tr>
+               <td [ngClass]="{'text-danger': true}">4000.00</td>
+               <td data-agrupador="true">2021-09-06</td>
+               <td>
+                  <button class="btn btn-accent" (click)="teste('teste')">Teste</button>
+               </td>
+            </tr>
+            <tr>
+               <td>4000.00</td>
+               <td data-agrupador="true">2021-09-06</td>
+               <td>Pagamento</td>
+            </tr>
+            <tr>
+               <td>4000.00</td>
+               <td data-agrupador="true">2021-09-04</td>
+               <td>
+                  <button class="btn btn-accent" routerLink="/inicio">Ir para o início</button>
+               </td>
+            </tr>
+            <tr>
+               <td>4000.00</td>
+               <td data-agrupador="true">2021-09-04</td>
+               <td>Pagamento</td>
+            </tr>
+            <tr>
+               <td>4000.00</td>
+               <td data-agrupador="true">2021-09-04</td>
+               <td>Pagamento</td>
+            </tr>
+         </tbody>
+      </table>
+   </cx-extrato>
+</div>
+
+<!-- <div class="mb-5">
+   <h4>Extrato dinâmico</h4>
+   <table class="table">
+      <thead>
+         <tr>
+            <th>ID</th>
+            <th>Valid Card</th>
+            <th>CCV</th>
+            <th data-agrupador="true">Data</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let stripe of randomStripes">
+            <td>{{ stripe.id }}</td>
+            <td class="cursor-pointer text-accent" (click)="teste(stripe.valid_card)">{{ stripe.valid_card }}</td>
+            <td>{{ stripe.ccv }}</td>
+            <td data-agrupador="true">{{stripe.year}}-{{stripe.month}}-01</td>
+         </tr>
+      </tbody>
+   </table>
+</div> -->
+
+<div class="mb-5">
+   <h4 class="subtitulo">Extrato dinâmico crescente</h4>
+   <cx-extrato #extratoTeste [sortFunctionAgrupamentos]="sortFunctionTeste">
+      <table cxTabelaExtrato class="table table-striped mb-0 table-bordered">
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>Valid Card</th>
+               <th>CCV</th>
+               <th data-agrupador="true">Data</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let stripe of randomStripes">
+               <td>{{ stripe.id }}</td>
+               <td class="cursor-pointer text-accent" (click)="teste(stripe.valid_card)">{{ stripe.valid_card }}</td>
+               <td>{{ stripe.ccv }}</td>
+               <td data-agrupador="true">{{stripe.year}}-{{stripe.month}}-01</td>
+            </tr>
+         </tbody>
+      </table>
+   </cx-extrato>
+</div>
+
+<!-- TESTE VALIDAÇÃO CPF CNPJ NIS EM UM CAMPO SÓ -->
+<div [formGroup]="formCampoUnico" class="row my-3">
+   <div class="col-4">
+      <div class="card">
+         <div class="card-body">
+            <label>
+               <span [ngClass]="{'text-cancel': !isCpf(campoUnico.value)}">CPF</span> /
+               <span [ngClass]="{'text-cancel': !isCpnj(campoUnico.value)}">CNPJ</span> /
+               <span [ngClass]="{'text-cancel': !isNis(campoUnico.value)}">NIS</span>
+            </label>
+            <input formControlName="campoUnico" class="form-control" minlength="9" maxlength="14"
+               (input)="validaCampo($event.target.value)">
+            <br>
+            IS VALID CPF {{ campoUnico.value }}: <strong>{{ isCpf(campoUnico.value) ? 'VÁLIDO' : 'INVÁLIDO' | uppercase
+               }}</strong>
+            <br>
+            IS VALID NIS {{ campoUnico.value }}: <strong>{{ isNis(campoUnico.value) ? 'VÁLIDO' : 'INVÁLIDO' | uppercase
+               }}</strong>
+            <br>
+            IS VALID CNPJ {{ campoUnico.value }}: <strong>{{ isCpnj(campoUnico.value) ? 'VÁLIDO' : 'INVÁLIDO' |
+               uppercase }}</strong>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div [formGroup]="formTeste" class="row my-5">
+   <div class="col">
+      <div>
+         <label>CPF</label>
+         <input formControlName="cpf" class="form-control">
+         <br>
+         IS VALID CPF {{ cpf.value }}: <strong>{{ isCpf(cpf.value) ? 'VÁLIDO' : 'INVÁLIDO' | uppercase }}</strong>
+      </div>
+   </div>
+   <div class="col">
+      <div>
+         <label>NIS</label>
+         <input formControlName="nis" class="form-control">
+         <br>
+         IS VALID NIS {{ nis.value }}: <strong>{{ isNis(nis.value) ? 'VÁLIDO' : 'INVÁLIDO' | uppercase }}</strong>
+      </div>
+   </div>
+   <div class="col">
+      <div>
+         <label>CNPJ</label>
+         <input formControlName="cnpj" class="form-control">
+         <br>
+         IS VALID CNPJ {{ cnpj.value }}: <strong>{{ isCpnj(cnpj.value) ? 'VÁLIDO' : 'INVÁLIDO' | uppercase }}</strong>
+      </div>
+   </div>
+</div>
+
+<!-- CLIENTE TAB -->
+<section id="cliente-tab">
+   <div class="cliente-tab-wrapper">
+      <div class="cliente-tab cliente-close cliente-current">
+         <div class="row no-gutters">
+            <div class="col-4 cliente-tab-left-side">
+               <div class="left-side-container">
+                  <span>Atendimento</span>
+                  <h4 class="left-side-container-title">Direto</h4>
+               </div>
+            </div>
+            <div class="col-8 cliente-tab-right-side">
+               <div class="cliente-picture-container">
+                  <img src="assets/images/picture-2.jpeg" alt="" class="cliente-picture">
+               </div>
+               <div class="cliente-info-container">
+                  <h6>Fulano de Tal</h6>
+                  <p>(99) 9999-9999</p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="cliente-tab cliente-close">
+         <div class="row no-gutters">
+            <div class="col-4 cliente-tab-left-side">
+               <div class="left-side-container">
+                  <span>Senha</span>
+                  <h4 class="left-side-container-title">LL887</h4>
+               </div>
+            </div>
+            <div class="col-8 cliente-tab-right-side">
+               <div class="cliente-picture-container">
+                  <img src="assets/images/profile-picture-round.jpeg" alt="" class="cliente-picture">
+               </div>
+               <div class="cliente-info-container">
+                  <h6>Ciclana da Silva</h6>
+                  <p>(99) 9999-9999</p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="cliente-tab cliente-far">
+         <div class="row no-gutters">
+            <div class="col-12 cliente-tab-left-side">
+               <div class="left-side-container">
+                  <span>Senha</span>
+                  <h4 class="left-side-container-title">CD2019</h4>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="cliente-tab cliente-far">
+         <div class="row no-gutters">
+            <div class="col-12 cliente-tab-left-side">
+               <div class="left-side-container">
+                  <span>Senha</span>
+                  <h4 class="left-side-container-title">PE062</h4>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <section class="consulta-direta-container">
+         <label class="d-block">Atendimento direto</label>
+         <div class="row no-gutters">
+            <div class="col-9">
+               <input class="form-control" placeholder="CPF / CNPJ">
+            </div>
+            <div class="col">
+               <button class="btn btn-accent btn-sm ml-2">Atender</button>
+            </div>
+         </div>
+      </section>
+   </div>
+</section>
+
+<!-- BOTÕES CIRCULARES -->
+<section id="circle-buttons">
+   <div class="circle-button-container">
+      <div class="circle-button">
+         <i class="fa fa-pen circle-button-icon"></i>
+         <span class="circle-button-text">
+            Gerenciador de atendimento
+         </span>
+      </div>
+
+      <div class="circle-button">
+         <i class="fa fa-users-cog circle-button-icon"></i>
+         <span class="circle-button-text">
+            Configurações pessoais
+         </span>
+      </div>
+
+      <div class="circle-button">
+         <i class="fa fa-calendar-plus circle-button-icon"></i>
+         <span class="circle-button-text">
+            Nova agenda
+         </span>
+      </div>
+
+      <div class="circle-button">
+         <i class="fa fa-chart-pie circle-button-icon"></i>
+         <span class="circle-button-text">
+            Novas metas
+         </span>
+      </div>
+   </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+   <div class="calendar-box-container">
+      <div class="card calendar-box calendar-box-pending">
+         <div class="card-header">
+            <div class="d-flex align-items-center">
+               <div class="d-flex align-items-center mr-auto">
+                  <i class="fa fa-calendar-alt calendar-box-icon fa-2x mr-3"></i>
+                  <h5>15/05/2021</h5>
+               </div>
+               <div class="ml-auto">
+                  <button class="calendar-box-button mr-2">
+                     <i class="fa fa-check"></i>
+                  </button>
+                  <button class="calendar-box-button ">
+                     <i class="fa fa-times"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            At nemo corrupti similique sapiente, eos ab ex voluptate necessitatibus culpa ullam ipsa libero. Provident
+            debitis eaque pariatur itaque sit rem accusamus?
+         </div>
+      </div>
+
+      <div class="card calendar-box calendar-box-done">
+         <div class="card-header">
+            <div class="d-flex align-items-center">
+               <div class="d-flex align-items-center mr-auto">
+                  <i class="fa fa-calendar-alt calendar-box-icon fa-2x mr-3"></i>
+                  <h5>15/05/2021</h5>
+               </div>
+               <div class="ml-auto">
+                  <button class="calendar-box-button calendar-box-button-check mr-2">
+                     <i class="fa fa-check"></i>
+                  </button>
+                  <button class="calendar-box-button calendar-box-button-times">
+                     <i class="fa fa-times"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            At nemo corrupti similique sapiente, eos ab ex voluptate necessitatibus culpa ullam ipsa libero. Provident
+            debitis eaque pariatur itaque sit rem accusamus?
+         </div>
+      </div>
+
+      <div class="card calendar-box calendar-box-missed">
+         <div class="card-header">
+            <div class="d-flex align-items-center">
+               <div class="d-flex align-items-center mr-auto">
+                  <i class="fa fa-calendar-alt calendar-box-icon fa-2x mr-3"></i>
+                  <h5>15/05/2021</h5>
+               </div>
+               <div class="ml-auto">
+                  <button class="calendar-box-button calendar-box-button-check mr-2">
+                     <i class="fa fa-check"></i>
+                  </button>
+                  <button class="calendar-box-button calendar-box-button-times">
+                     <i class="fa fa-times"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            At nemo corrupti similique sapiente, eos ab ex voluptate necessitatibus culpa ullam ipsa libero. Provident
+            debitis eaque pariatur itaque sit rem accusamus?
+         </div>
+      </div>
+
+      <div class="card calendar-box calendar-box-done">
+         <ngx-ui-loader [loaderId]="'loader-1'"></ngx-ui-loader>
+         <div class="card-header">
+            <div class="d-flex align-items-center">
+               <div class="d-flex align-items-center mr-auto">
+                  <i class="fa fa-calendar-alt calendar-box-icon fa-2x mr-3"></i>
+                  <h5>15/05/2021</h5>
+               </div>
+               <div class="ml-auto">
+                  <button class="calendar-box-button calendar-box-button-check mr-2">
+                     <i class="fa fa-check"></i>
+                  </button>
+                  <button class="calendar-box-button calendar-box-button-times">
+                     <i class="fa fa-times"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="card-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            At nemo corrupti similique sapiente, eos ab ex voluptate necessitatibus culpa ullam ipsa libero. Provident
+            debitis eaque pariatur itaque sit rem accusamus?
+         </div>
+      </div>
+   </div>
+</section>
+
+
+<!-- 
+   CARD VERTICAL
+-->
+<section id="card-vertical card-vertical-pending">
+   <div class="card-vertical-wrapper">
+      <div class="card-vertical card-vertical-pending">
+         <div class="card-vertical-topside">
+            <h4><i class="fa fa-dollar-sign topside-icon"></i></h4>
+            <h5 class="mt-2">Crédito Consignado</h5>
+            <div class="card-vertical-middle">
+               Avaliação de Risco
+            </div>
+         </div>
+         <div class="card-vertical-bottomside">
+            <button class="btn btn-outline-accent btn-sm mt-2">
+               <i class="fa fa-pen mr-2"></i>Regularizar
+            </button>
+         </div>
+      </div>
+
+      <div class="card-vertical card-vertical-ok">
+         <div class="card-vertical-topside">
+            <h4><i class="fa fa-credit-card topside-icon"></i></h4>
+            <h5 class="mt-2">Cartão de Crédito</h5>
+            <div class="card-vertical-middle">
+               <i class="fa fa-check"></i>
+            </div>
+         </div>
+         <div class="card-vertical-bottomside">
+            <button class="btn btn-accent btn-sm mt-2">
+               Contratar
+            </button>
+         </div>
+      </div>
+   </div>
+</section>
+
+<!-- 
+   LOADING BARS
+-->
+<div class="progress-line"></div>
+
+<!-- <br>
+
+<div class="slider">
+  <div class="line"></div>
+  <div class="subline inc"></div>
+  <div class="subline dec"></div>
+</div> -->
+
+<hr class="mt-5">
+
+
+<!-- 
+   CARD VERTICAL DOSSIE
+-->
+<!-- <section id="card-vertical">
+   <div class="card-vertical-wrapper">
+      <div class="card-vertical card-vertical-pending">
+         <div class="card-vertical-topside">
+            <h4><i class="fa fa-id-card topside-icon"></i></h4>
+            <h5 class="mt-2">Documento de identificação</h5>
+            <div class="card-vertical-middle">
+               Pendente
+            </div>
+         </div>
+         <div class="card-vertical-bottomside">
+            <div>
+               <button class="btn btn-accent btn-sm mt-2">
+                  <i class="fa fa-upload mr-2"></i>Selecionar documento do computador
+               </button>
+               <p class="my-3">ou</p>
+               <button class="btn btn-accent btn-sm mt-2">
+                  <i class="fa fa-print mr-2"></i>Digitalizar
+               </button>
+            </div>
+
+         </div>
+      </div>
+
+      <div class="card-vertical card-vertical-ok">
+         <div class="card-vertical-topside">
+            <h4><i class="fa fa-credit-card topside-icon"></i></h4>
+            <h5 class="mt-2">Cartão de Crédito</h5>
+            <div class="card-vertical-middle">
+               <i class="fa fa-check"></i>
+            </div>
+         </div>
+         <div class="card-vertical-bottomside">
+            <button class="btn btn-accent btn-sm mt-2">
+               Contratar
+            </button>
+         </div>
+      </div>
+   </div>
+</section> -->

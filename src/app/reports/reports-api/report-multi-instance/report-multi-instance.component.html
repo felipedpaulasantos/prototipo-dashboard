@@ -1,0 +1,33 @@
+<div class="form-group form-inline">
+  <label>Instância</label>
+  <select class="form-control form-control ml-2" (change)="updateSelectedInstance($event.target.value)">
+    <option [value]="false" selected="true">Agregado (todas as instâncias)</option>
+    <ng-container *ngFor="let instance of instances">
+      <option [value]="instance">{{ instance }}</option>
+    </ng-container>
+  </select>
+</div>
+
+<div [hidden]="selectedInstance && selectedInstance !== 'false'">
+  <hr><br>
+  <app-stats-single-instance
+    [statsData]="statsAggregatedData" [filter]="filter"
+  ></app-stats-single-instance>
+</div>
+
+<ng-container *ngFor="let instance of statsData">
+  <div [hidden]="selectedInstance != instance.instance_name">
+    <hr><br>
+    <app-stats-single-instance
+      [statsData]="[instance]" [filter]="filter"
+    ></app-stats-single-instance>
+  </div>
+</ng-container>
+
+<ng-container *ngFor="let instance of supportData">
+  <div [hidden]="selectedInstance != instance.instance_name">
+    <app-support-single-instance
+      [supportData]="[instance]" [filter]="filter"
+    ></app-support-single-instance>
+  </div>
+</ng-container>

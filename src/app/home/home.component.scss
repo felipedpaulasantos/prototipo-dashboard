@@ -1,0 +1,32 @@
+.button-card {
+	cursor: pointer;
+}
+
+.button-card:hover {
+	transition: color 0.2s ease;
+}
+
+#msgInput {
+	flex-wrap: wrap;
+	.btn {
+		width: 100%;
+		margin-top: 1rem;
+	}
+	.input-caixa {
+		width: 100%;
+	}
+}
+@media (min-width: 992px) {
+	.button-card-container {
+		width: 50%;
+	}
+	#msgInput {
+		flex-wrap: nowrap;
+		.btn {
+			width: auto;
+		}
+		.input-caixa {
+			width: 75%;
+		}
+	}
+}

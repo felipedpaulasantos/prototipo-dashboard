@@ -1,0 +1,27 @@
+<div class="tabber-wrapper" [ngClass]="{'horizontal': orientation == 0,'vertical': orientation == 1}">
+   <ul class="tabber">
+      <li [title]="tab.name" class="tab" *ngFor="let tab of tabs; let index = index; let last = last" [ngClass]="{
+         'current-tab': currentTab == index, 
+         'cursor-pointer': currentTab != index
+      }">
+         <div class="tab-title waves-effect" (click)="toTabByIndex(index)">
+            <div class="tab-icon" [ngClass]="getActiveTheme(currentTab == index)">
+               <i *ngIf="currentTab == index" class="fa fa-arrow-down"></i>
+               <i *ngIf="currentTab != index" class="{{ tab.icon }}"></i>
+               <i *ngIf="tab.state === tabberState.SUCCESS" class="fa fa-check state-icon success"></i>
+               <i *ngIf="tab.state === tabberState.WARNING" class="fa fa-exclamation state-icon warning"></i>
+               <i *ngIf="tab.state === tabberState.ERROR" class="fa fa-times state-icon danger"></i>
+            </div>
+            <span class="tab-name">{{ tab.name }}</span>
+         </div>
+      </li>
+   </ul>
+</div>
+
+<!-- 
+   Utilizando conteúdo interno, os templates identificados com a diretiva *tabber são renderizados aqui
+   e o controle de exibição é feito considerando o index do template, comparando-o ao index da aba atual
+ -->
+<ng-container *ngFor="let template of templates; let i = index">
+   <ng-container *ngIf="currentTab == i" [ngTemplateOutlet]="template"></ng-container>
+</ng-container>

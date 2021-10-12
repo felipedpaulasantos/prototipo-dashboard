@@ -1,0 +1,85 @@
+<header #headerGeral id="headerGeral">
+
+  <nav id="headerNav">
+    <span class="sidemenu-collapse-icon" role="button" (click)="trocaMenuLateral()">
+      <i class="fas fa-bars fa-lg"></i>
+    </span>
+    <div id="spanLogo" class="h-100"  [ngClass]="{'menu-is-aberto': isMenuAberto}">
+      <div (dblclick)="toggleHeaderBackground()" class="d-flex align-items-center h-100">
+        <img [src]="isMenuAberto ? logoCompletoBranco : logoXBranco" class="img-fluid img-logo rounded mx-auto">
+      </div>
+    </div>
+
+    <h4 class="d-none d-md-block mb-0 ml-2 subtitulo full-opacity">
+      Olá, {{ user.nome_completo }}
+    </h4>
+
+    <div id="painelDataHora" class="d-none d-lg-flex h-100 align-items-center ml-auto mr-4">
+      <h6 class="subtitulo m-0 full-opacity">
+        {{ dataHora }}
+      </h6>
+    </div>
+
+    <div id="painelIconesUsuario" class="ml-auto ml-lg-0">
+
+      <div class="notification-container">
+        <div class="dropdown">
+          <button class="btn btn-link btn-sm shadow-none border-0 dropdown-toggle" 
+          data-toggle="dropdown" title="Tamanho base da fonte">
+            <i role="button" class="fa fa-font mr-2 fa-2x"></i>
+          </button>
+          <div class="dropdown-menu">
+            <div *ngFor="let font of fontSizes" (click)="setFontSize(font.value)" [ngClass]="{'active': currentFontSize === font.value}" 
+            class="dropdown-item cursor-pointer d-flex align-items-center" [style.fontSize]="font.value">
+              {{font.name}} ({{font.value}})
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div class="notification-container">
+        <div class="dropdown">
+          <button class="btn btn-link btn-sm shadow-none border-0 dropdown-toggle" 
+          data-toggle="dropdown" title="Modo Escuro">
+            <i role="button" class="fa fa-palette mr-2 fa-2x"></i>
+          </button>
+          <div class="dropdown-menu">
+            <div *ngFor="let tema of themes" class="dropdown-item cursor-pointer" [ngClass]="{'active': currentTheme.value.name === tema.value.name}"
+            (click)="setTheme(tema.value.name)">
+              <div class="theme-example mr-2" [style.background]="tema['background']"></div>
+              {{ tema.toString() }}
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div class="notification-container" data-toggle="dropdown" role="button">
+        <button class="btn btn-link btn-sm shadow-none border-0">
+          <i role="button" class="fa fa-bell fa-2x" title="Notificações"></i>
+        </button>
+      </div>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <span class="dropdown-item">
+          Você tem 2 notificações
+        </span>
+      </div>
+
+      <div class="notification-container" role="button" data-toggle="dropdown">
+        <button class="btn btn-link btn-sm shadow-none border-0">
+          <i role="button" class="fa fa-envelope fa-2x" title="Mensagens"></i>
+        </button>
+      </div>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <span class="dropdown-item">
+          Você tem 5 mensagens
+        </span>
+      </div>
+    </div>
+
+    <button class="btn btn-link border mx-4">
+      <i class="fa fa-sign-out-alt fa-lg mr-2"></i>
+      <span class="text-uppercase font-fam-bold">Sair</span>
+    </button>
+
+  </nav>
+</header>

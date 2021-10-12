@@ -1,0 +1,23 @@
+.square {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 5rem;
+	height: 5rem;
+	border: 1px solid var(--cxCancel) !important;
+	border-radius: 0.5rem !important;
+}
+
+.square > span {
+	font-weight: bold;
+	display: none;
+	width: 100%;
+	transition: 0.5s;
+}
+.square:hover > span {
+	display: inline;
+}
+
+#tabelaCores td {
+	padding: 1.5rem 0;
+}

@@ -1,0 +1,10 @@
+<div>
+  <ul class="breadcrumb" *ngIf="breadcrumbs?.length > 1">
+    <li *ngFor="let breadcrumb of breadcrumbs; last as isLast"
+        class="breadcrumb-item align-items-center">
+      <a [ngClass]="{'text-link': isLast}" routerLink="{{breadcrumb.url}}">
+        {{ breadcrumb.label }}
+      </a>
+    </li>
+  </ul>
+</div>

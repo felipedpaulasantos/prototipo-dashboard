@@ -1,0 +1,124 @@
+<h1 class="titulo">
+	Layout
+</h1>
+
+<div *ngFor="let cols of rows" class="row d-flex justify-content-center">
+	<div *ngFor="let resource of cols" class="col-10 col-md-6 col-xl-4">
+	  <div class="card w-75 card-hover button-card" role="button"
+	  optionalClasses="button-card-min-height"
+	  routerLink="{{ resource.url }}" routerLinkActive="active">
+		 <div class="card-body">
+			<h5 class="header-subtitulo-caixa m-0 mr-3 text-center">
+			  <i class="{{ resource.iconClass }} fa-lg mr-1"></i>
+			  {{ resource.name }}
+			</h5>
+		 </div>
+	  </div>
+	  <br>
+	</div>
+ </div>
+
+<div class="row collapse">
+	<div class="col-md-6 col-xl-4 mb-3">
+		<div [formGroup]="formToolbar">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="header-subtitulo-caixa">
+						Toolbar (barra-superior)
+					</h5>
+				</div>
+				<div class="card-body">
+					<cx-select [showFeedback]=false>
+						<label>Cor de fundo</label>
+						<select selectCaixa formControlName="bg" (change)="onToolbarBgChange($event.target.value)">
+							<option value="">Escolha um tema</option>
+							<option *ngFor="let tema of temas" class="bg-{{tema.name}} text-{{tema.textColor}} font-fam-bold" value="{{tema.name}}">
+								{{ tema.name | titlecase }}
+							</option>
+							<option *ngFor="let tema of temasGradiente" class="font-fam-bold bg-{{tema.name}} text-{{tema.textColor}}" value="{{tema.name}}">
+								{{ tema.name | titlecase }}
+							</option>
+						</select>
+					</cx-select>
+					<cx-select [showFeedback]=false>
+						<label>Tom</label>
+						<select selectCaixa formControlName="tom"
+							(change)="onToolbarBgChange(formToolbar.get('bg').value, $event.target.value)">
+							<option value="">Padrão</option>
+							<option value="-light">Claro</option>
+							<option value="-dark">Escuro</option>
+						</select>
+					</cx-select>
+					<cx-select [showFeedback]=false>
+						<label>Ícone</label>
+						<select selectCaixa formControlName="icone" (change)="onIconChange($event.target.value)">
+							<option [value]="logoBranco">Logo X branco</option>
+							<option [value]="logoCompletoBranco">Logo completo branco</option>
+							<option [value]="logoPadrao">Logo X azul</option>
+							<option [value]="logoCompleto">Logo completo azul</option>
+						</select>
+					</cx-select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6 col-xl-4 mb-3">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="header-subtitulo-caixa">
+					Menu Lateral
+				</h5>
+			</div>
+			<div class="card-body">
+				<div [formGroup]="formSidemenu">
+					<cx-select [showFeedback]=false>
+						<label>Cor de fundo</label>
+						<select selectCaixa formControlName="bg" (change)="onSidemenuBgChange($event.target.value)">
+							<option value="">Escolha um tema</option>
+							<option *ngFor="let tema of temas" class="bg-{{tema.name}} text-{{tema.textColor}} font-fam-bold" value="{{tema.name}}">
+								{{ tema.name | titlecase }}
+							</option>
+						</select>
+					</cx-select>
+
+					<cx-select [showFeedback]=false>
+						<label>Tom</label>
+						<select selectCaixa formControlName="tom"
+							(change)="onSidemenuBgChange(formSidemenu.get('bg').value, $event.target.value)">
+							<option value="">Padrão</option>
+							<option value="-light">Claro</option>
+							<option value="-dark">Escuro</option>
+						</select>
+					</cx-select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6 col-xl-4 mb-3">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="header-subtitulo-caixa">
+					Conteúdo Principal
+				</h5>
+			</div>
+			<div class="card-body">
+				<cx-select [showFeedback]=false>
+					<label>Cor de fundo</label>
+					<select selectCaixa (change)="onConteudoPrincipalChange($event.target.value)">
+						<option [selected]="(styleService.conteudoPrincipalBg$ | async) == ''" value="">
+							Branco
+						</option>
+						<option [selected]="(styleService.conteudoPrincipalBg$ | async) == 'bg-cinza'" value="bg-cinza">
+							Claro
+						</option>
+<!-- 						<option [selected]="(styleService.conteudoPrincipalBg$ | async) == 'bg-grafite-dark'" value="bg-grafite-dark">
+							Escuro (experimental)
+						</option> -->
+					</select>
+				</cx-select>
+			</div>
+		</div>
+	</div>
+</div>

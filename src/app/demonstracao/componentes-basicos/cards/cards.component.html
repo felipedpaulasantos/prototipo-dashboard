@@ -1,0 +1,213 @@
+<h1 class="titulo">
+  Cards
+</h1>
+
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+      Visão Geral
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+      Exemplos
+    </a>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+    <div class="row no-gutters">
+      <section #scrollElement class="col-12 col-xl-9 pr-2 mb-5">
+        <app-documentacao-template id="painelCards" 
+        [cardTitle]="'Cards'" 
+        [codeViewId]="'viewCards'"
+        [htmlTabId]="'htmlCodeCards'" 
+        [htmlCode]="htmlCodeCards">
+          <div class="descricao">
+            Utilizar o template definido pelo <a class="text-destaque" target="_blank" href="https://getbootstrap.com/docs/4.6/components/card/">Bootstrap</a>.<br>
+            Observação: <strong>não</strong> utilizar a classe "panel", que foi substituída pelo "card" na versão 4 do framework.
+          </div>
+      
+          <div class="conteudo">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="subtitulo">Título</h4>
+              </div>
+              <div class="card-body">
+                <h5>Este é um subtítulo</h5>
+                <span>Este é o corpo do card</span>
+              </div>
+              <div class="card-footer">
+                <h5>Isso é um rodapé</h5>
+              </div>
+            </div>
+            <pre class="mt-3"><code [highlight]="cardsIntroducao" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+      
+        <br>
+      
+        <app-documentacao-template id="painelCardsTematicos" 
+        [showCodeButton]="false"
+        [cardTitle]="'Cards temáticos'" 
+        [codeViewId]="'viewCardsTematicos'"
+        [htmlTabId]="'htmlCodeCardsTematicos'" 
+        [htmlCode]="htmlCodeCardsTematicos">
+          <div class="descricao">
+            Qualquer classe temática pode ser utilizada nos cards, com
+            <span class="citation-highlight">bg-(tema)</span> e <span class="citation-highlight">text-(tema)</span>.
+          </div>
+      
+          <div class="conteudo">
+            <div class="row">
+              <div class="col-12 col-md-6 my-2">
+                <div class="card bg-contraste text-base">
+                  <div class="card-header">
+                    <h4 class="subtitulo">Título</h4>
+                  </div>
+                  <div class="card-body">
+                    <h5>Este é um subtítulo</h5>
+                    <span>Este é o corpo do card</span>
+                  </div>
+                  <div class="card-footer">
+                    <h5>Isso é um rodapé</h5>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col my-2">
+                <div class="card bg-accent text-base">
+                  <div class="card-header">
+                    <h4 class="subtitulo">Título</h4>
+                  </div>
+                  <div class="card-body">
+                    <h5>Este é um subtítulo</h5>
+                    <span>Este é o corpo do card</span>
+                  </div>
+                  <div class="card-footer">
+                    <h5>Isso é um rodapé</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="mt-3"><code [highlight]="cardsTematicos" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+    
+        <br>
+    
+        <app-documentacao-template id="painelCardsEfeito" 
+        [showCodeButton]="false"
+        [cardTitle]="'Cards com efeito'" 
+        [codeViewId]="'viewCardsEfeito'"
+        [htmlTabId]="'htmlCodeCardsEfeito'" 
+        [htmlCode]="htmlCodeCardsEfeito">
+          <div class="descricao">
+            Um efeito de sombra ao passar o mouse pode ser adicionado com a classe
+            <span class="citation-highlight">card-hover</span>.
+          </div>
+      
+          <div class="conteudo">
+            <div class="card card-hover">
+              <div class="card-body">
+                <span>Este card possui efeito de sombra.</span>
+              </div>
+            </div>
+
+            <pre class="mt-3"><code [highlight]="cardsSombra" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+      </section>
+    
+      <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+        <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+     </nav>
+    </div>
+  </div>  <!-- Tab -->
+
+  <div class="tab-pane fade" id="exemplos" role="tabpanel">
+    <app-documentacao-template
+    [showCodeButton]="false"
+    [cardTitle]="'Cards customizados'"
+    [codeViewId]="'viewCardMenu'"
+    [htmlTabId]="'htmlCodeCardBotao'"
+    [htmlCode]="htmlCodeCardBotao"
+    [cssTabId]="'cssCodeCardBotao'"
+    [cssCode]="cssCodeCardBotao">
+      <div class="conteudo">
+        <div id="cardHome" class="card card-hover border border-dark">
+          <div class="card-body">
+            <i class="fa fa-home fa-4x mr-4"></i>
+            <h2 class="d-inline font-fam-bold mb-0">HOME</h2>
+          </div>
+        </div> 
+
+        <pre class="mt-3"><code [highlight]="cardHome" [languages]="['html']"></code></pre>
+      </div>
+    </app-documentacao-template>
+
+    <br>
+
+    <app-documentacao-template
+    [cardTitle]="'Layouts complexos'"
+    [codeViewId]="'viewCardLayout'"
+    [htmlTabId]="'htmlCodeCardLayout'"
+    [htmlCode]="htmlCodeCardLayout"
+    [cssTabId]="'cssCodeCardLayout'"
+    [cssCode]="cssCodeCardLayout">
+      <div class="conteudo">
+        <div id="cardDadosProposta" class="card">
+          <div class="card-header">
+            <h4 class="d-inline-block mr-2 font-fam-bold">Dados da proposta</h4>
+            <a class="text-link">0007.1556.0000112-3</a>
+          </div>
+          <div class="card-body p-0">
+            <div class="info-row bg-fundo border-top border-bottom">
+              <div class="row">
+                <div class="col">
+                  <h6 class="subtitulo">Código da Reserva</h6>
+                  1.797
+                </div>
+                <div class="col">
+                  <h6 class="subtitulo">Fonte de recurso</h6>
+                  SBPE
+                </div>
+              </div>
+            </div>  <!-- Info-Row -->
+            <div class="info-row border-bottom">
+              <div class="row">
+                <div class="col">
+                  <h6 class="subtitulo">Tipo de financiamento</h6>
+                  143 - CCSBPE - AQUISIÇÃO DE TERRENO E CONSTRUÇÃO - PF -SHF - POS
+                </div>
+              </div>
+            </div>  <!-- Info-Row -->
+            <div class="info-row bg-fundo border-bottom">
+              <div class="row">
+                <div class="col">
+                  <h6 class="subtitulo">Seguradora</h6>
+                  CAIXA SEGUROS
+                </div>
+                <div class="col">
+                  <h6 class="subtitulo">Apólice</h6>
+                  61170 - CAIXA SEGUROS - SBPE
+                </div>
+              </div>
+            </div>  <!-- Info-Row -->
+          </div>  <!-- Card-body -->
+          <div class="card-footer text-center">
+            <i class="fa fa-chevron-down mr-3"></i>
+            <span>Mais dados da proposta</span>
+          </div>
+        </div>
+      </div>
+    </app-documentacao-template>
+  </div>  <!-- Tab -->
+</div>  <!-- Tab content -->
+
+

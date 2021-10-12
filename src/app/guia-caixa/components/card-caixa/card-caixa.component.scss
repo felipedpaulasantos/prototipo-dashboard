@@ -1,0 +1,25 @@
+:host:hover {
+   .card-caixa-botoes {
+      opacity: 1;
+      z-index: 9;
+   }
+}
+:host-context(.card) {
+   z-index: 1;
+}
+.card-caixa-botoes {
+   position: absolute;
+   display: flex;
+   justify-content: flex-end;
+   width: 100%;
+   // text-align: right;
+   opacity: 0;
+   transition: 0.2s;
+   right: 0.2rem;
+   .btn {
+      padding: 0.3em 0.7em !important;
+   }
+   a:not(:first-child) {
+      margin-left: 0.5rem;
+   }
+}

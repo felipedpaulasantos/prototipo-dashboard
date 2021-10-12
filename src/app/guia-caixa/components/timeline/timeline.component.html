@@ -1,0 +1,32 @@
+<div class="timeline-wrapper" [ngStyle]="styles" [ngClass]="{
+   'horizontal': orientation == timelineOrientation.HORIZONTAL,'vertical': orientation == timelineOrientation.VERTICAL}
+">
+   <perfect-scrollbar #perfectScroll>
+      <ul class="timeline">
+         <li class="timeline-item timeline-item-{{ item.state }}" *ngFor="let item of items; let index = index; let last = last">
+            <div class="timeline-item-title" [title]="getFormattedText(item)">
+               <div class="timeline-item-icon">
+                  <ng-container [ngSwitch]="item?.state">
+                     <i *ngSwitchCase="SUCCESS_STATE.state" [class]="SUCCESS_STATE.icon"></i>
+                     <i *ngSwitchCase="INFO_STATE.state" [class]="INFO_STATE.icon"></i>
+                     <i *ngSwitchCase="WARNING_STATE.state" [class]="WARNING_STATE.icon"></i>
+                     <i *ngSwitchCase="WARNING_STOP_STATE.state" [class]="WARNING_STOP_STATE.icon"></i>
+                     <i *ngSwitchCase="ERROR_STATE.state" [class]="ERROR_STATE.icon"></i>
+                  </ng-container>
+               </div>
+               <div class="timeline-item-info">
+                  <div class="timeline-item-name">
+                     {{ item?.title }}
+                  </div>
+                  <div class="timeline-item-date">
+                     <small *ngIf="item?.dateString else showDate">{{ item?.dateString }}</small>
+                     <ng-template #showDate>
+                        <small>{{ item?.date | date: item.dateFormat || DATEPIPE_DEFAULT_FORMAT }}</small>
+                     </ng-template>
+                  </div>
+               </div>
+            </div>
+         </li>
+      </ul>
+   </perfect-scrollbar>
+</div>

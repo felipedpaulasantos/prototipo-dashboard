@@ -1,0 +1,123 @@
+@import "./cx-variables";
+
+/* Temas */
+
+$theme-colors: (
+
+  /* TEMÁTICAS */
+
+/*   "principal": $cx-color-secondary,
+  "destaque": $cx-color-primary,
+  "base": $cx-color-cinza-lighter,
+  "fundo": $cx-color-porcelana,
+  "cancel": $cx-color-cinza,
+  "aux": $cx-color-grafite-light,
+  "contraste": $cx-color-grafite-dark, */
+
+  "success": $cx-color-success,
+  "success-light": $cx-color-success-light,
+  "success-lighter": $cx-color-success-lighter,
+  "success-dark": $cx-color-success-dark,
+  "success-darker": $cx-color-success-darker,
+
+  "danger": $cx-color-danger,
+  "danger-light": $cx-color-danger-light,
+  "danger-lighter": $cx-color-danger-lighter,
+  "danger-dark": $cx-color-danger-dark,
+  "danger-darker": $cx-color-danger-darker,
+
+  "info": $cx-color-info,
+  "info-light": $cx-color-info-light,
+  "info-lighter": $cx-color-info-lighter,
+  "info-dark": $cx-color-info-dark,
+  "info-darker": $cx-color-info-darker,
+
+  "warning": $cx-color-warning,
+  "warning-light": $cx-color-warning-light,
+  "warning-lighter": $cx-color-warning-lighter,
+  "warning-dark": $cx-color-warning-dark,
+  "warning-darker": $cx-color-warning-darker,
+
+  "porcelana": $cx-color-porcelana,
+  "polar": $cx-color-polar,
+  "black": #000000,
+
+  /* GERAIS */
+
+  "turquesa": $cx-color-turquesa,
+  "turquesa-light": $cx-color-turquesa-light,
+  "turquesa-lighter": $cx-color-turquesa-lighter,
+  "turquesa-dark": $cx-color-turquesa-dark,
+  "turquesa-darker": $cx-color-turquesa-darker,
+
+  "limao": $cx-color-limao,
+  "limao-light": $cx-color-limao-light,
+  "limao-lighter": $cx-color-limao-lighter,
+  "limao-dark": $cx-color-limao-dark,
+  "limao-darker": $cx-color-limao-darker,
+
+  "goiaba": $cx-color-goiaba,
+  "goiaba-light": $cx-color-goiaba-light,
+  "goiaba-lighter": $cx-color-goiaba-lighter,
+  "goiaba-dark": $cx-color-goiaba-dark,
+  "goiaba-darker": $cx-color-goiaba-darker,
+
+  "ceu": $cx-color-ceu,
+  "ceu-light": $cx-color-ceu-light,
+  "ceu-lighter": $cx-color-ceu-lighter,
+  "ceu-dark": $cx-color-ceu-dark,
+  "ceu-darker": $cx-color-ceu-darker,
+
+  "tangerina": $cx-color-tangerina,
+  "tangerina-light": $cx-color-tangerina-light,
+  "tangerina-lighter": $cx-color-tangerina-lighter,
+  "tangerina-dark": $cx-color-tangerina-dark,
+  "tangerina-darker": $cx-color-tangerina-darker,
+
+  "uva": $cx-color-uva,
+  "uva-light": $cx-color-uva-light,
+  "uva-lighter": $cx-color-uva-lighter,
+  "uva-dark": $cx-color-uva-dark,
+  "uva-darker": $cx-color-uva-darker,
+
+  "primary": $cx-color-primary,
+  "primary-light": $cx-color-primary-light,
+  "primary-lighter": $cx-color-primary-lighter,
+  "primary-dark": $cx-color-primary-dark,
+  "primary-darker": $cx-color-primary-darker,
+
+  "secondary": $cx-color-secondary,
+  "secondary-light": $cx-color-secondary-light,
+  "secondary-lighter": $cx-color-secondary-lighter,
+  "secondary-dark": $cx-color-secondary-dark,
+  "secondary-darker": $cx-color-secondary-darker,
+
+  "cinza": $cx-color-cinza,
+  "cinza-light": $cx-color-cinza-light,
+  "cinza-lighter": $cx-color-cinza-lighter,
+  "cinza-dark": $cx-color-cinza-dark,
+  "cinza-darker": $cx-color-cinza-darker,
+
+  "grafite": $cx-color-grafite,
+  "grafite-light": $cx-color-grafite-light,
+  "grafite-lighter": $cx-color-grafite-lighter,
+  "grafite-dark": $cx-color-grafite-dark,
+  "grafite-darker": $cx-color-grafite-darker
+);
+
+/* Links */
+
+$link-color: $cx-color-grafite !default;
+
+/* Fontes */
+
+$font-size-base: $cx-font-size-base;
+$cx-h1-font-size: $cx-font-size-base * 2.5 !default;
+$cx-h2-font-size: $cx-font-size-base * 2 !default;
+$cx-h3-font-size: $cx-font-size-base * 1.75 !default;
+$cx-h4-font-size: $cx-font-size-base * 1.5 !default;
+$cx-h5-font-size: $cx-font-size-base * 1.25 !default;
+$cx-h6-font-size: $cx-font-size-base;
+
+$font-family-base: $cx-font-family-base;
+$body-color: $cx-color-grafite;

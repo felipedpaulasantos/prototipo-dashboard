@@ -1,0 +1,105 @@
+<div class="card">
+
+  <div class="card-header">
+    <h5 class="header-subtitulo-caixa">Filtros de pesquisa</h5>
+  </div>
+
+  <div class="card-body">
+
+    <form [formGroup]="messageFilterForm" class="form-caixa" (ngSubmit)="emitValue()">
+        <div class="row">
+            <div *ngIf="fields && fields.includes('dataInicial')" class="form-group col-sm-4">
+              <label for="dataInicial">Data Inicial</label>
+              <div class="form-group-prefix-icon">
+                <span class="prefix-icon">
+                  <i class="far fa-calendar-alt"></i>
+                </span>
+                <input
+                  id="dataInicial"
+                  mask="99/99/9999"
+                  class="form-control"
+                  formControlName="dataInicial"
+                  placeholder="dd/mm/aaaa"
+                  mask="00/00/0000"
+                  [showMaskTyped]="true"
+                  [dropSpecialCharacters]="false">
+              </div>
+            </div>
+            <div *ngIf="fields && fields.includes('dataFinal')" class="form-group col-sm-4">
+              <label for="dataFinal">Data Final</label>
+              <div class="form-group-prefix-icon">
+                <span class="prefix-icon">
+                  <i class="far fa-calendar-alt"></i>
+                </span>
+                <input
+                  mask="99/99/9999"
+                  class="form-control"
+                  formControlName="dataFinal"
+                  placeholder="dd/mm/aaaa"
+                  mask="00/00/0000"
+                  [showMaskTyped]="true"
+                  [dropSpecialCharacters]="false">
+              </div>
+            </div>
+            <div *ngIf="fields && fields.includes('creator')" class="form-group col-sm-4">
+              <label for="creator">Sistema</label>
+              <cx-select>
+                <select selectCaixa formControlName="creator">
+                    <option value="">Qualquer</option>
+                    <option *ngFor="let creator of creators" value="{{ creator }}">
+                        {{ creator | uppercase }}
+                    </option>
+                </select>
+              </cx-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div *ngIf="fields && fields.includes('origin')" class="form-group col-sm-4">
+                <label for="origin">Origem da Conversa</label>
+                <div class="form-group-prefix-icon">
+                  <span class="prefix-icon">
+                    <i class="fas fa-arrows-alt-v"></i>
+                  </span>
+                  <select name="origin" formControlName="origin" class="form-control form-control">
+                      <option *ngFor="let origin of origins" [value]="origin.value">{{ origin.name }}</option>
+                  </select>
+                </div>
+            </div>
+            <div *ngIf="fields && fields.includes('managerName')" class="form-group col-sm-4">
+              <label for="managerName">Gerenciador de mensagem</label>
+              <div class="form-group-prefix-icon">
+                <span class="prefix-icon">
+                  <i class="fas fa-comments"></i>
+                </span>
+                <select name="managerName" formControlName="managerName" class="form-control form-control">
+                    <option *ngFor="let manager of managers" [value]="manager.value">{{ manager.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div *ngIf="fields && fields.includes('pageSize')" class="form-group col-sm-4">
+              <label for="pageSize">Quantidade de mensagens</label>
+              <input name='pageSize' formControlName="pageSize" class="form-control" required min="10">
+          </div>
+        </div>
+
+        <div class="row">
+          <div *ngIf="fields && fields.includes('accountId')" class="form-group col-sm-6">
+            <label>Conta</label>    
+            <cx-select>
+              <select selectCaixa formControlName="accountId">
+                <option value="">Qualquer</option>
+                <option *ngFor="let account of accounts"
+                    value="{{account.id}}">
+                    {{account.description}} : {{ account.id }}
+                </option>
+              </select>
+            </cx-select>         
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="!messageFilterForm.valid" class="btn btn-accent mr-2">Consultar</button>
+    </form>
+  </div>
+
+</div>

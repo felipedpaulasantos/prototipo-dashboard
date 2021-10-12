@@ -1,0 +1,232 @@
+<h1 class="titulo">
+  Mensagens (Em desenvolvimento)
+</h1>
+
+
+<ul class="nav nav-pills text-uppercase tab-caixa" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#visaoGeral" role="tab">
+      Visão Geral
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#api" role="tab">
+      API
+    </a>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+    <div class="row no-gutters">
+      <section #scrollElement class="col-12 col-xl-9 pr-2 mb-5">
+        <app-documentacao-template id="painelMensagens" [cardTitle]="'Notificações'" [codeViewId]="'viewMensagens'"
+          [htmlTabId]="'htmlCodeMensagens'" [htmlCode]="htmlCodeMensagens" [tsTabId]="'tsCodeMensagens'"
+          [tsCode]="tsCodeMensagens">
+          <div class="descricao">
+            <p>
+              As notificações que não demandam interação do usuário devem ser apresentadas no formato "toast".
+            </p>
+            <p>
+              A chamada é feita pelo <span class="citation-highlight">Toastr Service</span>,
+              da biblioteca <a class="text-link" href="https://www.npmjs.com/package/ngx-toastr"
+                target="_blank">Ngx-Toastr</a>.
+            </p>
+          </div>
+
+          <div class="conteudo">
+            <button class="btn btn-success" (click)="exibirSucesso()">
+              Sucesso!
+            </button> &nbsp;
+
+            <button class="btn btn-danger" (click)="exibirErro()">
+              Erro!
+            </button> &nbsp;
+
+            <button class="btn btn-warning" (click)="exibirAlerta()">
+              Alerta!
+            </button> &nbsp;
+
+            <button class="btn btn-info" (click)="exibirInfo()">
+              Informação!
+            </button> &nbsp;
+          </div>
+        </app-documentacao-template>
+
+        <br>
+
+        <app-documentacao-template id="painelModal" [showCodeButton]="false" [cardTitle]="'Modal'" [codeViewId]="'viewModal'"
+          [htmlTabId]="'htmlCodeModal'" [htmlCode]="htmlCodeModal" [tsTabId]="'tsCodeModal'" [tsCode]="tsCodeModal">
+          <div class="descricao">
+            <p>
+              Quando houver a necessidade de interação do usuário com o conteúdo apresentado, deve-se utilizar um modal.
+            </p>
+
+            <p>
+              Pode-se exibir pelo serviço <span class="citation-highlight">ModalService</span>, com várias opções de
+              customização.
+            </p>
+
+            <div id="painelModal">
+              <div class="row">
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-6">
+                      <label>Título</label>
+                      <input class="form-control" #modalTitulo value="Título do Modal">
+                    </div>
+                    <div class="col-3">
+                      <label>Tamanho</label>
+                      <ng-select [(ngModel)]="tamanhoModal">
+                        <ng-option *ngFor="let tamanho of modalSize | keyvalue" [value]="tamanho.value">
+                          {{ tamanho.key }}
+                        </ng-option>
+                      </ng-select>
+                    </div>
+                    <div class="col-3 d-flex align-items-center">
+                      <div class="custom-control custom-switch">
+                        <input id="modalCentro" type="checkbox" #modalCentralizado class="custom-control-input">
+                        <label for="modalCentro" class="custom-control-label">Centralizado</label>
+                      </div>
+                    </div>
+                    <div class="col my-3">
+                      <label>Mensagem</label>
+                      <textarea rows=3 class="form-control" #modalMensagem [innerHTML]="'Mensagem do modal'"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              <button class="btn btn-aux mt-3"
+                (click)="showTesteModal(modalTitulo.value, modalMensagem.value, tamanhoModal, modalCentralizado.checked)">
+                <i class="fa fa-lg fa-external-link-alt mr-2"></i>
+                Mostrar modal
+              </button>
+            </div>
+          </div>
+        </app-documentacao-template>
+
+        <br>
+
+        <app-documentacao-template id="painelSpinner" [cardTitle]="'Spinner (Tela de carregamento)'"
+          [codeViewId]="'viewSpinner'" [htmlTabId]="'htmlCodeSpinner'" [htmlCode]="htmlCodeSpinner"
+          [tsTabId]="'tsCodeSpinner'" [tsCode]="tsCodeSpinner">
+          <div class="descricao">
+            O "spinner" de carregamento pode ser chamado pelo <span class="citation-highlight">NgxSpinnerService</span>,
+            da biblioteca <a class="text-link" href="https://www.npmjs.com/package/ngx-spinner" target="_blank">Ngx
+              Spinner</a>.
+          </div>
+
+          <div class="conteudo">
+            <button class="btn btn-aux" (click)="exibirSpinner()">
+              Mostrar tela de carregamento
+            </button>
+          </div>
+        </app-documentacao-template>
+      </section>
+
+      <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+        <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+      </nav>
+    </div>
+  </div> <!-- Tab Pane -->
+
+  <div class="tab-pane fade" id="api" role="tabpanel">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <h5 class="header-subtitulo-caixa">Notificações (Toastr)</h5>
+
+          <p>Biblioteca <a class="text-link" href="https://www.npmjs.com/package/ngx-toastr"
+              target="_blank">Ngx-Toastr</a>
+          </p>
+
+          <span>No módulo:</span>
+          <pre>import {{ '{' }} ToastrModule  {{ '}' }} from 'ngx-toastr';</pre>
+
+          <span>No componente:</span>
+          <pre>import {{ '{' }} ToastrService {{ '}' }} from 'ngx-toastr';</pre>
+        </div>
+
+        <br>
+
+        <div>
+          <h5 class="header-subtitulo-caixa">Spinner (NgxSpinner)</h5>
+          <p>Biblioteca <a class="text-link" href="https://www.npmjs.com/package/ngx-spinner"
+              target="_blank">NgxSpinner</a>
+          </p>
+
+          <span>No AppModule:</span>
+          <pre>import {{ '{' }} NgxSpinnerModule  {{ '}' }} from 'ngx-toastr';</pre>
+
+          <span>No AppComponent (.ts):</span>
+          <pre>import {{ '{' }} NgxSpinnerService {{ '}' }} from 'ngx-spinner';</pre>
+
+          <span>No AppComponent (.html):</span>
+          <pre>&lt;cx-spinner [fullscreen]=true&gt;&lt;/cx-spinner&gt;</pre>
+        </div>
+
+        <br>
+
+        <div>
+          <h5 class="header-subtitulo-caixa">Modal</h5>
+
+          <span>No AppComponent (.html):</span>
+          <pre>&lt;cx-modal>&lt;/cx-modal></pre>
+
+          <span>No componente:</span>
+          <pre>import {{ '{' }} ModalService {{ '}' }} from 'src/app/guia-caixa/services/modal.service';</pre>
+
+          <h6 class="header-subtitulo-caixa">Métodos</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <tbody>
+                <tr>
+                  <td class="bg-cinza">show()</td>
+                  <td>
+                    Exibir o modal
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bg-cinza">Parâmetros</td>
+                  <td>
+                    modalOptions?: ModalOptions
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <br>
+
+            <table class="table table-bordered table-striped">
+              <tbody>
+                <tr>
+                  <td class="bg-cinza">ModalOptions</td>
+                </tr>
+                <tr>
+                  <td>
+                    titulo: string<br>
+                    mensagem: string<br>
+                    btOkTexto: string<br>
+                    btCancelarTexto: string<br>
+                    showCancelar: boolean<br>
+                    classTitulo: string<br>
+                    btnOkClass: string<br>
+                    btnCancelarClass: string<br>
+                    modalBodyClass: string<br>
+                    modalHeaderClass: string<br>
+                    modalFooterClass: string<br>
+                    centralizado: boolean<br>
+                    tamanho: ModalSize
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> <!-- Table-responsive -->
+        </div>
+      </div> <!-- Col -->
+    </div> <!-- Row -->
+  </div> <!-- Tab Pane -->
+</div> <!-- Tab Content -->

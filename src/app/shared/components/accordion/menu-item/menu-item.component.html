@@ -1,0 +1,31 @@
+<li class="nav-item" *ngFor="let menu of menus; let i = index" [class.active]="menu.active">
+
+   <div class="menu-item" role="button" [title]="menu.name" *ngIf="menu.enabled"
+      [ngClass]="{
+         'active': menu.active, 
+         'has-submenu': menu.active && menu.submenu, 
+         'is-link': menu.active && !menu.submenu
+      }">
+      <span class="menu-item-icon" (click)="activate(menu)">
+         <i [class]="menu.iconClass"></i>
+      </span>
+      <span class="menu-item-name" (click)="activate(menu)">
+         {{ menu.name }}
+      </span>
+      <span class="menu-item-caret" (click)="collapse(menu)">
+         <i *ngIf="menu.submenu" class="fa fa-chevron-down item-caret"></i>
+      </span>
+<!--       <ng-container *ngIf="menu.active && !menu.submenu">
+         <span class="menu-item-close-icon" (click)="fecharMenuLateral()" role="button">
+            <i class="fa fa-angle-double-left item-close-caret"></i>
+         </span>
+         <span class="menu-item-open-icon" (click)="abrirMenuLateral()" role="button">
+            <i class="fa fa-angle-double-right item-close-caret"></i>
+         </span>
+      </ng-container> -->
+   </div>
+
+   <ul *ngIf="menu.submenu" class="submenu" #submenuDiv [ngClass]="{'d-none': !menu.active}">
+      <app-menu-item [menus]="menu.submenu" [parentRef]="submenuDiv"></app-menu-item>
+   </ul>
+</li>

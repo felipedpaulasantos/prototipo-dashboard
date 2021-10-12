@@ -1,0 +1,118 @@
+<button class="btn btn-outline-accent" data-toggle="collapse" href="#painelFiltro">
+  <i class="fas fa-filter mr-2"></i>
+  Filtros
+</button>
+
+<div id="painelFiltro" class="collapse mt-2">
+  <app-message-filter-form [fields]="['dataInicial', 'dataFinal', 'creator', 'accountId']"
+    (formValueEvent)="listAggregatedData()"></app-message-filter-form>
+</div>
+
+<br>
+
+<div [hidden]="!messagesDetailsComponent.messageChartData && !chatDetailsComponent.chatChartData">
+  <ul class="nav nav-pills tab-caixa nav-fill border-bottom" role="tablist">
+    <li class="nav-item ripple">
+      <a class="nav-link nav-link-caixa active" id="messages-tab" data-toggle="tab" href="#tab-messages" role="tab"
+        aria-controls="profile" aria-selected="false">
+        <i class="fas fa-lg fa-envelope mr-2"></i>Mensagens</a>
+    </li>
+    <li class="nav-item ripple">
+      <a class="nav-link nav-link-caixa" id="chats-tab" data-toggle="tab" href="#tab-chats" role="tab"
+        aria-controls="profile" aria-selected="false">
+        <i class="fas fa-lg fa-comments mr-2"></i>Conversas</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="tab-messages" role="tabpanel" aria-labelledby="messages-tab">
+      <app-messages-details></app-messages-details>
+    </div>
+
+    <div class="tab-pane fade show" id="tab-chats" role="tabpanel" aria-labelledby="chats-tab">
+      <app-chat-details></app-chat-details>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="header-subtitulo-caixa mb-4">Agregado</h5>
+    </div>
+    <div class="card-body">
+      <div class="row"
+        *ngIf="(messagesDetailsComponent.totalMsg != 0 && chatDetailsComponent.totalChats != 0) else noReportData">
+        <div class="col-md-6" *ngIf="messagesDetailsComponent.totalMsg != 0">
+          <table tableCaixa id="tableRelatorio" class="table table-caixa">
+            <thead>
+              <th colspan="2">
+                <i class="fas fa-envelope fa-lg mr-2"></i>
+                Mensagens
+              </th>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <td>Total de Mensagens</td>
+                <td>{{ messagesDetailsComponent.totalMsg | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens Recebidas</td>
+                <td>{{ messagesDetailsComponent.totalMsgReceived | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens Enviadas</td>
+                <td>{{ messagesDetailsComponent.totalMsgSent | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens de Conversas Reativas</td>
+                <td>{{ messagesDetailsComponent.totalMsgFromReactiveChat | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens de Conversas Ativas</td>
+                <td>{{ messagesDetailsComponent.totalMsgFromActiveChat | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens Com Sucesso</td>
+                <td>{{ messagesDetailsComponent.totalSuccessMsg | number }}</td>
+              </tr>
+              <tr>
+                <td>Mensagens com Erro</td>
+                <td>{{ messagesDetailsComponent.totalErrorMsg | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6" *ngIf="chatDetailsComponent.totalChats != 0">
+          <table class="table table-caixa">
+            <thead>
+              <th colspan="2">
+                <i class="fas fa-comments fa-lg mr-2"></i>
+                Conversas
+              </th>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <td>Total de Conversas</td>
+                <td>{{ chatDetailsComponent.totalChats | number }}</td>
+              </tr>
+              <tr>
+                <td>Conversas de Origem Ativa</td>
+                <td>{{ chatDetailsComponent.totalActiveChats | number }}</td>
+              </tr>
+              <tr>
+                <td>Conversas de Origem Reativa</td>
+                <td>{{ chatDetailsComponent.totalReactiveChats | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <ng-template #noReportData>
+        <h6 class="center">
+          Não há dados de mensagens ou conversas a serem exibidos.
+        </h6>
+      </ng-template>
+    </div>
+  </div>
+</div>

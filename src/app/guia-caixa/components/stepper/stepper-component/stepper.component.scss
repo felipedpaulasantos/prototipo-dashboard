@@ -1,0 +1,205 @@
+/** STEPPER WRAPPER - div */
+
+.stepper-wrapper.horizontal {
+  max-height: 6.5rem;
+}
+
+.stepper-wrapper.vertical {
+  max-width: 100%;
+}
+
+/** STEPPER - ul */
+
+.stepper-wrapper > .stepper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  counter-reset: section;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  transition: justify-content 0.4s;
+}
+
+.stepper-wrapper > .stepper.completed {
+  justify-content: start;
+}
+
+.stepper-wrapper.vertical > .stepper {
+  flex-direction: column;
+}
+
+/** STEP - li */
+
+.stepper-wrapper.horizontal > .stepper > .step {
+  position: relative;
+  padding: 0 !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 6.5rem;
+  transition: width 0.4s, visibility 0.4s, opacity 0.4s;
+}
+
+.stepper-wrapper.horizontal > .stepper.nav-guided:not(.completed) > .step.previous-step:not(.prior-step) {
+  visibility: hidden !important;
+  opacity: 0;
+  width: 0 !important;
+}
+
+.stepper-wrapper.vertical > .stepper > .step {
+  position: relative;
+  max-height: 38.5rem;
+  transition: max-height 0.4s, width 0.4s, visibility 0.4s, opacity 0.4s;
+}
+
+.stepper-wrapper.vertical > .stepper.nav-guided:not(.completed) > .step.previous-step:not(.prior-step) {
+  visibility: hidden !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  opacity: 0;
+}
+
+.stepper-wrapper > .stepper > .step.previous-step {
+  width: 6.9rem;
+}
+
+.stepper-wrapper > .stepper.completed > .step {
+  width: 68px;
+}
+
+.stepper-wrapper > .stepper > .step:last-of-type {
+  width: auto !important;
+}
+
+.stepper-wrapper > .stepper.completed > .step.last-step {
+  width: 100%;
+}
+
+.stepper-wrapper > .stepper.completed > .step.prior-step {
+  width: 6.9rem;
+}
+
+/** STEP AFTER - linha */
+
+.stepper > .step:not(:last-of-type)::after {
+  content: "";
+  background-color: var(--cxCancel);
+  display: inline-block;
+}
+
+.stepper-wrapper.horizontal > .stepper > .step:not(:last-of-type)::after {
+  position: static;
+  min-width: 0.77rem;
+  width: 100%;
+  height: 1px;
+}
+
+.stepper-wrapper.vertical > .stepper > .step:not(:last-of-type)::after {
+  position: absolute;
+  width: 0.15rem;
+  height: 100%;
+  top: 3.39rem;
+  left: 1.92rem;
+}
+
+/** STEP TITLE - span */
+
+.stepper-wrapper > .stepper > .step > .step-title {
+  line-height: 6.5rem;
+  height: 6.5rem;
+  margin: 0;
+  padding: 0 0.3rem 0 3.69rem;
+  display: inline-block;
+  max-width: 18.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+/** STEP TITLE ICON - div */
+
+.stepper-wrapper > .stepper > .step > .step-title > .step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  height: 2.69rem;
+  width: 2.69rem;
+  border-radius: var(--cxBorderRadiusRound);
+  text-align: center;
+  line-height: 2.5rem;
+  font-size: 1.3rem;
+  top: 2.03rem;
+  left: 0.69rem;
+  margin-right: 1px;
+  color: var(--cxContrast);
+  background-color: var(--cxCancel);
+  font-weight: 400;
+}
+
+.stepper-wrapper > .stepper:not(.nav-guided) > .step > .step-title > .step-icon {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stepper-wrapper > .stepper > .step.current-step > .step-title > .step-icon {
+  background-color: var(--cxAccent);
+  color: var(--cxBase);
+  box-shadow: var(--cxShadow);
+}
+
+.stepper-wrapper > .stepper:not(.completed) > .step.previous-step > .step-title > .step-icon {
+  border: 2px var(--cxSuccess) solid;
+  line-height: 2.07rem;
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    border-color: var(--cxAccent);
+    background-color: var(--cxAccent);
+    color: var(--cxBase);
+  }
+}
+
+.stepper-wrapper > .stepper.nav-guided:not(.completed) > .step.previous-step > .step-title > .step-icon {
+  background-color: var(--cxBase);
+  color: var(--cxAux);
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    border-color: var(--cxAccent);
+    background-color: var(--cxAccent);
+    color: var(--cxBase);
+  }
+}
+
+.stepper-wrapper > .stepper.completed > .step.previous-step > .step-title > .step-icon {
+  color: var(--cxContrast);
+  border: 2px var(--cxSuccess) solid;
+  background-color: var(--cxCancel);
+  font-weight: 400;
+}
+
+.stepper-wrapper > .stepper > .step.last-step > .step-title > .step-icon {
+  background-color: var(--cxSuccess);
+  color: var(--cxSuccessContrast);
+}
+
+/* ESTILOS ADICIONAIS */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.waves-effect {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+}

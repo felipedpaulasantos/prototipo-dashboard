@@ -1,0 +1,8 @@
+{
+  "/v1/settings/profile/photo": {
+    "target":  "https://whatsbusinessapi.des.caixa/v1/settings/profile/photo",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

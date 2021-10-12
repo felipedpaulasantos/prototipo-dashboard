@@ -1,0 +1,31 @@
+<div class="card-caixa-botoes" *ngIf="cardHeaderElement">
+   <a *ngIf="draggable && wasMoved" (click)="reset()"
+   title="Resetar posição" class="btn rounded-circle">
+      <i class="fa fa-lg fa-undo-alt"></i>
+   </a>
+   <a *ngIf="cardHeaderElement && !isMinimized" (click)="minimizar()"
+   class="btn btn-link rounded-circle">
+      <i class="fa fa-lg fa-caret-down" title="Minimizar"></i>
+   </a>
+   <a *ngIf="cardHeaderElement && isMinimized" (click)="maximizar()"
+   class="btn btn-link rounded-circle">
+      <i class="fa fa-lg fa-caret-up" title="Maximizar"></i>
+   </a>
+   <a *ngIf="expandable" (click)="toggleFullscreen()"
+   class="btn btn-link rounded-circle">
+      <i *ngIf="!isFullscreen" class="fa fa-lg fa-expand" title="Tela Cheia"></i>
+      <i *ngIf="isFullscreen" class="fa fa-lg fa-compress" title="Sair do modo Tela Cheia"></i>
+   </a>
+   <a (click)="destruir()" [ngClass]="{'d-none': !draggable || isFullscreen}"
+   title="Destruir" class="btn btn-link rounded-circle">
+      <i class="fa fa-lg fa-times"></i>
+   </a>
+   <a (mousedown)="moved()"
+   (mouseup)="onMouseUp($event)"
+   [ngClass]="{'d-none': !draggable || isFullscreen}"
+   title="Mover" #moveButton class="btn btn-link rounded-circle">
+      <i class="fa fa-lg fa-arrows-alt"></i>
+   </a>
+</div>
+<ng-content></ng-content>
+<cx-spinner [fullscreen]=false></cx-spinner>

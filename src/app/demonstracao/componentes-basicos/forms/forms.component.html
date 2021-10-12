@@ -1,0 +1,266 @@
+<h1 class="titulo">
+  Forms
+</h1>
+
+<h5 class="mb-5">
+  Os estilos dos campos de formulário seguem o padrão definido pelo 
+  <a class="text-destaque" target="_blank" href="https://getbootstrap.com/docs/4.6/components/forms/">Bootstrap.</a><br><br>
+  As variantes de tamanho, status e layout descritas na documentação do link acima devem ser seguidos sem alteração.
+</h5>
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+      Visão Geral
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+      Exemplos
+    </a>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+    <div class="row no-gutters">
+      <section #scrollElement class="col-12 col-xl-9 pr-2 mb-5">
+        <app-documentacao-template id="painelInputs" [showCodeButton]="false" [cardTitle]="'Inputs e Text-area'">
+          <div class="descricao">
+            Para campos do tipo "input" e "text-area" utilizar a classe padrão "form-control" do Bootstrap.<br><br>
+            O espaçamento entre campos pode ser implementado de duas maneiras:<br>
+            - Envolvendo o label e o campo num container com a classe "form-group";<br>
+            - Utilizando a classe auxiliar do Bootstrap "mb-3" (espaçamento inferior de 1rem).
+          </div>
+
+          <div class="conteudo">
+            <div class="form-group">
+              <label>Nome</label>
+              <input class="form-control">
+            </div>
+
+            <label>Idade</label>
+            <input class="form-control mb-3" type="number">
+
+            <label>Observações</label>
+            <textarea class="form-control"></textarea>
+            <pre class="mt-3"><code [highlight]="inputExemplo" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+
+        <br>
+
+        <app-documentacao-template id="painelSelect" [showCodeButton]="false" [cardTitle]="'Select'">
+          <div class="descricao">
+            Para campos do tipo "select" utilizar por padrão o componente da biblioteca
+            <a class="text-destaque" href="https://www.npmjs.com/package/@ng-select/ng-select"
+              target="_blank">Ng-Select</a>, que já oferece funcionalidades de filtro, autocomplete e multi-seleção.<br><br>
+            Caso não seja possível inserir o componente, utilizar a classe "form-control" no elemento "select".
+          </div>
+
+          <div class="conteudo">
+            <label>Sexo</label>
+            <ng-select class="mb-3">
+              <ng-option>Masculino</ng-option>
+              <ng-option>Feminino</ng-option>
+            </ng-select>
+
+            <label>Naturalidade</label>
+            <select class="form-control mb-3">
+              <option>Brasileiro</option>
+              <option>Estrangeiro</option>
+            </select>
+            <pre class="mt-3"><code [highlight]="selectExemplo" [languages]="['html']"></code></pre>
+          </div>
+        </app-documentacao-template>
+
+      <br>
+
+      <app-documentacao-template id="painelCheckbox" [showCodeButton]="false" [cardTitle]="'Checkbox'">
+        <div class="descricao">
+          O Checkbox deve seguir o estilo "custom".
+        </div>
+
+        <div class="conteudo">
+          <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Marque esse checkbox</label>
+          </div>
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+            <label class="custom-control-label" for="customCheck2">Desmarque esse checkbox</label>
+          </div>
+          <pre class="mt-3"><code [highlight]="checkboxExemplo" [languages]="['html']"></code></pre>
+        </div>
+      </app-documentacao-template>
+
+      <br>
+
+      <app-documentacao-template id="painelRadio" [showCodeButton]="false" [cardTitle]="'Radio'">
+        <div class="descricao">
+          O Radio, assim como o checkbox, também deve seguir o estilo "custom".
+        </div>
+
+        <div class="conteudo">
+          <div class="custom-control custom-radio mb-3">
+            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio1">Ou esse fica marcado</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio2">Ou esse aqui</label>
+          </div>
+          <pre class="mt-3"><code [highlight]="radioExemplo" [languages]="['html']"></code></pre>
+        </div>
+      </app-documentacao-template>
+
+      <br>
+
+      <app-documentacao-template id="painelButtonControl" [showCodeButton]="false" [cardTitle]="'Button Control'">
+        <div class="descricao">
+          O componente 'cx-button-control' se comporta como radio ou checkbox, conforme o valor passado no atributo 'type'.
+        </div>
+
+        <div class="conteudo">
+          <cx-button-control type="checkbox" value="valor_do_checkbox">
+            Checkbox
+          </cx-button-control>
+
+          <cx-button-control type="radio" value="valor_do_radio" class="ml-3">
+            Radio
+          </cx-button-control>
+          <pre class="mt-3"><code [highlight]="buttonControlExample" [languages]="['html']"></code></pre>
+        </div>
+      </app-documentacao-template>
+
+      <br>
+
+      <app-documentacao-template id="painelRange" [showCodeButton]="false" [cardTitle]="'Range'">
+        <div class="descricao">
+          Para o elemento Range utilizar a classe "custom-range".
+        </div>
+
+        <div class="conteudo">
+          <label for="customRange1">Exemplo</label>
+          <input type="range" class="custom-range" id="customRange1">
+          <pre class="mt-3"><code [highlight]="rangeExemplo" [languages]="['html']"></code></pre>
+        </div>
+      </app-documentacao-template>
+
+      <br>
+
+      <app-documentacao-template id="painelValidacao" 
+      [cardTitle]="'Validação'"
+      [codeViewId]="'formsValidacao'" 
+      [htmlTabId]="'htmlCodeValidacao'"
+      [htmlCode]="htmlCodeValidacao" 
+      [tsTabId]="'tsCodeValidacao'" 
+      [tsCode]="tsCodeValidacao"
+      [cssTabId]="'cssCodeValidacao'"
+      [cssCode]="cssCodeValidacao">
+        <div class="descricao">
+          As classes do Angular Forms (ng-dirty, ng-valid, ng-invalid) alteram o visual dos campos conforme seu estado de validação.
+        </div>
+
+        <div class="conteudo">
+          <form [formGroup]="formValidation">
+            <div class="form-group">
+              <label>E-mail</label>
+              <input class="form-control" type="text" formControlName="email">
+              <p class="feedback-msg">
+                <span *ngIf="formValidation.get('email').invalid">E-mail inválido</span>
+              </p>
+            </div>
+  
+            <div class="form-group">
+              <label>LinkedIn</label>
+              <input class="form-control" type="text" formControlName="linkedin">
+              <p class="feedback-msg">
+                <span>Campo opcional</span>
+              </p>
+            </div>
+  
+            <div class="form-group">
+              <label>Perfil</label>
+              <ng-select formControlName="perfil">
+                <ng-option value="">Selecione...</ng-option>
+                <ng-option value="Visitante">Visitante</ng-option>
+                <ng-option value="Desenvolvedor">Desenvolvedor</ng-option>
+                <ng-option value="Gestor">Gestor</ng-option>
+              </ng-select>
+              <p class="feedback-msg">
+                <span *ngIf="formValidation.get('perfil').invalid">Campo obrigatório</span>
+              </p>
+            </div>
+  
+            <div class="form-group">
+              <label>Idade</label>
+              <input class="custom-range" type="range" formControlName="idade" min="0" max="100">
+              <p>{{ formValidation.get('idade').value }}</p>
+              <p class="feedback-msg">
+                <span *ngIf="formValidation.get('idade').invalid">Idade inválida - deve ser entre 18 e 70</span>
+              </p>
+            </div>
+  
+            <button class="btn btn-cancel" (click)="formValidation.reset()">Resetar</button>
+          </form>
+        </div>
+      </app-documentacao-template>
+    </section>
+
+      <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+        <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+      </nav>
+    </div>
+  </div> <!-- Tab -->
+
+  <div class="tab-pane fade" id="exemplos" role="tabpanel">
+    <app-documentacao-template id="painelDisabled" [showCodeButton]="false" [cardTitle]="'Desabilitados'">
+      <div class="conteudo">
+        <div class="row">
+          <div class="col mb-3">
+            <label>Input</label>
+            <input type="text" class="form-control" disabled>
+          </div>
+          <div class="col mb-3">
+            <label>Select</label>
+            <ng-select [readonly]="true">Select</ng-select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mb-3">
+            <label>Text Area</label>
+            <textarea class="form-control" disabled></textarea>
+          </div>
+          <div class="col mb-3">
+            <label>Range</label>
+            <input type="range" class="custom-range" id="customRange1" disabled>
+          </div>
+        </div>       
+
+        <div class="row">
+          <div class="col mb-3">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck3" disabled>
+              <label class="custom-control-label" for="customCheck3">Checkbox</label>
+            </div>
+          </div>
+          <div class="col mb-3">
+            <div class="custom-control custom-radio mb-3">
+              <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" disabled>
+              <label class="custom-control-label" for="customRadio3">Radio</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input" disabled>
+              <label class="custom-control-label" for="customRadio4">Radio 2</label>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </app-documentacao-template>
+  </div> <!-- Tab -->
+</div> <!-- Tab content -->

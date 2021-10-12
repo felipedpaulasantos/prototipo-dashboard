@@ -1,0 +1,19 @@
+#chatPanel {
+	height: calc(100vh - 160px);
+	max-height: calc(100vh - 160px);
+}
+#chatDiv {
+	height: 40vh;
+	max-height: 40vh; 
+	width: 100%;
+	overflow-y: scroll;
+}
+#msgInput {
+	width: 100%;
+	input {
+		width: 80%;
+	}
+	button {
+		width: 20%;
+	}
+}

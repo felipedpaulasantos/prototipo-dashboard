@@ -1,0 +1,121 @@
+<h1 class="titulo">
+	Tipografia
+</h1>
+
+<div class="row no-gutters">
+	<section #scrollElement class="col-12 col-xl-9 pr-2">
+
+		<app-documentacao-template id="painelCardFonte" [cardTitle]="'Fonte'" [showCodeButton]="false">
+			<div class="conteudo">
+				<p>
+					A fonte padrão é a "Futura LT Book", e para textos em negrito, "Futura LT Bold".
+				</p>
+		
+				<p>
+					As tags <code>b</code> e <code>strong</code> apenas aplicam o efeito de negrito a fonte padrão, Futura LT Book.<br>
+					Para aplicar a fonte Futura LT Bold que possui maior espaçamento e altura, deve-se utilizar a classe <code>font-fam-bold</code>.
+				</p>
+		
+				<hr>
+		
+				<span>Texto na fonte padrão.</span>
+				<br>
+				<b>Texto com a tag "b".</b>
+				<br>
+				<strong>Texto com a tag "strong".</strong>
+				<br>
+				<span class="font-fam-bold">Texto com a classe "font-fam-bold".</span>
+			</div>
+		</app-documentacao-template>
+	
+		<br>
+
+		<app-documentacao-template id="painelCardTitulosProprios" [cardTitle]="'Títulos Próprios'" [showCodeButton]="false">
+			<div class="conteudo">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="w-25">Classe</th>
+							<th>Exemplo</th>
+							<th>Uso</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let titulo of titulosPadrao">
+							<td><pre><code [highlight]="titulo.tag" [languages]="['html']"></code></pre></td>
+							<td [innerHTML]="titulo.exemplo"></td>
+							<td [innerHTML]="titulo.uso"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</app-documentacao-template>
+	
+		<br>
+
+		<app-documentacao-template id="painelCardTamanhoPadrao" [cardTitle]="'Títulos - Tamanho Padrão'" [showCodeButton]="false">
+			<div class="conteudo">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="w-25">Tag</th>
+							<th>Exemplo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let titulo of titulosGenericos">
+							<td><pre><code [highlight]="titulo.tag" [languages]="['html']"></code></pre></td>
+							<td [innerHTML]="titulo.exemplo"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</app-documentacao-template>
+	
+		<br>
+
+		<app-documentacao-template id="painelCardIcones" [cardTitle]="'Ícones'" [showCodeButton]="false">
+			<div class="conteudo">
+				<p>
+					A biblioteca de ícones a ser usada é a 
+					<a class="text-destaque" target="_blank" href="https://fontawesome.com/icons?d=gallery&p=2&m=free">
+						Font Awesome
+					</a>.
+				</p>
+		
+				Para indicar estado de sucesso, erro, alerta e informação, utilizar os seguintes ícones.
+		
+				<div class="my-3">
+					<span class="mr-5">
+						<i class="fa fa-check mr-3"></i>
+						<i class="fa fa-times mr-3"></i>
+						<i class="fa fa-exclamation mr-3"></i>
+						<i class="fa fa-info mr-3"></i>
+					</span>
+					<h4 class="d-inline mr-5">
+						<i class="fa fa-check fa-lg mr-3"></i>
+						<i class="fa fa-times fa-lg mr-3"></i>
+						<i class="fa fa-exclamation fa-lg mr-3"></i>
+						<i class="fa fa-info fa-lg mr-3"></i>
+					</h4>
+					<h2 class="d-inline mr-5">
+						<i class="fa fa-check fa-lg text-success mr-3"></i>
+						<i class="fa fa-times fa-lg text-danger mr-3"></i>
+						<i class="fa fa-exclamation text-warning fa-lg mr-3"></i>
+						<i class="fa fa-info fa-lg text-info mr-3"></i>
+					</h2>
+				</div>
+		
+				<h6 class="subtitulo">HTML:</h6>
+				<pre><code [highlight]="iconesExemplo" [languages]="['html']"></code></pre>
+			</div>
+		</app-documentacao-template>
+	
+		<br>
+
+	</section>
+	
+	<nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+		<app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+	</nav>
+</div>

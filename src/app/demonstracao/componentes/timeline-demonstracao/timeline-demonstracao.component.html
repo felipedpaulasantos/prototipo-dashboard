@@ -1,0 +1,180 @@
+<h1 class="titulo">
+   Timeline
+</h1>
+
+
+<div class="my-4">
+   <h5>
+      <p>O componente Timeline apresenta uma linha do tempo simples com ícones e cores que indicam a natureza de cada
+         acontecimento.</p>
+      <p>O atributo <span class="citation-highlight">items</span> deve sempre receber uma lista de TimelineItem.</p>
+   </h5>
+   <h6 class="font-fam-bold">HTML:</h6>
+	<pre><code [highlight]="examples.codeDescricao" [languages]="['html']"></code></pre> 
+	<h6 class="font-fam-bold">TS:</h6>
+	<pre><code [highlight]="examples.codeTsDescricao"  [languages]="['ts']"></code></pre> 
+</div>
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+   <li class="nav-item">
+      <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+         Visão Geral
+      </a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link text-uppercase" data-toggle="tab" href="#api" role="tab">
+         API
+      </a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+         Exemplos
+      </a>
+   </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+   <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+      <div class="row no-gutters">
+         <section #scrollElement class="col-12 col-xl-9 pr-2">
+
+            <app-documentacao-template id="painelTimeline" [cardTitle]="'Timeline Padrão'"
+               [codeViewId]="'viewTimelinePadrao'" [htmlTabId]="'htmlCodeTimelinePadrao'"
+               [htmlCode]="examples.htmlCodeTimelinePadrao" [tsTabId]="'tsCodeTimelinePadrao'" [tsCode]="examples.tsCodeTimelinePadrao">
+               <div class="descricao">
+                  <p>O componente recebe a lista de <span class="citation-highlight">TimelineItem</span> e desenha,
+                     por padrão na vertical, a linha do tempo.
+                  </p>
+                  <p>Os estados possíveis podem ser informados utilizando a enum
+                     <span class="citation-highlight">TimelineState</span>, ou informando a string diretamente (ex.
+                     "success").
+                  </p>
+                  <p>A data deve ser informada pelo atributo <span class="citation-highlight">date</span>, do tipo Date,
+                     ou
+                     pelo atributo <span class="citation-highlight">dateString</span>, do tipo String.</p>
+                  <p>Caso a formatação padrão do objeto Date não seja a desejada, pode-se informar pelo atributo
+                     <span class="citation-highlight">dateFormat</span> qualquer um dos formatos suportados
+                     pelo DatePipe do Angular:
+                     <a class="text-link" target="_blank"
+                        href="https://angular.io/api/common/DatePipe#pre-defined-format-options">
+                        https://angular.io/api/common/DatePipe
+                     </a>.
+                  </p>
+               </div>
+
+               <div class="conteudo">
+                  <cx-timeline [items]="timelineItems"></cx-timeline>
+               </div>
+            </app-documentacao-template>
+
+            <br>
+
+            <app-documentacao-template id="painelTimelineExtenso" [cardTitle]="'Timeline Extenso'"
+               [codeViewId]="'viewTimelineExtenso'" [htmlTabId]="'htmlCodeTimelineExtenso'"
+               [htmlCode]="examples.htmlCodeTimelineExtenso" [tsTabId]="'tsCodeTimelineExtenso'"
+               [tsCode]="examples.tsCodeTimelineExtenso">
+               <div class="descricao">
+                  <p>Caso a lista de acontecimentos seja extensa, é possível atribuir valores para os propriedades do
+                     componente,
+                     como <span class="citation-highlight">height</span> ou <span
+                        class="citation-highlight">width</span>,
+                     pelo atributo <span class="citation-highlight">styles</span>.
+                  </p>
+                  <p>O componente exibirá uma barra de rolagem e destacará a parte final da lista por padrão</p>
+               </div>
+
+               <div class="conteudo">
+                  <cx-timeline [styles]="{ height: '350px', width: 'auto' }" [items]="timelineItemsExtenso">
+                  </cx-timeline>
+               </div>
+            </app-documentacao-template>
+
+         </section>
+
+         <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+            <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+         </nav>
+      </div>
+   </div> <!-- Tab Pane Visão Geral -->
+
+   <div class="tab-pane fade" id="api" role="tabpanel">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="header-subtitulo-caixa">Cx-Timeline</h5>
+            <p>
+               Componente de exibição de acontecimentos sequenciais.
+            </p>
+            <p>Usar como: <span class="citation-highlight">cx-timeline</span></p>
+
+            <app-documentacao-api-table
+               [props]="propsApi"
+            ></app-documentacao-api-table>
+         </div>
+      </div>
+   </div> <!-- TAB API -->
+
+   <div class="tab-pane fade" id="exemplos" role="tabpanel">
+      <section id="timelineSandbox" class="mb-5">
+
+         <cx-timeline #timelineSandbox [items]="sandboxTimelineItems" [orientation]="timelineOrientation"></cx-timeline>
+
+         <form [formGroup]="sandboxForm">
+            <div class="card mt-2">
+               <div class="card-body">
+                  <div class="row">
+   
+                     <div class="col-3">
+                        <label>Título</label>
+                        <input formControlName="title" class="form-control">
+                     </div>
+   
+                     <div class="col-2">
+                        <label>Data - Texto</label>
+                        <input formControlName="dateString" class="form-control">
+                     </div>
+
+                     <div class="col-2">
+                        <label>Data - objeto</label>
+                        <input formControlName="date" class="form-control" type="date">
+                     </div>
+
+                     <div class="col-2">
+                        <label>Formato</label>
+                        <input formControlName="formato" class="form-control" type="text">
+                     </div>
+   
+                     <div class="col-2">
+                        <cx-select>
+                           <label>Estado</label>
+                           <select selectCaixa formControlName="state">
+                              <option value="success">Sucesso</option>
+                              <option value="error">Erro</option>
+                              <option value="warning">Alerta</option>
+                              <option value="warning-stop">Alerta - decisão</option>
+                              <option value="info">Info</option>
+                           </select>
+                        </cx-select>
+                     </div>
+   
+                     <div class="col-3 d-flex align-items-center">
+                        <button title="Remover" class="btn btn-danger ml-2"
+                           [disabled]="sandboxTimelineItems.length == 2" (click)="removeItem()">
+                           <i class="fa fa-minus fa-lg"></i>
+                        </button>
+   
+                        <button title="Adicionar" class="btn btn-success ml-2"
+                        [disabled]="!sandboxForm.valid"
+                        (click)="addItem()">
+                           <i class="fa fa-plus fa-lg"></i>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+
+      </section>
+   </div>
+</div>

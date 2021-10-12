@@ -1,0 +1,169 @@
+/* CARD BUTTON WRAPPER */
+.card-button-wrapper {
+    position: relative;
+    border: solid 2px var(--cxCancel);
+    border-radius: var(--cxBorderRadius);
+    height: 9.61rem;
+    min-height: 7.69rem;
+    width: 38.46rem;
+    max-width: 100%;
+    max-height: 100%;
+    transition: box-shadow 0.2s, border 0.2s;
+    background: linear-gradient(to right, var(--cxAux) 0%, var(--cxBase) 20%) no-repeat;
+    &:hover {
+      border: solid 2px var(--cxAux);
+    }
+  }
+  .card-button-wrapper.checked {
+    border: solid 2px var(--cxAux);
+    background: linear-gradient(to right, var(--cxAux) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.primary.checked {
+    border: solid 2px var(--cxAccent);
+    background: linear-gradient(to right, var(--cxAccent) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.secondary.checked {
+    border: solid 2px var(--cxMain);
+    background: linear-gradient(to right, var(--cxMain) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.success.checked {
+    border: solid 2px var(--success);
+    background: linear-gradient(to right, var(--success) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.danger.checked {
+    border: solid 2px var(--danger);
+    background: linear-gradient(to right, var(--danger) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.warning.checked {
+    border: solid 2px var(--warning);
+    background: linear-gradient(to right, var(--warning) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  .card-button-wrapper.info.checked {
+    border: solid 2px var(--info);
+    background: linear-gradient(to right, var(--info) 0%, var(--cxBase) 20%) no-repeat;
+  }
+  
+  /* ROW */
+  .card-button-wrapper > .row {
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+  }
+  
+  /* CARD BUTTON LEFT SIDE */
+  .card-button-wrapper > .row > .card-button-left-side {
+    background-color: var(--cxAux);
+    color: var(--cxBase);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center !important;
+    text-align: center;
+    transition: background-color 0.2s;
+    padding: 0.2rem 0.3rem;
+    min-height: 100%;
+    max-height: 100%;
+    border-top-left-radius: var(--cxBorderRadius);
+    border-bottom-left-radius: var(--cxBorderRadius);
+  }
+  .card-button-wrapper.checked > .row > .card-button-left-side {
+    background-color: var(--cxAccent);
+  }
+  .card-button-wrapper.checked.secondary > .row > .card-button-left-side {
+    background-color: var(--cxMain);
+  }
+  .card-button-wrapper.checked.success > .row > .card-button-left-side {
+    background-color: var(--success);
+  }
+  .card-button-wrapper.checked.danger > .row > .card-button-left-side {
+    background-color: var(--danger);
+  }
+  .card-button-wrapper.checked.warning > .row > .card-button-left-side {
+    background-color: var(--warning);
+  }
+  .card-button-wrapper.checked.info > .row > .card-button-left-side {
+    background-color: var(--info);
+  }
+  
+  /* CARD BUTTON RIGHT SIDE */
+  .card-button-wrapper > .row > .card-button-right-side {
+    display: flex;
+    padding: 0.2rem 0.5rem;
+    min-height: 100%;
+    max-height: 100%;
+  }
+  .card-button-wrapper > .row > .card-button-right-side > .content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: center;
+  }
+  
+  /* CHECK BOX WRAPPER */
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  
+  /* CHECKMARK */
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.54rem;
+    width: 1.54rem;
+    background-color: transparent;
+    margin: 0.77rem;
+    border: 0.15rem solid var(--cxBase);
+  }
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark.checkbox {
+    border-radius: var(--cxBorderRadius);
+  }
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark.radio {
+    border-radius: 0.77rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* CHECKMARK AFTER */
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark:after {
+    content: "";
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark.checkbox:after {
+    position: absolute;
+    left: 0.3rem;
+    top: 0px;
+    width: 0.69rem;
+    height: 1rem;
+    border-style: solid;
+    border-color: var(--cxBase);
+    border-width: 0 0.23rem 0.23rem 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .card-button-wrapper > .row > .card-button-left-side > .checkbox-wrapper > .checkmark.radio:after {
+    width: 0.77rem;
+    height: 0.77rem;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--cxBase);
+    border-radius: 0.77rem;
+    background-color: var(--cxBase);
+  }
+  .card-button-wrapper.checked > .row > .card-button-left-side > .checkbox-wrapper > .checkmark:after {
+    opacity: 1;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  

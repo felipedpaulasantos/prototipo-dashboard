@@ -1,0 +1,27 @@
+.breadcrumb {
+  display: inline-block;
+  list-style: none !important;
+  list-style-type: none;
+  padding: 0 !important;
+  background-color: transparent;
+}
+.breadcrumb li {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.breadcrumb li button:focus, .breadcrumb li button:active {
+  background-color: white !important;
+}
+.breadcrumb li a {
+  color: var(--cxAux);
+  text-decoration: none;
+}
+ol.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "\f054";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  opacity: 0.8;
+}

@@ -1,0 +1,64 @@
+<div class="row m-0">
+  <div class="form-group col-sm-3 col-md-2">
+    <label>{{ chartData?.xAxisLabel | titlecase }}</label>
+    <div class="input-group">
+      <div class="form-group-prefix-icon d-flex align-items-center">
+        <span class="prefix-icon">
+          <i class="fas fa-arrows-alt-h"></i>
+        </span>
+      </div>
+      <input
+        #maxLenghtFilter
+        (keyup)="updateMaxLength($event.target.value)"
+        [ngClass]="{'text-danger': 
+          (maxLenghtFilter.value) && ((maxLenghtFilter.value > chartData?.chartLabels?.length) || (maxLenghtFilter.value <= 0))}"
+        class="form-control text-center"
+        placeholder="1 a {{ chartData?.chartLabels?.length }}"
+        mask="00">
+    </div>
+    <small class="d-block text-center">
+      Exibindo {{ chart?.labels?.length }}
+      de {{ chartData?.chartLabels?.length }} {{ chartData?.xAxisLabel | lowercase }}
+    </small>
+    <div
+      class="alert alert-danger mt-3"
+      *ngIf="maxLenghtFilter.value < 0">
+      Valor inválido
+    </div>
+  </div>
+  <div class="form-group col-sm-3 col-md-2">
+    <label>Dados</label>
+    <div class="input-group">
+      <div class="form-group-prefix-icon d-flex align-items-center">
+        <span class="prefix-icon">
+          <i class="fas fa-arrows-alt-v"></i>
+        </span>
+      </div>
+      <input
+        #numberOfBarsFilter
+        (keyup)="updateNumberOfBars($event.target.value)"
+        [ngClass]="{'text-danger': 
+          (numberOfBarsFilter.value) && ((numberOfBarsFilter.value > chartData?.chartDatasets?.length) || (numberOfBarsFilter.value <= 0))}"
+        class="form-control text-center"
+        placeholder="1 a {{ chartData?.chartDatasets?.length }}"
+        mask="00">
+    </div>
+    <small class="d-block text-center">
+      Exibindo {{ chart?.datasets?.length }}
+      de {{ chartData?.chartDatasets?.length }} dados
+    </small>
+  </div>
+</div>
+
+<div *ngIf="isDataAvailable" class="chart-container" style="position: relative; height:25rem;">
+  <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+    [colors]="barChartColors"
+    [legend]="barChartLegend">
+  </canvas>
+</div>

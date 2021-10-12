@@ -1,0 +1,37 @@
+<ng-container *ngIf="filter.support == true && supportData.length
+  else noSupportData"
+>
+  <h6 class="mb-4">
+      <i class="fas fa-database ml-2"></i>
+      Informações de Suporte
+  </h6>
+  <div class="card">
+    <div class="card-body">
+      <table id="tableSupport" class="table bg-white datatable table-bordered table-striped w-100">
+        <thead class="text-center">
+          <tr>
+            <th>Atributo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of supportData[0] | keyvalue">
+            <td>{{ item.key }}</td>
+            <td>{{ item.value | json }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+</ng-container>
+
+<ng-template #noSupportData>
+  <ng-container *ngIf="filter.support == true">
+    <h6 class="center">
+      Não há informações de suporte nesta instância.
+      <i class="fas fa-database ml-2"></i>
+    </h6>
+    <br>
+  </ng-container>
+</ng-template>

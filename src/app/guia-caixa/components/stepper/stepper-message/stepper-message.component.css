@@ -1,0 +1,11 @@
+.stepper-message-wrapper {
+   height: 84px;
+   display: flex;
+   align-items: center;
+}
+.stepper-message {
+   background-color: #008254;
+   color: white;
+   padding: 0.7rem;
+   width: 100%;
+}

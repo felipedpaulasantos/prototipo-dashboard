@@ -1,0 +1,178 @@
+/** TIMELINE WRAPPER - div */
+
+.timeline-wrapper {
+   position: relative;
+}
+
+.timeline-wrapper.horizontal {
+   max-height: 6.5rem;
+   overflow-y: hidden;
+   overflow-x: auto;
+}
+
+.timeline-wrapper.vertical {
+   display: inline-block;
+   width: auto;
+   max-width: 100%;
+   max-height: calc(100%);
+   overflow-y: auto;
+   overflow-x: hidden;
+}
+
+/** TIMELINE - ul */
+
+.timeline-wrapper .timeline {
+   position: relative;
+   list-style: none;
+   display: flex;
+   justify-content: space-between;
+   counter-reset: section;
+
+   padding: 0;
+   margin: 0;
+   transition: justify-content 0.4s;
+}
+
+.timeline-wrapper.vertical .timeline {
+   flex-direction: column;
+}
+
+/** TIMELINE-ITEM - li */
+
+.timeline-wrapper.horizontal .timeline > .timeline-item {
+   position: relative;
+   padding: 0 !important;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   height: 6.5rem;
+   transition: 
+   width 0.4s,
+   visibility 0.4s,
+   opacity 0.4s;
+   border: solid 2px transparent;
+   border-radius: var(--cxBorderRadius);
+   transition: border 0.2s;
+   &:hover {
+      border: solid 2px var(--cxCancel);
+   }
+}
+
+.timeline-wrapper.vertical .timeline > .timeline-item {
+   position: relative;
+   max-height: 38.46rem;
+   transition: 
+   max-height 0.4s,
+   width 0.4s,
+   visibility 0.4s,
+   opacity 0.4s;
+   border: solid 2px transparent;
+   border-radius: var(--cxBorderRadius);
+   transition: border 0.2s;
+   &:hover {
+      border: solid 2px var(--cxCancel);
+   }
+}
+
+.timeline-wrapper .timeline .timeline-item:last-of-type {
+   width: auto !important;
+}
+
+/** TIMELINE-ITEM AFTER - linha */
+
+.timeline > .timeline-item:not(:last-of-type)::after {
+   content: "";
+   background-color: var(--cxCancel);
+   display: inline-block;
+}
+
+.timeline-wrapper.horizontal .timeline > .timeline-item::after {
+   position: static;
+   min-width: 0.77rem;
+   width: 100%;
+   height: 1px;
+}
+
+.timeline-wrapper.vertical .timeline > .timeline-item::after {
+   position: absolute;
+   width: 2px;
+   height: 100%;
+   top: 3.39rem;
+   left: 1.92rem;
+}
+
+/** TIMELINE-ITEM TITLE - span */
+
+.timeline-wrapper .timeline > .timeline-item > .timeline-item-title {
+   height: 6.5rem;
+   margin: 0;
+   padding: 0 0.3rem 0 3.69rem;
+   display: flex;
+   max-width: 245px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   flex-shrink: 0;
+}
+
+/** TIMELINE-ITEM TITLE ICON - div */
+
+.timeline-wrapper .timeline > .timeline-item > .timeline-item-title > .timeline-item-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 1;
+   position: absolute;
+   height: 2.69rem;
+   width: 2.69rem;
+   border-radius: var(--cxBorderRadiusRound);
+   text-align: center;
+   line-height: 2.5rem;
+   font-size: 1.3rem;
+   left: 1px;
+   top: 2.03rem;
+   left: 0.69rem;
+   margin-right: 1px;
+   color: var(--base);
+   background-color:var(--cxCancel);
+   font-weight: 400;
+   box-shadow: var(--cxShadowSm);
+}
+
+.timeline-wrapper .timeline > .timeline-item.timeline-item-success > .timeline-item-title > .timeline-item-icon {
+   background-color: var(--cxSuccess) !important;
+   color: var(--cxSuccessContrast) !important;
+}
+
+.timeline-wrapper .timeline > .timeline-item.timeline-item-info > .timeline-item-title > .timeline-item-icon {
+   background-color: var(--cxInfo) !important;
+   color: var(--cxInfoContrast) !important;
+}
+
+.timeline-wrapper .timeline > .timeline-item.timeline-item-error > .timeline-item-title > .timeline-item-icon {
+   background-color: var(--cxDanger) !important;
+   color: var(--cxDangerContrast) !important;
+}
+
+.timeline-wrapper .timeline > .timeline-item.timeline-item-warning > .timeline-item-title > .timeline-item-icon {
+   background-color: var(--cxWarning) !important;
+   color: var(--cxWarningContrast) !important;
+}
+
+.timeline-wrapper .timeline > .timeline-item.timeline-item-warning-stop > .timeline-item-title > .timeline-item-icon {
+   background-color: var(--cxWarning) !important;
+   color: var(--cxWarningContrast) !important;
+}
+
+/* TIMELINE-ITEM-INFO */
+
+.timeline-wrapper .timeline > .timeline-item > .timeline-item-title > .timeline-item-info {
+   margin: auto 0.2rem;
+   white-space: normal;
+}
+
+/* ESTILOS ADICIONAIS */
+
+.cursor-pointer {
+   cursor: pointer;
+}

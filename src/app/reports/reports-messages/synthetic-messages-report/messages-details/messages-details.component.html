@@ -1,0 +1,61 @@
+<ng-container *ngIf="(messageReportData && messageReportData.length > 0) else noMessageData">
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="header-subtitulo-caixa mb-4">Gráfico por período</h5>
+    </div>
+    <div class="card-body">
+      <app-bar-chart *ngIf="messageChartData"
+          [chartData]="messageChartData">
+      </app-bar-chart>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="header-subtitulo-caixa mb-4">Estatísticas</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="tableMessagesDetailed" class="table table-caixa w-100 mx-0 px-0">
+          <thead>
+            <tr>
+              <th>Período</th>
+              <th>Total de Mensagens</th>
+              <th>Mensagens de conversas reativas</th>
+              <th>Mensagens de conversas ativas</th>
+              <th>Com sucesso</th>
+              <th>Com erro</th>
+              <th>Recebidas</th>
+              <th>Enviadas</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+              <tr #tableMessageDetailedRows *ngFor="let m of messageReportData">
+                <td>{{ m.period }}</td>
+                <td>{{ m.totalMsg | number }}</td>
+                <td>{{ m.totalMsgFromReactiveChat | number }}</td>
+                <td>{{ m.totalMsgFromActiveChat | number }}</td>
+                <td>{{ m.totalSuccessMsg | number }}</td>
+                <td>{{ m.totalErrorMsg | number }}</td>
+                <td>{{ m.totalMsgReceived | number }}</td>
+                <td>{{ m.totalMsgSent | number }}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #noMessageData>
+  <div class="card">
+    <div class="card-body">
+      <h6 class="center py-5">
+          Não há dados de mensagens a serem exibidos.
+      </h6>
+    </div>
+  </div>
+</ng-template>

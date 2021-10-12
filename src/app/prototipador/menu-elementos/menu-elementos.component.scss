@@ -1,0 +1,23 @@
+#menuLateralElementos {
+   width: 500px;
+   height: calc(100vh - 64px);
+   position: fixed;
+   right: 0;
+   top: 64px;
+   transition: 0.2s;
+   &.escondido {
+      right: -500px;
+      visibility: hidden;
+   }
+}
+
+#botaoExibirMenuElementos {
+   position: absolute;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   bottom: 1rem;
+   right: 1rem;
+   height: 3rem;
+   width: 3rem;
+}

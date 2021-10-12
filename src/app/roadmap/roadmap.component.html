@@ -1,0 +1,53 @@
+<h1 class="titulo">Roadmap</h1>
+
+<div *ngFor="let fase of fases" class="card w-75 mb-4">
+   <div class="card-header">
+      <h4 class="subtitulo d-inline-block">
+         {{ fase.titulo }}
+      </h4>
+      <div class="d-inline-block float-right">
+         <ng-container *ngIf="fase.situacao === 'andamento'">
+            <i class="fa fa-play text-accent mr-2"></i>
+            Em andamento
+         </ng-container>
+         <ng-container *ngIf="fase.situacao === 'nao-iniciado'">
+            <i class="fa fa-pause text-aux mr-2"></i>
+            Não iniciada
+         </ng-container>
+      </div>
+   </div>
+   <div class="card-body">
+      <div class="row mb-3">
+         <div class="col border-right">
+            <h6 class="subtitulo text-center">
+               <i class="fa fa-bullseye fa-lg mr-3"></i>
+               Objetivo
+            </h6>
+            <p>{{ fase.objetivo }}</p>
+         </div>
+         <div class="col border-right">
+            <h6 class="subtitulo text-center">
+               <i class="fa fa-check-double fa-lg mr-3"></i>
+               Itens concluídos
+            </h6>
+            <ul>
+               <li *ngFor="let concluido of fase.itensConcluidos">{{ concluido.descricao }}</li>
+            </ul>
+         </div>
+         <div class="col">
+            <h6 class="subtitulo text-center">
+               <i class="fa fa-spinner fa-lg mr-3"></i>
+               Itens pendentes
+            </h6>
+            <ul>
+               <li *ngFor="let pendente of fase.itensPendentes">{{ pendente.descricao }}</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="card-footer">
+      <h6>
+         <strong>Estimativa: </strong> {{ fase.estimativa }}
+      </h6>
+   </div>
+</div>

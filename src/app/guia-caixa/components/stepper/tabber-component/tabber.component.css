@@ -1,0 +1,162 @@
+/** TABBER WRAPPER - div */
+
+.tabber-wrapper.horizontal {
+   max-height: 6.5rem;
+}
+
+.tabber-wrapper.vertical {
+   max-width: 100%;
+}
+
+/** TABBER - ul */
+
+.tabber-wrapper > .tabber {
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+   counter-reset: section;
+   overflow-y: auto;
+   overflow-x: hidden;
+   padding: 0;
+   margin: 0;
+}
+
+.tabber-wrapper.vertical > .tabber {
+   overflow: hidden;
+   flex-direction: column;
+}
+
+/** TAB - li */
+
+.tabber-wrapper > .tabber > .tab {
+   position: relative;
+   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+   padding: 0 !important;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   height: 6.5rem;
+}
+
+.tabber-wrapper > .tabber > .tab:last-of-type {
+   width: auto !important;
+}
+
+/** TAB AFTER - linha */
+
+.tabber-wrapper > .tabber > .tab::after {
+   display: inline-block;
+   content: "";
+}
+
+.tabber-wrapper > .tabber > .tab:not(:last-of-type)::after {
+   top: 3.39rem;
+   left: 1.92rem;
+   background-color: var(--cxCancel);
+   /*    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); */
+}
+
+.tabber-wrapper.horizontal > .tabber > .tab:not(:last-of-type)::after {
+   position: static;
+   min-width: 0.77rem;
+   width: 100%;
+   height: 1px;
+}
+
+.tabber-wrapper.vertical > .tabber > .tab:not(:last-of-type)::after {
+   position: absolute;
+   width: 0.15rem;
+   height: 100%;
+}
+
+/** TAB TITLE - div */
+
+.tabber-wrapper > .tabber > .tab > .tab-title {
+   line-height: 6.5rem;
+   height: 6.5rem;
+   margin: 0;
+   padding: 0 0.3rem 0 3.69rem;
+   display: inline-block;
+   max-width: 245px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   flex-shrink: 0;
+}
+
+/** TAB TITLE ICON - div */
+
+.tabber-wrapper > .tabber > .tab > .tab-title > .tab-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   height: 2.69rem;
+   width: 2.69rem;
+   border-radius: var(--cxBorderRadiusRound);
+   text-align: center;
+   line-height: 2.5rem;
+   font-size: 1.3rem;
+   top: 2.03rem;
+   left: 0.69rem;
+   margin-right: 1px;
+   color: var(--cxContrast);
+   background-color: var(--cxCancel);
+   font-weight: 400;
+   transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tabber-wrapper > .tabber > .tab.current-tab > .tab-title > .tab-icon {
+   background-color: var(--cxAccent);
+   color: var(--cxBase);
+   box-shadow: var(--cxShadow);
+}
+
+/* STATE ICON */
+
+.tabber-wrapper > .tabber > .tab > .tab-title > .tab-icon > .state-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   right: -0.38rem;
+   top: -0.38rem;
+   border-radius: 0.77rem;
+   padding: 0.23rem;
+   font-size: 0.7rem;
+   width: 1.2rem;
+   height: 1.2rem;
+   margin: auto;
+}
+.tabber-wrapper > .tabber > .tab > .tab-title > .tab-icon > .state-icon.success {
+   background-color: var(--cxSuccess);
+   color: var(--cxSuccessContrast);
+}
+.tabber-wrapper > .tabber > .tab > .tab-title > .tab-icon > .state-icon.danger {
+   background-color: var(--cxDanger);
+   color: var(--cxDangerContrast);
+}
+.tabber-wrapper > .tabber > .tab > .tab-title > .tab-icon > .state-icon.warning {
+   background-color: var(--cxWarning);
+   color: var(--cxWarningContrast);
+}
+
+/* ESTILOS ADICIONAIS */
+
+.cursor-pointer {
+   cursor: pointer;
+}
+
+.waves-effect {
+   position: relative;
+   display: inline-block;
+   overflow: hidden;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+   vertical-align: middle;
+   z-index: 1;
+   -webkit-transition: 0.3s ease-out;
+   transition: 0.3s ease-out;
+}

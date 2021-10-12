@@ -1,0 +1,31 @@
+<perfect-scrollbar #menuLateral id="menuLateral"
+  [ngClass]="{'reduzido': !isAberto, 'aberto': isAberto}">
+
+  <div id="painelBotaoSipan" class="p-3 text-center">
+    <button id="botaoSipan" class="btn btn-outline-accent text-uppercase" [ngClass]="{'btn-block': isAberto}" title="Portal Negócios.Caixa">
+      <span *ngIf="isAberto">Portal Negócios.Caixa</span>
+      <span *ngIf="!isAberto"><i class="fa fa-desktop fa-lg"></i></span>
+    </button>
+  </div>
+
+  <div class="menu-item mb-3" role="button" (click)="openSearch()">
+    <span class="menu-item-icon">
+      <i class="fa fa-search fa-lg mr-2"></i>
+    </span>
+    <span class="menu-item-name">
+      <input #inputSearch class="form-control text-center mr-2" (input)="filterMenu($event)" placeholder="Pesquise o portal...">
+    </span>
+  </div>
+
+  <div id="menuLateralNav">
+    <app-accordion [options]="options" [menus]="menus"></app-accordion>
+  </div>
+
+  <div id="menuLateralDinamico" class="mt-5">
+    <ng-container #menuTarget>
+      <!-- Componente dinâmico a ser inserido -->
+    </ng-container>
+  </div>
+
+  <!-- </div> -->
+</perfect-scrollbar>

@@ -1,0 +1,38 @@
+<div #defaultModal class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog {{ modalDialogClass }}" [ngClass]="{
+        'modal-dialog-centered': centralizado,
+        'modal-sm': tamanho == modalSize.PEQUENO,
+        'modal-lg': tamanho == modalSize.GRANDE,
+        'modal-xl': tamanho == modalSize.MAIOR
+    }" role="document">
+        <div class="modal-content">
+            <ng-container >
+                <div class="modal-header {{ modalHeaderClass }}">
+                    <h4 class="modal-title" [ngClass]="classTitulo">{{titulo}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-break {{ modalBodyClass }}">
+                    {{mensagem}}
+                    <div id="modalInjectedContent">
+                        <ng-container #modalDinamico>
+            
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="modal-footer {{ modalFooterClass }}">
+                    <button id="btModalCancelar" *ngIf="showCancelar" type="button" [ngClass]="btnCancelarClass"
+                        data-dismiss="modal" (click)="cancelar()">
+                        {{btCancelarTexto}}
+                    </button>
+                    <button id="btModalOk" type="button" [ngClass]="btnOkClass" data-dismiss="modal" (click)="ok()">
+                        {{btOkTexto}}
+                    </button>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

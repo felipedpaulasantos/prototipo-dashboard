@@ -1,0 +1,282 @@
+<h1 class="titulo">
+	Inputs
+</h1>
+
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+      Visão Geral
+    </a>
+	</li>
+	<li class="nav-item">
+    <a class="nav-link text-uppercase" data-toggle="tab" href="#api" role="tab">
+      API
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+      Exemplos
+    </a>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+	<div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+		<div class="row no-gutters">
+			<section #scrollElement class="col-12 col-xl-9 pr-2">
+		
+				<app-documentacao-template id="painelInputBasico" 
+				[cardTitle]="'Input básico'" 
+				[codeViewId]="'viewInputBasico'"
+				[htmlTabId]="'htmlCodeInputBasico'" 
+				[htmlCode]="htmlCodeInputBasico">
+					<div class="descricao">
+						A diretiva <span class="citation-highlight">inputCaixa</span> utilizada em conjunto com o componente
+						<span class="citation-highlight">&#60;cx-input></span> permite a estilização e validação automática do campo.
+					</div>
+		
+					<div class="conteudo">
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-6">
+								<form>
+									<cx-input>
+										<label>Nome</label>
+										<input inputCaixa placeholder="Digite seu nome aqui..." value="José da Silva">
+									</cx-input>
+								</form>
+							</div>
+						</div> <!-- Row -->
+					</div>
+				</app-documentacao-template>
+		
+				<br>
+		
+				<app-documentacao-template id="painelValidadores" 
+				[cardTitle]="'Validação'" 
+				[codeViewId]="'viewIValidacao'"
+				[htmlTabId]="'htmlIdValidacao'" 
+				[htmlCode]="htmlCodeValidacao" 
+				[tsTabId]="'tsIdValidacao'"
+				[tsCode]="tsCodeValidacao">
+					<div class="descricao">
+						O componente exibirá mensagens predefinidas para cada um dos "Validators" do Angular Forms.
+					</div>
+		
+					<div class="conteudo">
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-6">
+								<form [formGroup]="formulario">
+									<cx-input>
+										<label>Texto</label>
+										<textarea inputCaixa formControlName="texto" placeholder="Vazio ou pelo menos 20 caracteres"></textarea>
+									</cx-input>
+		
+									<cx-input>
+										<label>Idade</label>
+										<input inputCaixa formControlName="idade" placeholder="Obrigatório - Entre 18 e 100" type=number>
+									</cx-input>
+								</form>
+		
+								<cx-input>
+									<label>NG Model</label>
+									<input inputCaixa placeholder="Inválido se vazio" [(ngModel)]="ngModelTeste" #ctrl="ngModel" required
+										[ngClass]="{'ng-invalid': ngModelTeste == ''}">
+								</cx-input>
+							</div>
+						</div> <!-- Row -->
+					</div>
+				</app-documentacao-template>
+		
+				<br>
+		
+				<app-documentacao-template id="painelCustomValidadores" 
+				[cardTitle]="'Validação customizada'" 
+				[codeViewId]="'viewIValidacaoCustom'"
+				[htmlTabId]="'htmlIdValidacaoCustom'" 
+				[htmlCode]="htmlCodeCustomValidacao" 
+				[tsTabId]="'tsIdValidacaoCustom'"
+				[tsCode]="tsCodeCustomValidacao">
+					<div class="descricao">
+						Validadores customizados podem ser utilizados passando-os como argumento pela propriedade
+						<span class="citation-highlight">customErrors</span>, como um objeto ou um Array de objetos no formato: <br>
+						<span class="citation-highlight">&#123; "nomeDoErro": "Mensagem a ser exibida" &#125;</span>.
+					</div>
+		
+					<div class="conteudo">
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-6">
+								<form [formGroup]="formulario">
+									<cx-input [customErrors]='{"simpleDate": "Data inválida"}'>
+										<label>Data de Nascimento</label>
+										<input inputCaixa formControlName="nascimento" placeholder="dd/mm/aaaa">
+									</cx-input>
+		
+									<cx-input [customErrors]="mesError">
+										<label>Mês / Ano</label>
+										<input inputCaixa formControlName="mesAno" placeholder="mm/aaaa">
+									</cx-input>
+								</form>
+							</div>
+						</div> <!-- Row -->
+					</div>
+				</app-documentacao-template>
+			</section>
+		
+			<nav id="navSection" class="d-none col-3 d-xl-flex justify-content-center">
+				<div class="position-fixed list-group list-group-caixa shadow-caixa border-0">
+					<a (click)="scrollTo('painelInputBasico')" class="list-group-item list-group-item-action"
+						[ngClass]="{'active': currentSection == 'painelInputBasico'}" role="button">
+						Inputs básicos</a>
+					<a (click)="scrollTo('painelValidadores')" class="list-group-item list-group-item-action"
+						[ngClass]="{'active': currentSection == 'painelValidadores'}" role="button">
+						Validação</a>
+					<a (click)="scrollTo('painelCustomValidadores')" class="list-group-item list-group-item-action"
+						[ngClass]="{'active': currentSection == 'painelCustomValidadores'}" role="button">
+						Validação Customizada</a>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="api" role="tabpanel">
+		<div class="row">
+			<div class="col col-md-8">
+				<h5 class="header-subtitulo-caixa">InputCaixa</h5>
+				<p>
+					Diretiva que permite a interação entre os elementos 
+					<span class="citation-highlight">input</span> e <span class="citation-highlight">textarea</span> 
+					com o componente <span class="citation-highlight">cx-input</span>.
+				</p>
+				<p>Usar como: <span class="citation-highlight">inputCaixa</span></p>
+		
+				<br>
+
+				<h5 class="header-subtitulo-caixa">Cx-Input</h5>
+				<p>
+					Componente que engloba o campo com a diretiva <span class="citation-highlight">inputCaixa</span>, e exibe os ícones e mensagens de feedback.
+				</p>
+				<p>Usar como: <span class="citation-highlight">inputCaixa</span></p>
+		
+				<h6 class="header-subtitulo-caixa">Propriedades</h6>
+				<div class="table-responsive">
+					<table class="table table-bordered table-caixa">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Descrição</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>@Input( )<br>showFeedbackIcon: boolean</td>
+								<td>
+									Exibir ícone de feedback quando campo está válido ou inválido.<br>
+									Padrão: true
+								</td>
+							</tr>
+							<tr>
+								<td>@Input( )<br>showFeedbackMessage: boolean</td>
+								<td>
+									Exibir mensagem de erro abaixo do campo quando está inválido.<br>
+									Padrão: true
+								</td>
+							</tr>
+							<tr>
+								<td>@Input( )<br>customErrors: string | any[ ]</td>
+								<td>
+									Validators personalizados que possuem suas próprias mensagens de feedback.<br>
+									Utiliza-se um array de objetos, onde cada validator deve ser representado como: 
+									<pre>{{ '{' }} "nomeDoValidator": "Mensagem de erro do Validator" {{ '}' }}</pre>
+									Padrão: true
+								</td>
+							</tr>
+							<tr>
+								<td>@Input( )<br>formato: string</td>
+								<td>
+									Campo opcional para sugerir ao usuário o formato necessário para o campo.<br>
+									Diferentemente do atributo placeholder, o formato será exibido abaixo do campo.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	<!-- Table-responsive -->
+			</div>	<!-- Col -->
+		</div>	<!-- Row -->
+	</div>	<!-- TAB API -->
+
+	<div class="tab-pane fade" id="exemplos" role="tabpanel">
+		<app-documentacao-template id="painelInputIcone" 
+		[cardTitle]="'Ícones'" 
+		[codeViewId]="'viewIcone'"
+		[htmlTabId]="'htmlIdIcone'" 
+		[htmlCode]="htmlCodeInputIcone" 
+		[tsTabId]="'tsIdIcone'"
+		[tsCode]="tsCodeInputIcone">
+			<div class="descricao">
+				Pode-se exibir ícones utilizando a classe <span class="citation-highlight">prefix-icon</span> em qualquer elemento.
+			</div>
+
+			<div class="conteudo">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-6">
+						<form [formGroup]="formularioLogin">
+							<cx-input>
+								<label>E-mail</label>
+								<img src="assets/images/caixa-logo-x.png" class="img-logo prefix-icon">
+								<input inputCaixa formControlName="email" placeholder="Endereço de e-mail válido">
+							</cx-input>
+
+							<cx-input>
+								<label>Senha</label>
+								<i class="fa fa-key prefix-icon"></i>
+								<input inputCaixa formControlName="senha" placeholder="Mínimo de 10 caracteres" type="password">
+							</cx-input>
+						</form>
+					</div>
+				</div> <!-- Row -->
+			</div>
+		</app-documentacao-template>
+
+		<br>
+
+		<app-documentacao-template id="painelInputClasse" 
+		[cardTitle]="'Classe'" 
+		[codeViewId]="'viewClasse'"
+		[htmlTabId]="'htmlIdClasse'" 
+		[htmlCode]="htmlCodeInputClasse">
+			<div class="descricao">
+				Uma versão mais simples, sem a validação automática, pode ser utilizada apenas com a classe
+				<span class="citation-highlight">input-caixa</span> ou, para diferentes temas, <span class="citation-highlight">input-caixa-(tema)</span>.	
+			</div>
+
+			<div class="conteudo">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-6">
+						<form>
+							<label>Input Caixa (Padrão)</label>
+							<input class="form-control">
+
+							<br>
+
+							<label>Input Base</label>
+							<input class="input-base">
+
+							<br>
+
+							<label>Input Info</label>
+							<input class="form-control-info">
+
+							<br>
+
+							<label>Input Aux Dark</label>
+							<input class="form-control-aux-dark">
+						</form>
+					</div>
+				</div> <!-- Row -->
+			</div>
+		</app-documentacao-template>
+	</div>
+</div>

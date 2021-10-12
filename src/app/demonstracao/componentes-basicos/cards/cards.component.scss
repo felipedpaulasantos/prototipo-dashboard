@@ -1,0 +1,28 @@
+.img-view {
+	width: 150px;
+	height: 100px;
+	display: flex;
+	margin: auto;
+}
+.cards-menu .card {
+	cursor: pointer;
+	margin-right: 2rem;
+	border-width: 2px !important;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+#cardDadosProposta {
+	width: 800px;
+}
+.bg-fade {
+	background-color: rgba($color: black, $alpha: 0.01);
+}
+.info-row {
+	padding: 1.2rem;
+}
+
+#cardHome {
+	max-width: 20rem;
+}

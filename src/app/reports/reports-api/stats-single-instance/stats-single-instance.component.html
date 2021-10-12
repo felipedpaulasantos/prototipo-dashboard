@@ -1,0 +1,259 @@
+<ng-container *ngIf="filter.inMessage == true && (statsData && statsData[0] && statsData[0].in_message_persisted ||
+	statsData[0]?.in_message_from_server ||
+	statsData[0]?.in_message_decoded)
+	else noInMessageTitle">
+
+	<h6 class="mb-4">
+		<i class="fas fa-reply mr-2"></i>
+		Mensagens recebidas
+	</h6>
+
+	<section class="row">
+		<div class="col-md-4" *ngIf="statsData[0]?.in_message_decoded">
+			<div class="card">
+				<div class="card-header">
+					<h6 class="center">Total</h6>
+				</div>
+				<div body>
+					<p>Descrição: {{ statsData[0]?.in_message_decoded.help }}</p>
+					<p>Tipo: {{ statsData[0]?.in_message_decoded.type }}</p>
+					<table class="table table-caixa">
+						<thead class="text-center">
+							<tr>
+								<th>Tipo</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let item of statsData[0]?.in_message_decoded.data">
+									<td>{{ item.labels.type }}</td>
+									<td>{{ item.value | number }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4" *ngIf="statsData[0]?.in_message_from_server">
+			<div class="card">
+				<div class="card-header">
+					<h6 class="center">Mensagens Recebidas do Servidor</h6>
+				</div>
+				<div body>
+					<p>Descrição: {{ statsData[0]?.in_message_from_server.help }}</p>
+					<p>Tipo: {{ statsData[0]?.in_message_from_server.type }}</p>
+					<table class="table table-caixa">
+						<thead>
+							<tr>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let item of statsData[0]?.in_message_from_server.data">
+								<td>{{ item.value | number }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="statsData[0]?.in_message_persisted" class="col-md-4">
+			<div class="card">
+					<div class="card-header">
+						<h6 class="center">Mensagens Recebidas e persistidas</h6>
+					</div>
+					<div body>
+						<p>Descrição: {{ statsData[0]?.in_message_persisted.help }}</p>
+						<p>Tipo: {{ statsData[0]?.in_message_persisted.type }}</p>
+						<table class="table table-caixa">
+							<thead>
+								<tr>
+									<th>Tipo</th>
+									<th>Quantidade</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let item of statsData[0]?.in_message_persisted.data">
+									<td>{{ item.labels.type }}</td>
+									<td>{{ item.value | number }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+		</div>
+	</section><!-- Row -->
+	<hr>
+</ng-container>
+
+<ng-template #noInMessageTitle>
+	<ng-container *ngIf="filter.inMessage == true">
+		<h6 class="center">
+			<i class="fas fa-reply mr-2"></i>
+			Não há informações de mensagens recebidas nesta instância.
+		</h6>
+		<hr>
+	</ng-container>
+</ng-template>
+
+
+
+
+
+<ng-container *ngIf="filter.outMessage == true && (statsData[0]?.out_message_persisted ||
+	statsData[0]?.out_message_status)
+	else noOutMessageTitle">
+
+	<h6 class="mb-4">
+		<i class="fas fa-share mr-2"></i>
+			Mensagens enviadas
+	</h6>
+
+	<section class="row">
+		<div class="col-md-6" *ngIf="statsData[0]?.out_message_status">
+			<div class="card">
+				<div class="card-header">
+					<h6 class="center">Status das mensagens enviadas</h6>
+				</div>
+				<div body>
+					<p>Descrição: {{ statsData[0]?.out_message_status.help }}</p>
+					<p>Tipo: {{ statsData[0]?.out_message_status.type }}</p>
+					<table class="table table-caixa">
+						<thead>
+							<tr>
+								<th>Status</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let item of statsData[0]?.out_message_status.data">
+								<td>{{ item.labels.status }}</td>
+								<td>{{ item.value | number }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6" *ngIf="statsData[0]?.out_message_persisted">
+			<div class="card">
+				<div class="card-header">
+					<h6 class="center">Mensagens Enviadas e Persistidas</h6>
+				</div>
+				<div body>
+					<p>Descrição: {{ statsData[0]?.out_message_persisted.help }}</p>
+					<p>Tipo: {{ statsData[0]?.out_message_persisted.type }}</p>
+					<table class="table table-caixa">
+						<thead>
+							<tr>
+								<th>Tipo</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let item of statsData[0]?.out_message_persisted.data">
+									<td>{{ item.labels.type }}</td>
+									<td>{{ item.value | number }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+</ng-container>
+
+<ng-template #noOutMessageTitle >
+	<ng-container *ngIf="filter.outMessage == true">
+		<h6 class="center">
+			<i class="fas fa-share mr-2"></i>
+			Não há informações de mensagens enviadas nesta instância.
+		</h6>
+		<hr>
+	</ng-container>
+</ng-template>
+
+
+
+<ng-container *ngIf="filter.media == true && (statsData[0]?.media_downloads ||
+	statsData[0]?.media_uploads)
+	else noMediaTitle">
+
+	<h6 class="mb-4">
+		<i class="fas fa-images mr-2"></i>
+		Mídia
+	</h6>
+
+	<section class="row">
+    <div class="col-md-6" *ngIf="statsData[0]?.media_downloads">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="center">Download</h6>
+        </div>
+        <div body>
+          <p>Descrição: {{ statsData[0]?.media_downloads.help }}</p>
+          <p>Tipo: {{ statsData[0]?.media_downloads.type }}</p>
+          <table class="table table-caixa">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Resultado</th>
+                <th>Quantidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of statsData[0]?.media_downloads.data">
+                <td>{{ item.labels.type }}</td>
+                <td>{{ item.labels.result }}</td>
+                <td>{{ item.value | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="statsData[0]?.media_uploads">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="center">Upload</h6>
+        </div>
+        <div body>
+          <p>Descrição: {{ statsData[0]?.media_uploads.help }}</p>
+          <p>Tipo: {{ statsData[0]?.media_uploads.type }}</p>
+          <table class="table table-caixa">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Resultado</th>
+                <th>Quantidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of statsData[0]?.media_uploads.data">
+                  <td>{{ item.labels.type }}</td>
+                  <td>{{ item.labels.result }}</td>
+                  <td>{{ item.value | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+	</section>
+	<hr>
+</ng-container>
+
+<ng-template #noMediaTitle>
+	<ng-container *ngIf="filter.media == true">
+		<h6 class="center">
+			<i class="fas fa-images mr-2"></i>
+			Não há informações de Mídia nesta instância.
+		</h6>
+		<hr>
+	</ng-container>
+</ng-template>

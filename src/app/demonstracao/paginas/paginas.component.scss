@@ -1,0 +1,328 @@
+section {
+   margin-bottom: 2rem;
+}
+
+/* 
+   CLIENTE TAB
+*/
+.cliente-tab-wrapper {
+   display: flex;
+   height: 7.2rem;
+   border-bottom: solid 1px var(--cxCancel);
+   overflow: hidden;
+   .cliente-tab {
+      margin-right: 1rem;
+   }
+   > div:last-of-type {
+      margin-right: 2rem;
+   }
+}
+.consulta-direta-container {
+   display: block;
+   flex-direction: column;
+   width: 22rem;
+   .form-control {
+      margin-bottom: 0.5rem;
+   }
+}
+.cliente-tab {
+   display: inline-block;
+   min-height: 6.15rem;
+   height: 6.15rem;
+   width: 23.07rem;
+   max-width: 23.07rem;
+   border-style: solid;
+   border-width: 2px;
+   border-color: var(--cxCancel);
+   border-radius: var(--cxBorderRadius);
+   box-shadow: var(--cxShadowSm);
+   transition: border 0.2s;
+   position: relative;
+   background: linear-gradient(to right, var(--cxAccent) 0%, var(--cxBase) 100%) no-repeat;
+   &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: transparent;
+      position: absolute;
+      bottom: -1.1rem;
+      transition: background-color 0.2s;
+   }
+   &.cliente-current::after {
+      background-color: var(--cxAccent);
+   }
+   &.cliente-close {
+      cursor: pointer;
+      &:hover {
+         border-color: var(--cxAccent);
+      }
+   }
+   &.cliente-far {
+      width: 9.23rem;
+      border-radius: var(--cxBorderRadius);
+      .cliente-tab-left-side {
+         background-color: var(--cxAux);
+         border-radius: var(--cxBorderRadius);
+      }
+   }
+   .row {
+      height: 100%;
+      min-height: 100%;
+      max-height: 100%;
+   }
+   .cliente-tab-left-side {
+      background-color: var(--cxAccent);
+      color: var(--cxBase);
+      border-top-left-radius: var(--cxBorderRadius);
+      border-bottom-left-radius: var(--cxBorderRadius);
+      .left-side-container {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         padding: 0.5rem;
+         height: 100%;
+         .left-side-container-title {
+            margin-bottom: 0;
+         }
+      }
+   }
+   .cliente-tab-right-side {
+      background-color: var(--cxBase);
+      display: flex;
+      .cliente-picture-container {
+         display: flex;
+         width: 70px;
+         .cliente-picture {
+            display: inline-block;
+            width: 5rem;
+            height: 5rem;
+            border: solid 2px var(--cxCancel);
+            box-shadow: var(--cxShadowSm);
+            border-radius: var(--cxBorderRadiusRound);
+            -o-object-fit: cover;
+            object-fit: cover;
+            position: absolute;
+            top: 7px;
+            left: -10px;
+         }
+      }
+      .cliente-info-container {
+         display: flex;
+         flex-direction: column;
+         padding: 0.5rem 0.25rem;
+         flex: 1;
+         h1, h2, h3, h4, h5, h6 {
+            font-family: var(--cxFontFamilyBold);
+            color: var(--cxAccent);
+         }
+      }
+   }
+}
+
+
+
+/* 
+   CIRCLE BUTTON 
+*/
+.circle-button-container {
+   display: flex;
+   align-items: center;
+   .circle-button {
+      margin-right: 1rem;
+   }
+}
+.circle-button {
+   display: inline-flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 10rem;
+   width: 10rem;
+   border-style: solid;
+   border-width: 2px;
+   border-color: var(--cxCancel);
+   border-radius: var(--cxBorderRadiusRound);
+   background-color: var(--cxBase);
+   text-align: center;
+   cursor: pointer;
+   transition: border 0.2s, box-shadow 0.2s;
+   box-shadow: var(--cxShadowSm);
+   &:hover {
+      border-color: var(--cxAccent);
+   }
+   .circle-button-icon {
+      color: var(--cxAccent);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+   }
+   .circle-button-text {
+      line-height: 1.3rem;
+      position: relative;
+   }
+}
+
+
+/* 
+   CALENDAR BOX
+*/
+.calendar-box-container {
+   display: flex;
+   align-items: flex-start;
+   .calendar-box:not(:last-of-type) {
+      margin-right: 2rem;
+   }
+}
+.calendar-box {
+   display: inline-flex;
+   min-width: 23.07rem;
+   max-width: 23.07rem;
+   min-height: 16.92rem;
+   height: auto;
+   border-style: solid;
+   border-width: 2px;
+   border-color: var(--cxCancel);
+   transition: border 0.2s;
+   box-shadow: var(--cxShadowSm);
+   &:hover {
+      border-color: var(--cxAccent);
+   }
+   .card-header {
+      opacity: 0.9;
+      border-bottom: solid 2px var(--cxCancel);
+      border-radius: 0;
+      .calendar-box-icon {
+         font-size: 1.3rem;
+      }
+      .calendar-box-button {
+         background-color: var(--cxCancel);
+         color: var(--cxBase);
+         border: solid 1px var(--cxCancel);
+         border-radius: 1rem;
+         height: 2rem;
+         width: 2rem;
+         text-align: center;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         transition: background-color 0.2s, border 0.2s, color 0.2s;
+         &:hover {
+            color: var(--cxBase);
+            border: solid 1px var(--cxCancel);
+            background-color: var(--cxAux);
+         }
+      }
+   }
+   &.calendar-box-pending {
+      .card-body {
+         background-color: var(--cxAccent);
+         color: var(--cxBase);
+      }
+   }
+   &.calendar-box-done {
+      .card-header {
+         .calendar-box-button.calendar-box-button-check {
+            background-color: var(--cxSuccess);
+            color: var(--cxBase);
+            border: solid 1px var(--cxSuccess);
+         }
+      }
+      .card-body {
+         background-color: var(--cxBase);
+         color: var(--cxSuccess);
+      }
+   } 
+   &.calendar-box-missed {
+      .card-header {
+         .calendar-box-button.calendar-box-button-times {
+            background-color: var(--cxDanger);
+            color: var(--cxBase);
+            border: solid 1px var(--cxDanger);
+         }
+      }
+      .card-body {
+         background-color: var(--cxBase);
+         color: var(--cxAux);
+      }
+   } 
+}
+
+/* 
+   CARD VERTICAL
+*/
+.card-vertical-wrapper {
+   display: flex;
+   .card-vertical:not(:last-of-type) {
+      margin-right: 2rem;
+   }
+}
+.card-vertical {
+   display: inline-flex;
+   flex-direction: column;
+   width: 13.07rem;
+   min-height: 13.84rem;
+   border-style: solid;
+   border-width: 2px;
+   border-color: var(--cxCancel);
+   border-radius: var(--cxBorderRadius);
+   position: relative;
+   background: linear-gradient(to bottom, var(--cxAccent) 0%, var(--cxBase) 100%) no-repeat;
+   transition: border 0.2s, box-shadow 0.2s;
+   box-shadow: var(--cxShadowSm);
+   &:hover {
+      border-color: var(--cxAccent);
+   }
+   .card-vertical-topside {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cxAccent);
+      color: var(--cxBase);
+      height: 65%;
+      border: solid 1px var(--cxAccent);
+      border-top-right-radius: var(--cxBorderRadius);
+      border-top-left-radius: var(--cxBorderRadius);
+      .topside-icon {
+         font-size: 2rem;
+      }
+   }
+   .card-vertical-middle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      position: absolute;
+      bottom: 3.8rem;
+      text-align: center;
+   }
+   &.card-vertical-pending {
+      .card-vertical-middle {
+         border-radius: 1rem;
+         width: 90%;
+         position: absolute;
+         bottom: 3.8rem;
+         background-color: var(--cxMain);
+         color: var(--cxContrast);
+         font-size: 0.9rem;
+      }
+   }
+   &.card-vertical-ok {
+      .card-vertical-middle {
+         border-radius: var(--cxBorderRadiusRound);
+         width: 2rem;
+         border: solid 2px var(--cxBase);
+         background-color: var(--cxAccent);
+      }
+   }
+   .card-vertical-bottomside {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      flex-grow: 1;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: var(--cxBase);
+   }
+}

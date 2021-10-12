@@ -1,0 +1,56 @@
+#spanLogo {
+  width: 165px;
+  max-width: 165px;
+  transition: 0.5s;
+}
+#spanLogo.menu-is-aberto {
+  width: 264px;
+  max-width: 264px;
+}
+
+.img-logo {
+  min-width: 3rem;
+  max-height: 2.1rem;
+}
+.logo-title {
+    font-size: 1.5rem;
+}
+
+.notification-container {
+  display: inline-block;
+  position: relative;
+}
+
+/* Make the badge float in the top right corner of the button */
+.notification-badge {
+  background-color: #fa3e3e;
+  border-radius: 0.9rem;
+  color: white;
+ 
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9rem;
+  
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: -5px;
+  right: -5px;
+}
+
+.square {
+  height: 20px;
+  width: 20px
+}
+
+.theme-example {
+  border: solid 3px var(--cxCancel);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2rem;
+}
+
+.sidemenu-collapse-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  height: 100%;
+}

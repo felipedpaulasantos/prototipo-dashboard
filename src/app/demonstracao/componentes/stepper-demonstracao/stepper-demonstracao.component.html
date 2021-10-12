@@ -1,0 +1,291 @@
+<h1 class="titulo">
+   Stepper
+</h1>
+
+
+<div class="my-4">
+   <h5>
+      <p>O componente Stepper apresenta um fluxo visual simples que representa os passos de algum processo lógico.</p>
+      <p>O atributo <span class="citation-highlight">steps</span> deve sempre receber uma lista de strings, com o nome de
+         cada passo.</p>
+   </h5>
+   <h6 class="font-fam-bold">HTML:</h6>
+	<pre><code [highlight]="examples.codeDescricao" [languages]="['html']"></code></pre> 
+   <h6 class="font-fam-bold">TS:</h6>
+	<pre><code [highlight]="examples.codeTsDescricao"  [languages]="['ts']"></code></pre> 
+</div>
+
+
+<ul class="nav nav-pills tab-caixa" role="tablist">
+   <li class="nav-item">
+      <a class="nav-link text-uppercase active" data-toggle="tab" href="#visaoGeral" role="tab">
+         Visão Geral
+      </a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link text-uppercase" data-toggle="tab" href="#api" role="tab">
+         API
+      </a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link text-uppercase" data-toggle="tab" href="#exemplos" role="tab">
+         Exemplos
+      </a>
+   </li>
+</ul>
+
+<br>
+
+<div class="tab-content">
+   <div class="tab-pane fade show active" id="visaoGeral" role="tabpanel">
+      <div class="row no-gutters">
+         <section #scrollElement class="col-12 col-xl-9 pr-2">
+
+            <app-documentacao-template id="painelStepperPadrao" [cardTitle]="'Navegação Livre'"
+               [codeViewId]="'viewStepperPadrao'" [htmlTabId]="'htmlCodeStepperPadrao'"
+               [htmlCode]="examples.htmlCodeStepperPadrao" [tsTabId]="'tsCodeStepperPadrao'" [tsCode]="examples.tsCodeStepperPadrao">
+               <div class="descricao">
+                  <p>Em seu comportamento padrão, de <span class="citation-highlight">navegação livre</span>, o usuário
+                     pode retornar a qualquer passo anterior clicando nos ícones.</p>
+                  <p>O controle de navegação pode ser feito utilizando uma variável externa, como no exemplo abaixo.
+                     A variável deve estar vinculada ao atributo <span class="citation-highlight">currentStep</span>
+                     e ao evento <span class="citation-highlight">changeStep</span>, emitido cada vez que o usuário
+                     clica diretamente no ícone de um passo.
+                  </p>
+               </div>
+
+               <div class="conteudo">
+                  <cx-stepper [steps]="passos" [currentStep]="passoAtual" completedMessage="Passos concluídos!"
+                     (changeStep)="passoAtual = $event">
+                  </cx-stepper>
+
+                  <div *ngFor="let passo of passos; let i = index">
+                     <ng-container *ngIf="i == passoAtual">
+                        <h2 class="text-center">{{ passo.title }}</h2>
+
+                        <button [disabled]="passoAtual == 0" (click)="passoAtual = passoAtual - 1"
+                           class="btn btn-cancel mx-2">
+                           Voltar
+                        </button>
+
+                        <button [disabled]="passoAtual == passos.length - 1" (click)="passoAtual = passoAtual + 1"
+                           class="btn btn-accent mx-2">
+                           Avançar
+                        </button>
+                     </ng-container>
+                  </div>
+               </div>
+            </app-documentacao-template>
+
+            <br>
+
+            <app-documentacao-template id="painelStepperGuiado" [cardTitle]="'Navegação Guiada'"
+               [codeViewId]="'viewStepperGuiado'" [htmlTabId]="'htmlCodeStepperGuiado'"
+               [htmlCode]="examples.htmlCodeStepperGuiado" [tsTabId]="'tsCodeStepperGuiado'" [tsCode]="examples.tsCodeStepperGuiado">
+               <div class="descricao">
+                  <p>Passando o valor <span class="citation-highlight">false</span> para
+                     a propriedade <span class="citation-highlight">freeNavigation</span>,
+                     o usuário só poderá retornar ao passo imediatamente anterior.
+                  </p>
+               </div>
+
+               <div class="conteudo">
+                  <cx-stepper [freeNavigation]="false" [steps]="passos" [currentStep]="passoAtual"
+                     (changeStep)="passoAtual = $event"></cx-stepper>
+
+                  <div *ngFor="let passo of passos; let i = index">
+                     <ng-container *ngIf="i == passoAtual">
+                        <h2 class="text-center">{{ passo.title }}</h2>
+
+                        <button [disabled]="passoAtual == 0" (click)="passoAtual = passoAtual - 1"
+                           class="btn btn-cancel mx-2">
+                           Voltar
+                        </button>
+
+                        <button [disabled]="passoAtual == passos.length - 1" (click)="passoAtual = passoAtual + 1"
+                           class="btn btn-accent mx-2">
+                           Avançar
+                        </button>
+                     </ng-container>
+                  </div>
+               </div>
+            </app-documentacao-template>
+
+            <br>
+
+            <app-documentacao-template id="painelStepperInterno" [cardTitle]="'Conteúdo dentro do componente'"
+               [codeViewId]="'viewStepperInterno'" [htmlTabId]="'htmlCodeStepperInterno'"
+               [htmlCode]="examples.htmlCodeStepperInterno" [tsTabId]="'tsCodeStepperInterno'" [tsCode]="examples.tsCodeStepperInterno">
+               <div class="descricao">
+                  <p>O conteúdo dinâmico a ser exibido também pode ser colocado dentro do componente Stepper,
+                     identificando-o com a
+                     diretiva <span class="citation-highlight">*cxStepper</span>.</p>
+
+                  <p>A posição do passo na lista (index) e a ordem de definição dos elementos no template estarão
+                     relacionados.
+                     O primeiro elemento com a diretiva corresponderá ao index 0, o segundo, ao index 1, e assim por
+                     diante.
+                  </p>
+
+                  <p>Utilizar conteúdo interno e acesso por template string torna desnecessário implementar qualquer
+                     controle
+                     condicional de exibição.
+                  </p>
+               </div>
+
+               <div class="conteudo">
+                  <cx-stepper [steps]="passos" #stepperInterno>
+                     <div *cxStepper>
+                        <h2 class="text-center">Primeiro conteúdo interno</h2>
+                     </div>
+
+                     <div *cxStepper>
+                        <h2 class="text-center">Segundo conteúdo interno</h2>
+                     </div>
+
+                     <div *cxStepper>
+                        <h2 class="text-center">Terceiro conteúdo interno</h2>
+                     </div>
+
+                     <div *cxStepper>
+                        <h2 class="text-center">Quarto conteúdo interno</h2>
+                     </div>
+
+                     <div *cxStepper>
+                        <h2 class="text-center">Quinto conteúdo interno</h2>
+                     </div>
+                  </cx-stepper>
+
+                  <button [disabled]="stepperInterno.currentStep == 0" (click)="stepperInterno.first()"
+                     class="btn btn-aux mx-2">
+                     Primeiro
+                  </button>
+
+                  <button [disabled]="stepperInterno.currentStep == 0" (click)="stepperInterno.previous()"
+                     class="btn btn-cancel mx-2">
+                     Voltar
+                  </button>
+
+                  <button [disabled]="stepperInterno.currentStep == passos.length - 1" (click)="stepperInterno.next()"
+                     class="btn btn-accent mx-2">
+                     Avançar
+                  </button>
+               </div>
+            </app-documentacao-template>
+         </section>
+
+         <nav id="navSection" class="d-none col-3 d-xl-flex pl-4">
+            <app-code-fixed-nav [items]="navItems" [currentSection]="currentSection"></app-code-fixed-nav>
+         </nav>
+      </div>
+   </div> <!-- Tab Pane Visão Geral -->
+
+   <div class="tab-pane fade" id="api" role="tabpanel">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="header-subtitulo-caixa">*cxStepper</h5>
+            <p>
+               Diretiva que permite a inclusão de conteúdo dinâmico dentro do componente Stepper.
+               O asterisco é necessário por se tratar de uma
+               <a class="text-link" href="https://angular.io/guide/structural-directives" target="blank">diretiva
+                  estrutural</a>.
+            </p>
+            <p>Usar como: <span class="citation-highlight">*cxStepper</span> no elemento a ser exibido</p>
+
+            <br>
+
+            <div class="my-4">
+               <h5 class="header-subtitulo-caixa">Cx-Stepper</h5>
+               <p>
+                  Componente de exibição de passos em sequência
+                  que pode ou não englobar o conteúdo que será exibido em cada passo.
+               </p>
+               <p>Usar como: <span class="citation-highlight">cx-stepper</span></p>
+
+               <app-documentacao-api-table
+                  [props]="propsApi"
+               ></app-documentacao-api-table>
+            </div>
+
+         </div> <!-- card-body -->
+      </div> <!-- card -->
+   </div> <!-- TAB API -->
+
+   <div class="tab-pane fade" id="exemplos" role="tabpanel">
+
+      <section id="stepperSandbox" class="mb-5">
+         <cx-stepper #stepperFree [steps]="steps" [orientation]="stepperFreeOrientation"
+            [freeNavigation]="freeNavigation">
+            <ng-container *ngFor="let step of steps; let i = index; let last = last; let first = first">
+               <ng-container *cxStepper>
+                  <h1 class="text-center my-4">{{ step.title }}!</h1>
+               </ng-container>
+            </ng-container>
+         </cx-stepper>
+
+         <div class="card">
+            <div class="card-body">
+               <div class="row">
+                  <div class="col">
+                     <div class="custom-control custom-checkbox">
+                        <input [checked]="freeNavigation" (change)="freeNavigation = ($event.target.checked)"
+                           type="checkbox" class="custom-control-input" id="checkFreeNavigation">
+                        <label class="custom-control-label" for="checkFreeNavigation">
+                           Navegação Livre
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               <div class="d-flex justify-content-center">
+                  <button title="Primeiro" class="btn btn-aux mr-2"
+                     [disabled]="stepperFree.currentStep == 0" (click)="stepperFree.first()">
+                     <i class="fa fa-angle-double-left fa-lg"></i>
+                  </button>
+
+                  <button [disabled]="stepperFree.currentStep <= 0" (click)="stepperFree.previous()"
+                     class="btn btn-cancel mr-2">
+                     <i class="fa fa-angle-left fa-lg"></i>
+                  </button>
+
+                  <button [disabled]="stepperFree.currentStep == (steps.length - 1)" (click)="stepperFree.next()"
+                     class="btn btn-accent">
+                     <i class="fa fa-angle-right fa-lg"></i>
+                  </button>
+
+                  <button title="Último" class="btn btn-aux ml-2"
+                     [disabled]="true"
+                     (click)="stepperFree.toStepByIndex(steps.length - 1)">
+                     <i class="fa fa-angle-double-right fa-lg"></i>
+                  </button>
+               </div>
+               <div class="row">
+                  <div class="col d-flex align-items-center">
+                     <button title="Remover" class="btn btn-danger ml-2" [disabled]="steps.length == 2"
+                        (click)="removeStep()">
+                        <i class="fa fa-minus fa-lg"></i>
+                     </button>
+
+                     <button title="Adicionar" class="btn btn-success ml-2"
+                        [disabled]="steps.length == stepperFree.MAXIMUM_STEPS"
+                        (click)="addStep(inputNovoStepFree.value); inputNovoStepFree.value = ''">
+                        <i class="fa fa-plus fa-lg"></i>
+                     </button>
+
+                     <input #inputNovoStepFree class="form-control d-inline w-50 ml-2" placeholder="Nome do novo passo">
+                  </div>
+                  <div class="col-5">
+                     <cx-select>
+                        <label>Orientação</label>
+                        <select selectCaixa (change)="stepperFreeOrientation = $event.target.value">
+                           <option value="0">Horizontal</option>
+                           <option value="1">Vertical</option>
+                        </select>
+                     </cx-select>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+   </div>
+</div>

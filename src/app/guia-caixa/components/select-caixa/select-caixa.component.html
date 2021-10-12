@@ -1,0 +1,69 @@
+<div #wrapper class="form-control-wrapper">
+  <div class="form-control-label d-block w-100">
+    <ng-content select="label"></ng-content>
+    <ng-content select="app-tooltip-icon"></ng-content>
+  </div>
+  <div class="form-control-flex-field">
+    <div class="form-control-prefix-icon">
+      <ng-content select=".prefix-icon"></ng-content>
+    </div>
+    <div class="form-control-field">
+      <ng-content></ng-content>
+      <ng-content select="button.bootstrap-select-button"></ng-content>
+    </div>
+    <ng-container *ngIf="showFeedbackIcon">
+      <div *ngIf="getFeedbackIcon()" class="form-control-feedback-icon ripple" role="button" (click)="reset()"
+        [ngClass]="{'text-success': isFieldValid(), 'text-danger': isFieldInvalid()}">
+        <i *ngIf="isFieldValid()" class="fas fa-check" title="Resetar campo"></i>
+        <i *ngIf="isFieldInvalid()" class="fas fa-exclamation-triangle" title="Resetar campo"></i>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+<div class="feedback-message w-100 text-right">
+  <ng-container *ngIf="showFeedbackMessage">
+    <ng-container class="w-100 text-right" *ngIf="getFeedbackMessage()
+      else errorFeedback">
+      <small class="font-italic">
+        {{ isRequired ? "Obrigatório" : "" }}
+      </small>
+    </ng-container>
+
+    <ng-template #errorFeedback>
+      <small class="text-danger-dark font-italic">
+        <ng-container *ngIf="formInput && Object.keys(formInput?.errors)[0] as error">
+          <!-- Implementação para exibir apenas um erro por vez -->
+          <span *ngIf="error == 'required'">
+            Este campo é obrigatório.
+          </span>
+
+          <span *ngIf="error == 'min'">
+            Valor mínimo do campo deve ser: {{ formInput?.errors.min.actual }} / <b>{{ formInput?.errors.min.min }}</b>.
+          </span>
+
+          <span *ngIf="error == 'max'">
+            Valor máximo do campo deve ser: <b>{{ formInput?.errors.max.max }}</b> / {{ formInput?.errors.max.actual }}.
+          </span>
+
+          <span *ngIf="error == 'requiredTrue'">Este campo deve ser <b>verdadeiro</b>.</span>
+          <span *ngIf="error == 'email'">Valor de e-mail inválido.</span>
+
+          <span *ngIf="error == 'mask'">
+            Valor não atende o formato desejado.
+          </span>
+
+          <span *ngIf="formInput.errors.minlength as minlength">
+            Comprimento mínimo do campo deve ser: {{ minlength.actualLength }} / <b>{{ minlength.requiredLength }}</b>.
+          </span>
+
+          <span *ngIf="formInput.errors.maxlength as maxlength">
+            Comprimento máximo do campo deve ser: <b>{{ maxlength.requiredLength }}</b> / {{ maxlength.actualLength }}.
+          </span>
+        </ng-container>
+      </small>
+    </ng-template> <!-- ErrorFeedback -->
+
+  </ng-container> <!-- ShowFeedbackMessage -->
+</div> <!-- Feedback Message -->

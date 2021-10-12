@@ -1,0 +1,196 @@
+<!-- <h1 class="titulo">
+  Páginas
+</h1>
+ -->
+
+<cx-button-control class="mr-2" type="checkbox">
+  Teste
+</cx-button-control>
+
+<cx-button-control type="radio">
+  Teste
+</cx-button-control>
+
+<br>
+
+<div id="painelTestesDiversos">
+  <ng-container *ngIf="cliente">
+    <section id="secaoInformacoesPessoais" class="row mt-4">
+      <div class="col-12 col-xl-4 mb-3 mb-xl-0">
+        <cx-card [draggable]="true">
+          <div class="card-header">
+            <h5 class="header-subtitulo-caixa">Informações Pessoais</h5>
+          </div>
+          <div class="card-body">
+            <div class="py-2">
+              <span class="font-weight-bold">Nome:</span>
+              {{ cliente.nome }}
+            </div>
+            <div class="py-2">
+              <span class="font-weight-bold">CPF:</span>
+              {{ cliente.cpf | cpf }}
+            </div>
+            <div class="py-2">
+              <span class="font-weight-bold">Nome da mãe:</span>
+              {{ cliente.nomeMae }}
+            </div>
+            <div class="py-2">
+              <span class="font-weight-bold">Nascimento:</span>
+              {{ cliente.dataNascimento }}
+            </div>
+          </div>
+          <div class="card-footer text-right">
+            <button class="btn btn-accent">
+              <i class="fa fa-edit"></i>
+              Editar
+            </button>
+          </div>
+        </cx-card>
+      </div>
+    </section> <!-- ROW -->
+
+    <section id="secaoUploadArquivo" class="my-5">
+      <h4 class="header-subtitulo-caixa">
+        Novo documento
+      </h4>
+
+      <div class="row">
+        <div class="col-5">
+
+          <div class="p-4 bg-cinza border">
+            <div #cardDragDrop class="card card-upload" (drop)="drop($event, cardDragDrop)"
+              (dragover)="dragOver($event, cardDragDrop)" (dragleave)="dragLeave($event, cardDragDrop)">
+              <div class="card-body">
+                <div class="d-flex h-100 justify-content-center align-items-center text-center flex-column">
+                  <h5 class="mb-5">
+                    <i class="fa fa-hand-rock fa-lg text-muted mr-2"></i>
+                    Arraste e solte o arquivo aqui
+                  </h5>
+                  <h5 class="mb-5">ou</h5>
+                  <div class="d-flex w-100 align-items-center">
+                    <input #inputUploadDocIdentidade name="arquivo" type="file"
+                      accept=".pdf, .tiff, .jpg, .jpeg, .png, .gif" class="d-none"
+                      (change)="uploadArquivo($event.target.files)">
+                    <button class="btn btn-outline-accent mx-auto d-flex align-items-center"
+                      (click)="inputUploadDocIdentidade.click();" title="Upload de arquivo">
+                      <i class="fas fa-file-upload fa-2x mr-2"></i>
+                      Selecione um arquivo para upload...
+                    </button>
+                  </div> <!-- BOTAO UPLOAD -->
+                </div> <!-- CONTEUDO BODY -->
+              </div> <!-- CARD BODY -->
+            </div> <!-- CARD -->
+          </div> <!-- BG LIGHT -->
+
+        </div>
+        <div class="col-7">
+
+          <div class="card h-100 w-100">
+            <div class="card-header">
+              <h5 class="header-subtitulo-caixa">Prévia</h5>
+            </div>
+            <div class="card-body">
+              <cx-spinner [fullscreen]="false" [name]="'spinnerUpload'"></cx-spinner>
+
+              <div class="row h-100">
+                <div *ngIf="!previaSrc && !uploadedFile" class="col-12 d-flex flex-column align-items-center justify-content-center">                
+                    <i class="fa fa-file-image fa-10x text-cancel mb-4"></i>
+                    <h5>Adicione alguma imagem ao lado</h5>
+                </div>
+                <div class="col">
+                  <ng-container *ngIf="previaSrc">
+                    <div (click)="open(previaSrc)" role="button"
+                      class="d-flex h-100 w-100 align-items-center justify-content-center" [title]="uploadedFile.name">
+                      <img class="img-previa" [src]="previaSrc">
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="col">
+                  <div *ngIf="uploadedFile" class="p-3">
+                    <cx-select>
+                      <label>Tipo do Documento</label>
+                      <select selectCaixa>
+                        <option>Documento de Identificação</option>
+                        <option>Comprovante de Residência</option>
+                        <option>Comprovante de Renda</option>
+                      </select>
+                    </cx-select>
+                    <span class="d-block mb-3">
+                      <span class="font-fam-bold">
+                        <i class="fa fa-file-signature fa-lg mr-2" title="Nome do arquivo"></i>
+                      </span>
+                      {{ uploadedFile.name }}
+                    </span>
+                    <span class="d-block mb-3">
+                      <span class="font-fam-bold">
+                        <i class="fa fa-weight-hanging fa-lg mr-2" title="Tamanho do arquivo"></i>
+                      </span>
+                      {{ uploadedFile.size | bytesize }}
+                    </span>
+                    <span class="d-block">
+                      <span class="font-fam-bold">
+                        <i class="fa fa-calendar-day fa-lg mr-2" title="Data da última modificação"></i>
+                      </span>
+                      {{ uploadedFile.lastModified | date }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- CARD BODY -->
+            <div class="card-footer">
+              <div class="d-flex">
+                <button (click)="addDocumento()" *ngIf="uploadedFile" class="btn btn-success ml-auto">
+                  <i class="fa fa-plus fa-lg mr-2"></i>
+                  Adicionar Documento
+                </button>
+              </div>
+            </div>
+          </div> <!-- CARD -->
+
+        </div> <!-- COL -->
+      </div> <!-- ROW -->
+    </section>
+
+    <section id="secaoTabelaContratos" class="mt-5">
+      <cx-card>
+        <div class="card-header">
+          <h5 class="header-subtitulo-caixa">
+            Contratos
+          </h5>
+        </div>
+        <div class="card-body">
+          <cx-datatable>
+            <table datatable class="table table-caixa">
+              <thead>
+                <tr>
+                  <th>Número</th>
+                  <th>Situação</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contrato of contratos; let indice = index">
+                  <td>{{ contrato.numero }}</td>
+                  <td>{{ contrato.situacao }}</td>
+                  <td>{{ contrato.valor | currency: 'R$' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-aux mr-2" title="Detalhar">
+                      <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-aux mr-2" title="Excluir">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-aux" title="Confirmar">
+                      <i class="fa fa-check"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </cx-datatable>
+        </div>
+      </cx-card>
+    </section>
+  </ng-container>
+</div>

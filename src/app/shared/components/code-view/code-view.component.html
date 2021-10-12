@@ -1,0 +1,45 @@
+<ng-container *ngIf="(htmlTabId && htmlCode)">
+	<ul class="nav nav-pills tab-caixa" role="tablist">
+		<li class="nav-item ripple-dark" [ngClass]="{'disabled': !htmlTabId || !htmlCode}">
+			<a class="nav-link nav-link-caixa text-uppercase active px-4 px-md-5" id="{{ htmlTabId }}-tab" data-toggle="tab" href="#{{ htmlTabId }}" role="tab"
+			[ngClass]="{'disabled': !htmlTabId || !htmlCode}">
+				HTML
+			</a>
+		</li>
+		<li class="nav-item ripple-dark" [ngClass]="{'disabled': !tsTabId || !tsCode}">
+			<a class="nav-link nav-link-caixa text-uppercase px-4 px-md-5" id="{{ tsTabId }}-tab" data-toggle="tab" href="#{{ tsTabId }}" role="tab"
+			[ngClass]="{'disabled': !tsTabId || !tsCode}">
+				TS
+			</a>
+		</li>
+		<li class="nav-item ripple-dark" [ngClass]="{'disabled': !cssTabId || !cssCode}">
+			<a class="nav-link nav-link-caixa text-uppercase px-4 px-md-5" id="{{ cssTabId }}-tab" data-toggle="tab" href="#{{ cssTabId }}" role="tab"
+			[ngClass]="{'disabled': !cssTabId || !cssCode}">
+				CSS
+			</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div *ngIf="htmlTabId && htmlCode" class="tab-pane fade show active" id="{{ htmlTabId }}" role="tabpanel">
+			<button (click)="copiarConteudo(htmlCode);" 
+			class="btn shadow-none text-contrast-light float-right rounded-circle">
+				<i class="fa fa-copy fa-lg"></i>
+			</button>
+			<pre><code [highlight]="htmlCode" [languages]="['html']"></code></pre>
+		</div>
+		<div *ngIf="tsTabId && tsCode" class="tab-pane fade" id="{{ tsTabId }}" role="tabpanel">
+			<button (click)="copiarConteudo(tsCode);" 
+			class="btn shadow-none text-contrast-light float-right rounded-circle">
+				<i class="fa fa-copy fa-lg"></i>
+			</button>
+			<pre><code [highlight]="tsCode" [languages]="['ts']"></code></pre>
+		</div>
+		<div *ngIf="cssTabId && cssCode" class="tab-pane fade" id="{{ cssTabId }}" role="tabpanel">
+			<button (click)="copiarConteudo(cssCode);" 
+			class="btn shadow-none text-contrast-light float-right rounded-circle">
+				<i class="fa fa-copy fa-lg"></i>
+			</button>
+			<pre><code [highlight]="cssCode"  [languages]="['css']"></code></pre>
+		</div>
+	</div>
+</ng-container>

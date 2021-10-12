@@ -1,0 +1,68 @@
+@use "cx-variables";
+
+::ng-deep cx-input input {
+	padding: 0.375rem 0.5rem;
+	width: 100%;
+	border: 0;
+}
+
+::ng-deep cx-input textarea {
+	width: 100%;
+	border: none;
+	padding-top: 0.5rem;
+	padding-left: 0.5rem;
+}
+
+::ng-deep cx-input .input-caixa-label {
+	display: block;
+	width: 100%;
+}
+
+/* ::ng-deep cx-input .input-caixa-wrapper.focused label {
+	color: cx-variables.$cx-color-primary;
+}
+::ng-deep cx-input.ng-valid .input-caixa-wrapper.focused label {
+	color: cx-variables.$cx-color-success;
+}
+::ng-deep cx-input.ng-invalid .input-caixa-wrapper.focused label {
+	color: cx-variables.$cx-color-danger;
+} */
+
+::ng-deep cx-input .input-caixa-flex-field {
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+	background: transparent;
+}
+
+::ng-deep cx-input .input-caixa-field {
+	display: block;
+	width: 100%;
+}
+
+::ng-deep cx-input .input-caixa-feedback-icon {
+	display: inline-block;
+	margin-top: auto;
+	margin-bottom: auto;
+	border-radius: 50% !important;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+::ng-deep cx-input .feedback-message {
+	min-height: 1.6rem;
+}
+
+::ng-deep cx-input .input-caixa-prefix-icon {
+	width: 1.5rem;
+	min-width: 1.5rem;
+	max-width: 1.5rem;
+	text-align: center;
+	align-items: center;
+	vertical-align: middle;
+}
+::ng-deep cx-input .input-caixa-prefix-icon:empty {
+	display: none;
+}

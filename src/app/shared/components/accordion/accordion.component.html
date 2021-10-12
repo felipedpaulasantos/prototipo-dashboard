@@ -1,0 +1,3 @@
+<ul class="accordion nav flex-column" [ngClass]="(menuService.isAberto$ | async) ? 'menu-aberto' : 'menu-reduzido'">
+  <app-menu-item [menus]="menus" (activateMenu)="activate($event)"></app-menu-item>
+</ul>

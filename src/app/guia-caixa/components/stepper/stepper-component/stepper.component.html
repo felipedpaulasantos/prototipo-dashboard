@@ -1,0 +1,33 @@
+<div class="stepper-wrapper" [ngClass]="{'horizontal': orientation == 0,'vertical': orientation == 1}">
+   <ul class="stepper" [ngClass]="{'completed': currentStep == (steps?.length - 1), 'nav-guided': !freeNavigation}">
+      <li [title]="step?.title" class="step" *ngFor="let step of steps; let index = index; let last = last" [ngClass]="{
+         'current-step': currentStep == index,
+         'prior-step': index == (currentStep - 1),
+         'previous-step': index < currentStep,
+         'last-step': last && currentStep == index,
+         'cursor-pointer': clickable && (index < currentStep && currentStep < (steps.length - 1))
+      }">
+         <div class="step-title waves-effect" (click)="clickable ? toStepByIndex(index) : null">
+            <div class="step-icon">
+               <ng-container *ngIf="getStepIcon(index) as backIcon else showCounter">
+                  <i class="{{ backIcon }}"></i>
+               </ng-container>
+               <ng-template #showCounter>
+                  {{ index + 1 }}
+               </ng-template>
+            </div>
+            <span [hidden]="index < currentStep" class="step-name">
+               {{step?.title}}
+            </span>
+         </div>
+      </li>
+   </ul>
+</div>
+
+<!--
+   Utilizando conteúdo interno, os templates identificados com a diretiva *cxStepper são renderizados aqui
+   e o controle de exibição é feito considerando o index do template, comparando-o ao index do passo atual
+ -->
+<ng-container *ngFor="let template of templates; let i = index">
+   <ng-container *ngIf="currentStep == i" [ngTemplateOutlet]="template"></ng-container>
+</ng-container>

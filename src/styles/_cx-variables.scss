@@ -1,0 +1,183 @@
+@use "sass:map";
+
+/* Colors */
+
+$cx-color-primary: #005CA9;
+$cx-color-primary-light:#0077DB;
+$cx-color-primary-lighter:#0F92FF;
+$cx-color-primary-dark:#004075;
+$cx-color-primary-darker:#002442;
+
+$cx-color-secondary: #F39200;
+$cx-color-secondary-light:#FFA829;
+$cx-color-secondary-lighter:#FFBD5C;
+$cx-color-secondary-dark:#C27300;
+$cx-color-secondary-darker:#8F5500;
+
+$cx-color-turquesa: #54BBAB;
+$cx-color-turquesa-light:#78C9BD;
+$cx-color-turquesa-lighter:#9CD8CF;
+$cx-color-turquesa-dark:#3E9D8E;
+$cx-color-turquesa-darker:#30786D;
+
+$cx-color-success: #008254;
+$cx-color-success-light:#00B273;
+$cx-color-success-lighter:#00E594;
+$cx-color-success-dark:#004D31;
+$cx-color-success-darker:#001A10;
+
+$cx-color-danger: #900000;
+$cx-color-danger-light:#C20000;
+$cx-color-danger-lighter:#F50000;
+$cx-color-danger-dark:#5C0000;
+$cx-color-danger-darker:#290000;
+
+$cx-color-info: #143DA6;
+$cx-color-info-light:#194DD1;
+$cx-color-info-lighter:#3768E7;
+$cx-color-info-dark:#0E2B76;
+$cx-color-info-darker:#091B49;
+
+$cx-color-warning: #FFD000;
+$cx-color-warning-light:#FFD933;
+$cx-color-warning-lighter:#FFE366;
+$cx-color-warning-dark:#CCA600;
+$cx-color-warning-darker:#997D00;
+
+$cx-color-limao: #B2CB0B;
+$cx-color-limao-light:#D6F217;
+$cx-color-limao-lighter:#DEF547;
+$cx-color-limao-dark:#889B08;
+$cx-color-limao-darker:#5D6A06;
+
+$cx-color-goiaba: #EF755D;
+$cx-color-goiaba-light:#F49C8B;
+$cx-color-goiaba-lighter:#F8C4B9;
+$cx-color-goiaba-dark:#EA4D2E;
+$cx-color-goiaba-darker:#D13415;
+
+$cx-color-ceu: #00B4E6;
+$cx-color-ceu-light:#1ACDFF;
+$cx-color-ceu-lighter:#4DD8FF;
+$cx-color-ceu-dark:#008CB2;
+$cx-color-ceu-darker:#006480;
+
+$cx-color-tangerina: #FAAF00;
+$cx-color-tangerina-light:#FFC02E;
+$cx-color-tangerina-lighter:#FFD061;
+$cx-color-tangerina-dark:#C78B00;
+$cx-color-tangerina-darker:#946800;
+
+$cx-color-uva:#B2709B;
+$cx-color-uva-light: #C492B3;
+$cx-color-uva-lighter: #D6B3CA;
+$cx-color-uva-dark:#9C5483;
+$cx-color-uva-darker: #7B4267;
+
+$cx-color-cinza: #D0E0E3;
+$cx-color-cinza-light: #EFF4F5;
+$cx-color-cinza-lighter:#FFFFFF;
+$cx-color-cinza-dark:#AFCACF;
+$cx-color-cinza-darker:#8FB5BC;
+
+$cx-color-grafite: #3A4859;
+$cx-color-grafite-light: #4E6178;
+$cx-color-grafite-lighter:#637A97;
+$cx-color-grafite-dark:#262F3B;
+$cx-color-grafite-darker:#12161C;
+
+$cx-color-porcelana: #F9FBFB;
+$cx-color-polar: #F6F9F9;
+
+$cx-color-placeholder: #999;
+
+$cx-colors: (
+  "principal": $cx-color-secondary,
+  "destaque": $cx-color-primary,
+  "base": $cx-color-cinza-lighter,
+  "fundo": $cx-color-porcelana,
+  "cancel": $cx-color-cinza,
+  "aux": $cx-color-grafite-light,
+  "contraste": $cx-color-grafite-dark
+);
+
+/* Logo */
+
+$cx-logo-azul: url("/assets/images/caixa-logo-x.png");
+$cx-logo-branco: url("/assets/images/caixa-logo-x-branco.png");
+$cx-logo-completo-azul: url("/assets/images/caixa-logo-completo.png");
+$cx-logo-completo-branco: url("/assets/images/caixa-logo-completo-branco.png");
+
+/* Font */
+
+$cx-font-family-base: Futura LT, Futura LT Book !default;
+$cx-font-family-normal: "Futura LT Book";
+$cx-font-family-bold: "Futura LT Bold";
+
+$cx-font-13: 13px;
+$cx-font-14: 14px;
+$cx-font-size-base: 1rem;
+$cx-h1-font-size: $cx-font-size-base * 2.5 !default;
+$cx-h2-font-size: $cx-font-size-base * 2 !default;
+$cx-h3-font-size: $cx-font-size-base * 1.75 !default;
+$cx-h4-font-size: $cx-font-size-base * 1.5 !default;
+$cx-h5-font-size: $cx-font-size-base * 1.25 !default;
+$cx-h6-font-size: $cx-font-size-base;
+
+/* Gradiente */
+
+$cx-gradient-oceano: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 100%);
+$cx-gradient-gelo: linear-gradient(90deg, $cx-color-cinza-lighter 40%, $cx-color-cinza 100%);
+$cx-gradient-tangerina: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 70%, $cx-color-tangerina 100%);
+$cx-gradient-limao: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 70%, $cx-color-limao 100%);
+$cx-gradient-ceu: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 70%, $cx-color-ceu 100%);
+$cx-gradient-uva: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 70%, $cx-color-uva 100%);
+$cx-gradient-goiaba: linear-gradient(90deg, $cx-color-primary 40%, $cx-color-turquesa 70%, $cx-color-goiaba 100%);
+
+$cx-gradient-verao: linear-gradient(90deg, $cx-color-turquesa 40%, $cx-color-tangerina 100%);
+$cx-gradient-outono: linear-gradient(90deg, $cx-color-turquesa 40%, $cx-color-goiaba 100%);
+$cx-gradient-agua: linear-gradient(90deg, $cx-color-turquesa 40%, $cx-color-ceu 100%);
+$cx-gradient-primavera: linear-gradient(90deg, $cx-color-turquesa 40%, $cx-color-uva 100%);
+$cx-gradient-inverno: linear-gradient(90deg, $cx-color-turquesa 40%, $cx-color-limao 100%);
+
+$cx-gradient-themes: (
+  "oceano": $cx-gradient-oceano,
+  "gelo": $cx-gradient-gelo,
+  "tangerina": $cx-gradient-tangerina,
+  "limao": $cx-gradient-limao,
+  "ceu": $cx-gradient-ceu,
+  "uva": $cx-gradient-uva,
+  "goiaba": $cx-gradient-goiaba,
+  "verao": $cx-gradient-verao,
+  "agua": $cx-gradient-agua,
+  "primavera": $cx-gradient-primavera,
+  "inverno": $cx-gradient-inverno
+);
+
+/* Opacidade */
+
+$cx-bg-opacity-1: 0.64;
+$cx-bg-opacity-2: 0.4;
+$cx-bg-opacity-3: 0.24;
+
+$cx-bg-opacities: (
+	"1": $cx-bg-opacity-1,
+	"2": $cx-bg-opacity-2,
+	"3": $cx-bg-opacity-3
+);
+
+$cx-text-opacity-1: 0.72;
+$cx-text-opacity-2: 0.56;
+$cx-text-opacity-3: 0.32;
+
+$cx-text-opacities: (
+	"1": $cx-text-opacity-1,
+	"2": $cx-text-opacity-2,
+	"3": $cx-text-opacity-3
+);
+
+/* Box shadow */
+
+$cx-sm-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
+$cx-default-box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
+$cx-lg-box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.15);

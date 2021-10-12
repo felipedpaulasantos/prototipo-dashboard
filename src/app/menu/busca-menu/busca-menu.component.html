@@ -1,0 +1,45 @@
+<div class="overlay" [ngClass]="{'show': show}" (click)="show ? show = false : null"></div>
+
+<div class="busca-menu shadow" [ngClass]="{'show': show}">
+
+   <div class="busca-menu-container">
+      <div class="nova-busca-container">
+         <h4 class="subtitulo mb-4">Nova busca</h4>
+
+         <cx-input>
+            <label>CPF / CNPJ</label>
+            <input inputCaixa>
+         </cx-input>
+   
+         <cx-input>
+            <label>NIS</label>
+            <input inputCaixa>
+         </cx-input>
+
+         <button class="btn btn-primario btn-block" (click)="buscarCliente()">
+            Consultar
+         </button>
+      </div>
+
+      <hr class="my-5">
+
+      <div class="consultados-container">
+         <h4 class="subtitulo mb-4">Clientes consultados</h4>
+
+         <ul class="list-group">
+            <li class="list-group-item cursor-pointer rounded border-0" *ngFor="let cliente of clientesConsultados; let i = index"
+            [ngClass]="{'active': cliente.active}" (click)="trocaCliente(i)">
+               <span>{{ cliente.nome }}</span>, <span>{{ cliente.cpf }}</span>
+               <span class="icon-remove-cliente-consultado">
+                  <i class="fa fa-times" (click)="removerCliente(i)"></i>
+               </span>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+
+<button id="botaoBuscaGlobal" class="btn btn-primario rounded-circle" (click)="show = !show">
+   <i class="fa fa-search fa-lg"></i>
+</button>
+

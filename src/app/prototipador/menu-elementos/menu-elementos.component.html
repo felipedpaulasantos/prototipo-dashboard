@@ -1,0 +1,9 @@
+<div id="menuLateralElementos" class="shadow-caixa p-4" [ngClass]="{'escondido': !isAberto}">
+   <h1>Menu</h1>
+</div>
+
+<button id="botaoExibirMenuElementos" class="btn btn-accent rounded-circle" (click)="isAberto = !isAberto">
+   <span *ngIf="!isAberto"><i class="fa fa-plus fa-lg"></i></span>
+   <span *ngIf="isAberto"><i class="fa fa-eye-slash fa-lg"></i></span>
+</button>
+

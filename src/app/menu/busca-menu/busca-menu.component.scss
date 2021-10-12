@@ -1,0 +1,72 @@
+@use "cx-variables";
+
+.busca-menu {
+   position: fixed;
+   display: block;
+   right: 0;
+   top: 64px;
+   height: 100%;
+   width: 360px;
+   z-index: 8;
+   background-color: white;
+   margin-right: -360px;
+   opacity: 0;
+   transition: margin-right 0.4s, opacity 0.4s;
+}
+.busca-menu.show {
+   margin-right: 0;
+   opacity: 1;
+}
+
+.busca-menu > .busca-menu-container {
+   padding: 0.8rem;
+}
+
+/* .busca-menu-container > .nova-busca-container {
+   margin-bottom: 2rem;
+} */
+
+#botaoBuscaGlobal {
+   position: fixed;
+   bottom: 0.5rem;
+   right: 0.5rem;
+   height: 60px;
+   width: 60px;
+   z-index: 9;
+}
+
+.consultados-container > .list-group > .list-group-item {
+   transition: background-color 0.2s;
+}
+.consultados-container > .list-group > .list-group-item:not(.active):hover {
+   background-color: cx-variables.$cx-color-cinza;
+}
+
+.consultados-container > .list-group > .list-group-item > .icon-remove-cliente-consultado {
+   position: absolute;
+   right: 0.5rem;
+   opacity: 0;
+   transition: opacity 0.2s;
+}
+.consultados-container > .list-group > .list-group-item:not(.active):hover > .icon-remove-cliente-consultado {
+   position: absolute;
+   right: 0.5rem;
+   opacity: 1;
+}
+
+.overlay {
+   position: fixed;
+   opacity: 0;
+   top: 0;
+   bottom: 0;
+   height: 0;
+   width: 0;
+   z-index: 8;
+   background-color: rgba(0,0,0,0.5);
+   transition: opacity 0.4s;
+}
+.overlay.show {
+   opacity: 1;
+   height: 100%;
+   width: 100%;
+}
