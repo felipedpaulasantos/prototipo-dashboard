@@ -6,7 +6,8 @@
     </span>
     <div id="spanLogo" class="h-100"  [ngClass]="{'menu-is-aberto': isMenuAberto}">
       <div (dblclick)="toggleHeaderBackground()" class="d-flex align-items-center h-100">
-        <img [src]="isMenuAberto ? logoCompletoBranco : logoXBranco" class="img-fluid img-logo rounded mx-auto">
+<!--         <img [src]="isMenuAberto ? logoCompletoBranco : logoXBranco" class="img-fluid img-logo rounded mx-auto"> -->
+        <h2 class="m-auto">{{isMenuAberto ? 'PROTÓTIPO' : 'P'}}</h2>
       </div>
     </div>
 

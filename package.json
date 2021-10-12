@@ -1,5 +1,5 @@
 {
-  "name": "prototipo-caixa",
+  "name": "prototipo-dashboard",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "prod": "ng build --prod --base-href /",
     "e2e": "ng e2e",
-    "ghpages": "ng build --prod --output-path docs --base-href https://felipedpaulasantos.github.io/prototipo-caixa/",
+    "ghpages": "ng build --prod --output-path docs --base-href https://felipedpaulasantos.github.io/prototipo-dashboard/",
     "stats": "webpack-bundle-analyzer docs/stats.json"
   },
   "private": true,
@@ -77,7 +77,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.5.4",
-    "ngx-highlightjs": "^4.1.0-beta",
+    "ngx-highlightjs": "^4.1.4",
     "pdfmake": "^0.1.65",
     "protractor": "^7.0.0",
     "ts-node": "^8.10.2",

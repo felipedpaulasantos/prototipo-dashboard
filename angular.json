@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "prototipo-caixa": {
+    "prototipo-dashboard": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,18 +84,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "prototipo-caixa:build"
+            "browserTarget": "prototipo-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "prototipo-caixa:build:production"
+              "browserTarget": "prototipo-dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "prototipo-caixa:build"
+            "browserTarget": "prototipo-dashboard:build"
           }
         },
         "test": {
@@ -132,11 +132,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "prototipo-caixa:serve"
+            "devServerTarget": "prototipo-dashboard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "prototipo-caixa:serve:production"
+              "devServerTarget": "prototipo-dashboard:serve:production"
             }
           }
         },
@@ -147,5 +147,5 @@
       }
     }
   },
-  "defaultProject": "prototipo-caixa"
+  "defaultProject": "prototipo-dashboard"
 }
